@@ -1,0 +1,11 @@
+[ui]
+; editor used to enter commit logs, etc.  Most text editors will work.
+editor = vim
+username = Jack Toole <jack@toole1.com>
+
+[web]
+cacerts = ~/.hgdummycert.pem
+
+[extensions]
+hgext.bookmarks =
+hggit = 
