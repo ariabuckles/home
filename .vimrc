@@ -57,8 +57,10 @@ endif
 
 "Custom settings
 set nocompatible
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
 autocmd FileType make setlocal noexpandtab
 set smartindent
 set autoindent
@@ -69,6 +71,7 @@ set scrolloff=2
 set wildmode=longest,list
 set nowrap
 autocmd BufRead *.txt set wrap
+filetype plugin on
 
 set viminfo='20,<200,s10,h
 
@@ -89,5 +92,14 @@ function! Tab_Or_Complete()
 		return "\<Tab>"
 	endif
 endfunction
-autocmd BufRead *.h,*.c,*.cpp,*.moon inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+autocmd BufRead *.h,*.c,*.cpp,*.moon,*.coffee inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+function! Java_Tab_Or_Complete()
+	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '\.\|^\w'
+		return "\<C-X>\<C-U>"
+	else
+		return "\<Tab>"
+	endif
+endfunction
+autocmd BufRead *.java inoremap <Tab> <C-R>=Java_Tab_Or_Complete()<CR>
 
