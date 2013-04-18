@@ -62,6 +62,8 @@ set shiftwidth=2
 set expandtab
 set smarttab
 autocmd FileType make setlocal noexpandtab
+autocmd FileType make setlocal shiftwidth=4
+autocmd FileType make setlocal tabstop=4
 set smartindent
 set autoindent
 set incsearch

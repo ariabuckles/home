@@ -37,6 +37,11 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+# hack to make mac git complete fast
+__git_files () { 
+	_wanted files expl 'local files' _files     
+}
+
 # OS-Specific things (ls colors etc)
 if [ $OS = 'Linux' ]; then
 	ls_color='--color=auto'
@@ -73,16 +78,30 @@ alias -r cp='cp -i'
 alias -r mv='mv -i'
 alias -r rm='rm -i'
 alias -r cim='vim'
+alias -r vm='vim'
 alias -r make='make --warn-undefined-variables'
 alias -r valgrindall='valgrind --trace-children=yes'
 alias -r valgrindallq='valgrind --trace-children=yes --quiet'
+alias -r src='source ~/.zshenv && source ~/.zshrc'
 svnlog() { svn log $@ --verbose | less; }
 xarg() { while read arg ; do ; $@ "$arg" ; done }
-gs() { ls | grep -i -e $@ | xargs ls -G; }
 alias -r l="ls $ls_color"
 alias -r c="cd"
 alias -r m="make --warn-undefined-variables"
 alias -r v="vim"
+lg() { ls | grep -i -e $@ | xargs ls -G; }
+
+# git aliases
+alias -r g='git'
+gd() { git diff $@ | vim -R - }
+gf() { git fetch && git stash && git rebase $@ && git stash pop }
+gl() { git log $@ | less }
+glv() { git log --name-status $@ | less }
+alias -r gci='git commit'
+alias -r gco='git checkout'
+alias -r ga='git add'
+alias -r gs='git status'
+alias -r gb='git branch'
 
 # Set up command line mode (currently vim mode...)
 
@@ -101,3 +120,6 @@ bindkey '^?' backward-delete-char
 
 # And key bindings
 # https://bbs.archlinux.org/viewtopic.php?pid=428669
+
+# Java settings
+alias setjava7='source setjava7.sh'
