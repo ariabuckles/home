@@ -96,6 +96,9 @@ function! Tab_Or_Complete()
 endfunction
 autocmd BufRead *.h,*.c,*.cpp,*.moon,*.coffee inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
+autocmd FileType java setlocal shiftwidth=4
+autocmd FileType java setlocal tabstop=4
+
 function! Java_Tab_Or_Complete()
 	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '\.\|^\w'
 		return "\<C-X>\<C-U>"
@@ -103,5 +106,5 @@ function! Java_Tab_Or_Complete()
 		return "\<Tab>"
 	endif
 endfunction
-autocmd BufRead *.java inoremap <Tab> <C-R>=Java_Tab_Or_Complete()<CR>
+autocmd BufRead *.java inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
