@@ -57,8 +57,8 @@ endif
 
 "Custom settings
 set nocompatible
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 autocmd FileType make setlocal noexpandtab
@@ -94,7 +94,8 @@ function! Tab_Or_Complete()
 		return "\<Tab>"
 	endif
 endfunction
-autocmd BufRead *.h,*.c,*.cpp,*.moon,*.coffee inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+autocmd BufRead *.h,*.c,*.cpp,*.moon,*.coffee,*.js,*.jsx,*.al inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+autocmd BufRead *.al set filetype=javascript
 
 autocmd FileType java setlocal shiftwidth=4
 autocmd FileType java setlocal tabstop=4

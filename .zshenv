@@ -20,4 +20,8 @@ if [ -e ~/.env_vars ]; then
 	source ~/.env_vars
 fi
 
+if [ -e ~/.virtualenv/khan27/bin/activate ]; then
+  source ~/.virtualenv/khan27/bin/activate
+fi
+
 export MOCHA_REPORTER='spec'
