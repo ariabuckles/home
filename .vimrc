@@ -94,11 +94,23 @@ function! Tab_Or_Complete()
 		return "\<Tab>"
 	endif
 endfunction
-autocmd BufRead *.h,*.c,*.cpp,*.moon,*.coffee,*.js,*.jsx,*.al inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 autocmd BufRead *.al set filetype=javascript
+autocmd BufRead *.md set filetype=markdown
 
 autocmd FileType java setlocal shiftwidth=4
 autocmd FileType java setlocal tabstop=4
+
+function! TrimWhiteSpace()
+    %s/\s\s*$//e
+endfunction
+
+autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
+autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+
+autocmd BufRead examples.jsx highlight Comment ctermfg=8
 
 function! Java_Tab_Or_Complete()
 	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '\.\|^\w'

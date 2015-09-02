@@ -1,9 +1,10 @@
 # System Variables
 #Macports path:
-export PATH=$PATH:/usr/local/bin:/opt/local/bin:/opt/local/sbin
-export MANPATH=$MANPATH:/opt/local/share/man
+export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export MANPATH=/opt/local/share/man:$MANPATH
 export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
-export PATH=./node_modules/.bin:$HOME/bin:$HOME/opt/bin:$PATH
+export PATH="$HOME/khan/devtools/git-bigfile/bin:$PATH"
+export PATH=$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin
 export EDITOR=vim 
 bindkey -e
 export NACL_SDK_ROOT="$HOME/Code/nacl_sdk/pepper_18"
@@ -18,8 +19,6 @@ fi
 
 if [ -e ~/.virtualenv/khan27/bin/activate ]; then
   source ~/.virtualenv/khan27/bin/activate
-  echo "sourced virtualenv"
 fi
 
 export MOCHA_REPORTER='spec'
-echo "zshenv loaded"
