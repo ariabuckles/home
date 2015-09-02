@@ -102,6 +102,7 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
+alias -r ag='ag -S'
 
 # Set up command line mode (currently vim mode...)
 
