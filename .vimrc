@@ -64,6 +64,12 @@ set smarttab
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal shiftwidth=4
 autocmd FileType make setlocal tabstop=4
+autocmd FileType ruby setlocal tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2
+autocmd FileType haml setlocal tabstop=2
+autocmd FileType haml setlocal shiftwidth=2
+autocmd FileType coffee setlocal tabstop=2
+autocmd FileType coffee setlocal shiftwidth=2
 set smartindent
 set autoindent
 set incsearch
@@ -95,6 +101,21 @@ function! Tab_Or_Complete()
 	endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+"lnoremap does "language mode", which applies in all text insert situations,
+"but not normal/visaul/visualblock. Notably, this includes search.
+"To enable it, we have to set:
+":set iminsert=1
+"wellll i couldn't get that to work, so noremap! maps something for insert and
+"commandline mode
+"Couldn't get that to work either so we're back at inoremap
+"See http://stackoverflow.com/questions/25745169/to-get-lnoremap-with-l-to-work
+"Set shift-left/right (home end from my terminal bindings) to be home/end
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
+noremap <C-e> $
+noremap <C-a> ^
+
 autocmd BufRead *.al set filetype=javascript
 autocmd BufRead *.md set filetype=markdown
 

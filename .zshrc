@@ -124,3 +124,7 @@ bindkey '^?' backward-delete-char
 
 # Java settings
 alias setjava7='source setjava7.sh'
+
+# Ruby & Rails settings
+# rbenv:
+eval "$(rbenv init - zsh)"

@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+    name = Aria Buckles
+    email = aria@magoosh.com
+[alias]
+    p = pull --rebase
+    co = checkout
+    su = branch --set-upstream-to master
+    p = pull --rebase
+    br = branch
+    lp = log -p
+    st = status
+    ri = rebase -i
+[core]
+	excludesfile = ~/.gitignore
