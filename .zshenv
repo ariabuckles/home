@@ -8,6 +8,7 @@ export PATH=$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin
 export EDITOR=vim 
 bindkey -e
 export NACL_SDK_ROOT="$HOME/Code/nacl_sdk/pepper_18"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Custom Variables
 export POLARIS='toole1@ews-polaris04.cs.illinois.edu'

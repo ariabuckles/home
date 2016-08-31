@@ -11,5 +11,12 @@
     lp = log -p
     st = status
     ri = rebase -i
+    rc = rebase --continue
+    ci = commit
 [core]
 	excludesfile = ~/.gitignore
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false

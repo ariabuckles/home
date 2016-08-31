@@ -128,3 +128,23 @@ alias setjava7='source setjava7.sh'
 # Ruby & Rails settings
 # rbenv:
 eval "$(rbenv init - zsh)"
+
+# bundle exec rails fanciness
+function r {
+    bundle exec rails "$@"
+}
+
+function rcap {
+    bundle exec cap "$@"
+}
+
+function rk {
+    bundle exec rake "$@"
+}
+
+alias -r rc='rlwrap bundle exec rails console'
+
+function remount {
+    sudo kextunload -b com.apple.driver.AppleSDXC
+    sudo kextload -b com.apple.driver.AppleSDXC
+}
