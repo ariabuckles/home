@@ -83,25 +83,6 @@ filetype plugin on
 
 set viminfo='20,<200,s10,h
 
-"FROM:
-"http://vim.wikia.com/wiki/Autocomplete_with_TAB_when_typing_words
-"Use TAB to complete when typing words, else inserts TABs as usual.
-"Uses dictionary and source files to find matching words to complete.
-
-"See help completion for source,
-"Note: usual completion is on <C-n> but more trouble to press all the time.
-"Never type the same word twice and maybe learn a new spellings!
-"Use the Linux dictionary when spelling is in doubt.
-"Window users can copy the file to their machine.
-function! Tab_Or_Complete()
-	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-		return "\<C-N>"
-	else
-		return "\<Tab>"
-	endif
-endfunction
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-
 "lnoremap does "language mode", which applies in all text insert situations,
 "but not normal/visaul/visualblock. Notably, this includes search.
 "To enable it, we have to set:
@@ -159,4 +140,25 @@ inoremap <C-i> <C-o><PageUp>
 inoremap <C-j> <C-o>^
 inoremap <C-k> <C-o><PageDown>
 inoremap <C-l> <C-o>$
+
+"Tab completion
+"For some reason this needs to be after our <C-i> remapping >_>
+"FROM:
+"http://vim.wikia.com/wiki/Autocomplete_with_TAB_when_typing_words
+"Use TAB to complete when typing words, else inserts TABs as usual.
+"Uses dictionary and source files to find matching words to complete.
+
+"See help completion for source,
+"Note: usual completion is on <C-n> but more trouble to press all the time.
+"Never type the same word twice and maybe learn a new spellings!
+"Use the Linux dictionary when spelling is in doubt.
+"Window users can copy the file to their machine.
+function! Tab_Or_Complete()
+	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+		return "\<C-N>"
+	else
+		return "\<Tab>"
+	endif
+endfunction
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
