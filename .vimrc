@@ -133,12 +133,30 @@ autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 
 autocmd BufRead examples.jsx highlight Comment ctermfg=8
 
-function! Java_Tab_Or_Complete()
-	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '\.\|^\w'
-		return "\<C-X>\<C-U>"
-	else
-		return "\<Tab>"
-	endif
-endfunction
-autocmd BufRead *.java inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+"Okay, time to get crazy and make this more usable.
+"Game mode controls. -_-
+"Right hand game controls because we apparently use the
+"left hand keys....
+noremap i k
+noremap j h
+noremap k j
+"restore an insert command (but try to use a more?)
+noremap h i
+
+"Word/paragraph navigation with shift
+noremap I {
+noremap J b
+noremap K }
+noremap L e
+
+"Line/page navigation with control
+noremap <C-i> <PageUp>
+noremap <C-j> ^
+noremap <C-k> <PageDown>
+noremap <C-l> $
+"Keep line/page navigation while in insert mode
+inoremap <C-i> <C-o><PageUp>
+inoremap <C-j> <C-o>^
+inoremap <C-k> <C-o><PageDown>
+inoremap <C-l> <C-o>$
 
