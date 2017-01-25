@@ -103,6 +103,7 @@ alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
 alias -r ag='ag -S'
+alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)
 
@@ -148,3 +149,6 @@ function remount {
     sudo kextunload -b com.apple.driver.AppleSDXC
     sudo kextload -b com.apple.driver.AppleSDXC
 }
+
+export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
+export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
