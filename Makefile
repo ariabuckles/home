@@ -23,10 +23,16 @@ install: decrypt
 reinstall: decrypt
 	ls -A | grep '^\.' | xargs -I% ln -s -F "`pwd`/%" ~
 
+copy-only:
+	ls -A | grep '^\.' | xargs -I% ln -s -F "`pwd`/%" ~
+
 
 # Encrypts
-encrypt: encrypt-secrets encrypt-keychain
-decrypt: decrypt-secrets decrypt-keychain
+encrypt: setup-viridium encrypt-secrets encrypt-keychain
+decrypt: setup-viridium decrypt-secrets decrypt-keychain
+
+setup-viridium:
+	ln -s -F "`pwd`/.viridium.json" ~
 
 decrypt-secrets: npmutils
 	-mv ~/.secrets.env ~/.secrets.env.bak

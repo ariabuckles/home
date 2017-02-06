@@ -2,11 +2,19 @@
 OS=`uname -s`
 
 # zsh magic completion
-autoload -zU compinit
-compinit
+# disabled cause insecure warning right now
+#autoload -zU compinit
+#compinit
 
 # command prompt
-export PROMPT='%2~> '
+# export PROMPT='%2~> '
+if [[ "$USER" = "ariashell" ]]; then
+  export PROMPT='💖 %2~> '
+elif [[ "$USER" = "aria" ]]; then
+  export PROMPT='❗️ %2~> '
+else
+  export PROMPT='‼️ ERR>'
+fi
 
 # vim style history with shift-up/down\pageup/down
 bindkey "\033[5~" history-beginning-search-backward
@@ -34,7 +42,12 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.zsh_history
+if [[ "$USER" = "ariashell" ]]; then
+  HISTFILE=/Users/ariashell/.zsh_history
+else
+  HISTFILE=~/.zsh_history
+  chmod 600 "$HISTFILE"
+fi
 
 # hack to make mac git complete fast
 __git_files () { 
@@ -128,7 +141,9 @@ alias setjava7='source setjava7.sh'
 
 # Ruby & Rails settings
 # rbenv:
-eval "$(rbenv init - zsh)"
+if which rbenv &>/dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # bundle exec rails fanciness
 function r {
