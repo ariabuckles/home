@@ -15,7 +15,9 @@ export ANDROID_NDK=$HOME/your_unix_name/android-ndk/android-ndk-r10e
 
 # Custom Variables
 export POLARIS='toole1@ews-polaris04.cs.illinois.edu'
-export MONAD='https://jacktoole1@bitbucket.org/jacktoole1/monad'
+export MONAD='https://ariabuckles@bitbucket.org/ariabuckles/monad'
+
+alias -r watchman="/usr/local/Cellar/watchman/4.7.0_1/libexec/bin/watchman --foreground --logfile=/usr/local/var/run/watchman/ariashell-state/log --log-level=1 --sockname=/usr/local/var/run/watchman/ariashell-state/sock --statefile=/usr/local/var/run/watchman/ariashell-state/state --pidfile=/usr/local/var/run/watchman/ariashell-state/pid"
 
 if [ -e ~/.env_vars ]; then
 	source ~/.env_vars
@@ -30,3 +32,7 @@ if [ -e ~/.virtualenv/khan27/bin/activate ]; then
 fi
 
 export MOCHA_REPORTER='spec'
+
+function share {
+  chmod -R g=u "$@"
+}

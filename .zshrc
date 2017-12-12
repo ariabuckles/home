@@ -165,5 +165,14 @@ function remount {
     sudo kextload -b com.apple.driver.AppleSDXC
 }
 
+# ssh identity stuff
+function identify {
+    if [ -z "$SSH_AGENT_PID" ]; then
+        eval `ssh-agent -s`
+        eval ssh-add
+    fi
+}
+alias yarn="identify && yarn"
+
 export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
 export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"

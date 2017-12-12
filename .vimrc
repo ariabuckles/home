@@ -128,7 +128,7 @@ noremap h i
 noremap I {
 noremap J b
 noremap K }
-noremap L e
+noremap L w
 
 "Line/page navigation with control
 noremap <C-i> <PageUp>
@@ -161,4 +161,18 @@ function! Tab_Or_Complete()
 	endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+"Line number magicks:
+"use hybrid absolute/relative numbers
+:set number relativenumber
+
+"set line number style based on entering/leaving the buffer:
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+"Make Ctrl-C run the line number autocommands above
+inoremap <C-C> <C-[>
 
