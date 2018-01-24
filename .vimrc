@@ -164,15 +164,22 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
 "Line number magicks:
 "use hybrid absolute/relative numbers
-:set number relativenumber
+set number relativenumber
 
 "set line number style based on entering/leaving the buffer:
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 "Make Ctrl-C run the line number autocommands above
 inoremap <C-C> <C-[>
 
+"Settings for live coding:
+set nonumber norelativenumber
+augroup numbertoggle
+  autocmd!
+augroup END
+set showtabline=2
+set scrolloff=0

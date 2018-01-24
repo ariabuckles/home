@@ -18,13 +18,13 @@ npmutils:
 
 # Env files
 install: decrypt
-	ls -A | grep '^\.' | xargs -I% ln -s "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s "`pwd`/%" ~
 
 reinstall: decrypt
-	ls -A | grep '^\.' | xargs -I% ln -s -F "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s -F "`pwd`/%" ~
 
 copy-only:
-	ls -A | grep '^\.' | xargs -I% ln -s -F "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s -F "`pwd`/%" ~
 
 
 # Encrypts

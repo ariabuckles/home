@@ -16,6 +16,7 @@
     alias = config --get-regexp ^alias
 [core]
 	excludesfile = ~/.gitignore
+  hooksPath = ~/.githooks
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
