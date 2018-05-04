@@ -1,12 +1,12 @@
-include .hgrc.khan
+; include .hgrc.khan
 
 [ui]
 ; editor used to enter commit logs, etc.  Most text editors will work.
 editor = vim
-username = Jack Toole <jack@toole1.com>
+username = Aria Buckles <aria@toole1.com>
 
 [web]
-cacerts = ~/.hgdummycert.pem
+; cacerts = ~/.hgdummycert.pem
 
 [extensions]
 hgext.bookmarks =

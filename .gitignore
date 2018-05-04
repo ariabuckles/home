@@ -1,4 +1,8 @@
 node_modules/
+*/node_modules/*
 .vim/.netrwhist
 .config/configstore
+.config/yarn
+.config/heroku
+.npmrc
 *.swp

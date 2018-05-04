@@ -123,12 +123,14 @@ noremap j h
 noremap k j
 "restore an insert command (but try to use a more?)
 noremap h i
+noremap ; a
 
 "Word/paragraph navigation with shift
 noremap I {
 noremap J b
 noremap K }
 noremap L w
+noremap H I
 
 "Line/page navigation with control
 noremap <C-i> <PageUp>
@@ -183,3 +185,7 @@ augroup numbertoggle
 augroup END
 set showtabline=2
 set scrolloff=0
+
+"Disable neovim cursor resizing:
+"set guicursor=
+

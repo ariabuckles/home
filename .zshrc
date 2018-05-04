@@ -115,7 +115,7 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='ag -S'
+alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*"'
 alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)
@@ -176,3 +176,5 @@ alias yarn="identify && yarn"
 
 export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
 export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
+
+alias brew="sudo -u homebrew -i"
