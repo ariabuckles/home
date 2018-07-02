@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
     name = Aria Buckles
-    email = aria@classjourney.org
+    email = aria@joinhorizons.com
 [alias]
     p = pull --rebase
     co = checkout
@@ -15,10 +15,10 @@
     ci = commit
     alias = config --get-regexp ^alias
 [core]
-	excludesfile = ~/.gitignore
-  hooksPath = ~/.githooks
+    excludesfile = ~/.gitignore
+    hooksPath = ~/.githooks
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+    tool = vimdiff
+    conflictstyle = diff3
 [mergetool]
-	prompt = false
+    prompt = false

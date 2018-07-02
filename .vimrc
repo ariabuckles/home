@@ -189,3 +189,13 @@ set scrolloff=0
 "Disable neovim cursor resizing:
 "set guicursor=
 
+" https://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character
+" Show whitespace
+set listchars=tab:↦ ,trail:·,extends:»,precedes:«
+set list
+augroup trailingwhitespace
+  autocmd!
+  autocmd InsertEnter * set nolist
+  autocmd InsertLeave * set list
+augroup END
+

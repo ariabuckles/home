@@ -36,7 +36,7 @@ syn match markdownValid '&\%(#\=\w*;\)\@!'
 syn match markdownLineStart "^[<@]\@!" nextgroup=@markdownBlock,htmlSpecialChar
 
 syn cluster markdownBlock contains=markdownH1,markdownH2,markdownH3,markdownH4,markdownH5,markdownH6,markdownBlockquote,markdownListMarker,markdownOrderedListMarker,markdownCodeBlock,markdownRule
-syn cluster markdownInline contains=markdownLineBreak,markdownLinkText,markdownItalic,markdownBold,markdownCode,markdownEscape,@htmlTop,markdownError
+syn cluster markdownInline contains=markdownLineBreak,markdownLinkText,markdownItalic,markdownBold,markdownCode,markdownEscape,@htmlTop,markdownError,badWords
 
 syn match markdownH1 "^.\+\n=\+$" contained contains=@markdownInline,markdownHeadingRule,markdownAutomaticLink
 syn match markdownH2 "^.\+\n-\+$" contained contains=@markdownInline,markdownHeadingRule,markdownAutomaticLink
@@ -96,6 +96,7 @@ endif
 
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
 syn match markdownError "\w\@<=\w\@="
+syn match badWords "obviously\|basically\|simply\|of\scourse\|clearly\|just\|anyone\|everyone\sknows\|however\|so,\|easy\|actually\|everyone\|suck"
 
 hi def link markdownH1                    htmlH1
 hi def link markdownH2                    htmlH2
@@ -133,6 +134,7 @@ hi def link markdownCodeDelimiter         Delimiter
 
 hi def link markdownEscape                Special
 hi def link markdownError                 Error
+hi def link badWords                      Error
 
 let b:current_syntax = "markdown"
 if main_syntax ==# 'markdown'

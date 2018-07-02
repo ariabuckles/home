@@ -34,6 +34,7 @@ decrypt: setup-viridium decrypt-secrets decrypt-keychain
 setup-viridium:
 	ln -s -F "`pwd`/.viridium.json" ~
 
+# TODO: make .secrets.env local to this file
 decrypt-secrets: npmutils
 	-mv ~/.secrets.env ~/.secrets.env.bak
 	./node_modules/.bin/viridium secrets.env | openssl aes-256-cbc -d -in secrets.env -out ~/.secrets.env -pass stdin
