@@ -9,7 +9,7 @@ OS=`uname -s`
 # command prompt
 # export PROMPT='%2~> '
 if [[ "$USER" = "ariashell" ]]; then
-  export PROMPT='💖 %2~> '
+  export PROMPT='%2{💖%} %2~> '
 elif [[ "$USER" = "aria" ]]; then
   export PROMPT='❗️ %2~> '
 else
@@ -115,7 +115,7 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*"'
+alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*"'
 alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)
@@ -123,7 +123,7 @@ alias -r wget='curl -O'
 # Add -- COMMAND -- message when in command mode
 # http://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
 function zle-line-init zle-keymap-select {
-	RPS1="${${KEYMAP/vicmd/-- COMMAND --}/(main|viins)/}"            
+	RPS1="${${KEYMAP/vicmd/-- COMMAND --}/(main|viins)/}"
 	RPS2=$RPS1
 	zle reset-prompt
 }
