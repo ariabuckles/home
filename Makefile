@@ -48,3 +48,8 @@ decrypt-keychain: npmutils
 encrypt-keychain: npmutils
 	./node_modules/.bin/viridium home.keychain | openssl aes-256-cbc -out home.keychain -in ~/Library/Keychains/home.keychain -pass stdin
 
+
+# Write protect a file:
+# sudo chflags schg fileName
+# Un-write protect:
+# sudo chflags noschg resume.txt
