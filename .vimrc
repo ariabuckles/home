@@ -187,7 +187,7 @@ set showtabline=2
 set scrolloff=0
 
 "Disable neovim cursor resizing:
-"set guicursor=
+set guicursor=
 
 " https://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character
 " Show whitespace
