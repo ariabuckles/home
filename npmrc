@@ -1,2 +1,6 @@
 prefix=${HOME}
 shell=/bin/bash
+init-author-name=Aria Buckles
+init-author-url=https://github.com/ariabuckles
+init-license=MIT
+init-version=0.0.1
