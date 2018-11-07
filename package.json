@@ -1,0 +1,11 @@
+{
+  "name": "ariabuckles-home",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "author": "Aria Buckles",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "viridium": "0.4.1"
+  }
+}

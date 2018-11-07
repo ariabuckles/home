@@ -13,7 +13,7 @@ nativeutils:
 	${BREW} install tig
 
 npmutils:
-	npm install viridium
+	npm install
 
 
 # Env files
