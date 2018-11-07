@@ -17,8 +17,11 @@ npmutils:
 
 
 # Env files
-install: decrypt
+install: copy-npmrc decrypt install-prefs
 	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s "`pwd`/%" ~
+
+update: encrypt update-prefs
+	echo "update"
 
 reinstall: decrypt
 	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s -F "`pwd`/%" ~
@@ -47,6 +50,16 @@ decrypt-keychain: npmutils
 
 encrypt-keychain: npmutils
 	./node_modules/.bin/viridium home.keychain | openssl aes-256-cbc -out home.keychain -in ~/Library/Keychains/home.keychain -pass stdin
+
+update-prefs:
+	defaults export com.apple.Terminal - > terminal.plist
+
+install-prefs:
+	defaults import com.apple.Terminal terminal.plist
+
+# We do this so that the npmrc in git doesn't have the registry token
+copy-npmrc:
+	cp npmrc .npmrc
 
 
 # Write protect a file:
