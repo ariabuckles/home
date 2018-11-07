@@ -11,7 +11,7 @@ OS=`uname -s`
 if [[ "$USER" = "ariashell" ]]; then
   export PROMPT='%2{💖%} %2~> '
 elif [[ "$USER" = "aria" ]]; then
-  export PROMPT='❗️ %2~> '
+  export PROMPT='%2{❗️%} %2~> '
 else
   export PROMPT='‼️ ERR>'
 fi

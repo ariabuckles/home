@@ -57,8 +57,8 @@ endif
 
 "Custom settings
 set nocompatible
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 autocmd FileType make setlocal noexpandtab
@@ -69,7 +69,9 @@ autocmd FileType ruby setlocal shiftwidth=2
 autocmd FileType haml setlocal tabstop=2
 autocmd FileType haml setlocal shiftwidth=2
 autocmd FileType coffee setlocal tabstop=2
-autocmd FileType coffee setlocal shiftwidth=2
+autocmd FileType coffee setlocal tabstop=2
+autocmd FileType html setlocal shiftwidth=2
+autocmd FileType html setlocal shiftwidth=2
 set smartindent
 set autoindent
 set incsearch

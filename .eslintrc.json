@@ -20,11 +20,11 @@
     "no-extra-semi": "warn",
     "new-parens": "error",
     "comma-spacing": "warn",
-    "semi-spacing": "error",
+    "semi-spacing": "warn",
     "no-bitwise": "error",
-    "no-multi-assign": "error",
+    "no-multi-assign": "warn",
     "no-trailing-spaces": "warn",
-    "one-var": ["error", "never"],
+    "one-var": ["warn", "never"],
     "semi-style": ["warn", "last"],
     "no-confusing-arrow": ["error", {"allowParens": true}],
     "no-const-assign": "error",
@@ -36,8 +36,17 @@
     "no-eval": "warn",
     "no-void": "error",
     "no-with": "error",
+
+    "for-direction": "warn",
+    "no-cond-assign": "warn",
+    "no-return-assign": "warn",
+    "no-dupe-args": "warn",
+    "no-unsafe-negation": "warn",
+
+    "object-shorthand": ["warn", "never"],
+    "no-var": "warn",
     "no-restricted-syntax": [
-      "error",
+      "warn",
       {
         "selector": "FunctionDeclaration",
         "message": "Please use `let f = function()` instead of `function f()`"
@@ -46,15 +55,6 @@
         "selector": "SequenceExpression",
         "message": "Sorry, `,` may only be used for functions and arrays, you might have meant a `;`?"
       }
-    ],
-
-    "for-direction": "warn",
-    "no-cond-assign": "warn",
-    "no-return-assign": "warn",
-    "no-dupe-args": "warn",
-    "no-unsafe-negation": "warn",
-
-    "object-shorthand": ["error", "never"],
-    "no-var": "error"
+    ]
   }
 }
