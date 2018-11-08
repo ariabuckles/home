@@ -1,0 +1,20 @@
+Some files in this repository, notably vim/git extensionsare not authored
+by me and are copyright their respective authors. (Feel free to open an issue
+if you intend to use a portion of this software for non-personal use and want
+to check whether it is imported from elsewhere or is my work and licensed as
+specified below.)
+
+All content authored by me is licensed under [CC0-1.0][CC0], [0BSD][0BSD],
+and/or the [Unlicense][Unlicense], at the choosing of the recipient of this software.
+
+[CC0]: https://creativecommons.org/share-your-work/public-domain/cc0/
+[0BSD]: https://opensource.org/licenses/FPL-1.0.0
+[Unlicense]: http://unlicense.org/
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
