@@ -25,3 +25,5 @@ make install
 Note that these will prompt for my passwords to decrypt .secrets.env,
 but the rest should be pretty generic. Disclaimer: I don't offer much
 support for this repo; it's just for me.
+
+[LICENSE: (CC0-1.0 OR 0BSD OR Unlicense)][LICENSE]

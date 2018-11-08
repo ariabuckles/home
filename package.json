@@ -2,10 +2,20 @@
   "name": "ariabuckles-home",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "author": "Aria Buckles",
-  "license": "UNLICENSED",
+  "description": "ariabuckles' home directory configuration",
+  "main": "Makefile",
   "dependencies": {
     "viridium": "0.4.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariabuckles/home.git"
+  },
+  "author": "Aria Buckles (https://github.com/ariabuckles)",
+  "license": "(CC0-1.0 OR 0BSD OR Unlicense)",
+  "bugs": {
+    "url": "https://github.com/ariabuckles/home/issues"
+  },
+  "homepage": "https://github.com/ariabuckles/home#readme"
 }
