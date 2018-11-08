@@ -15,7 +15,7 @@ make workspace
 
 Or, to run installation without the homebrew setup included in workspace:
 
-```
+```sh
 cd ~
 git clone https://github.com/ariabuckles/home.git
 cd home
