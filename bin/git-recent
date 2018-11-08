@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+import re
+import subprocess
+
+CHECKOUT_RE = re.compile(
+    r'[0-9a-f]+ HEAD@\{[0-9]+\}: checkout: moving from .+? to (.+)')
+
+def main():
+    reflog = subprocess.check_output(['git', 'reflog', '-n', '1000'])
+    lines = reflog.splitlines()
+    checkout_matches = [CHECKOUT_RE.match(l) for l in lines]
+    checkouts = filter(None, checkout_matches)
+    checkout_destinations_with_dupes = [match.group(1) for match in checkouts]
+
+    checkout_destinations = []
+    checkout_destinations_set = set()
+    for branch in checkout_destinations_with_dupes:
+        if branch not in checkout_destinations_set:
+            checkout_destinations.append(branch)
+            checkout_destinations_set.add(branch)
+
+            if len(checkout_destinations) >= 10:
+                break
+
+    for index, branch in enumerate(checkout_destinations):
+        print '[{}] {}'.format(index, branch)
+
+    chosen_index_str = raw_input('Navigate to: ')
+    try:
+        chosen_index = int(chosen_index_str)
+    except ValueError:
+        return
+
+    try:
+        chosen_branch = checkout_destinations[chosen_index]
+    except IndexError:
+        return
+
+    subprocess.check_call(['git', 'checkout', chosen_branch])
+
+if __name__ == '__main__':
+    main()
