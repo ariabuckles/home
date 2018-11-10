@@ -53,9 +53,12 @@ encrypt-keychain: npmutils
 
 update-prefs:
 	defaults export com.apple.Terminal - > terminal.plist
+	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
 
 install-prefs:
 	defaults import com.apple.Terminal terminal.plist
+	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
+
 
 # We do this so that the npmrc in git doesn't have the registry token
 copy-npmrc:
