@@ -8,12 +8,17 @@ OS=`uname -s`
 
 # command prompt
 # export PROMPT='%2~> '
-if [[ "$USER" = "ariashell" ]]; then
-  export PROMPT='%2{💖%} %2~> '
-elif [[ "$USER" = "aria" ]]; then
+SHELLUSEREXISTS=`id ariashell &>/dev/null`
+if [[ "$USER" = "aria" && -o login ]] && $SHELLUSEREXISTS; then
+  exec sudo -u ariashell -s
+elif [[ "$USER" = "aria" ]] && $SHELLUSEREXISTS; then
   export PROMPT='%2{❗️%} %2~> '
+elif [[ "$USER" = "aria" ]]; then
+  export PROMPT='%2{❣️ %} %2~> '
+elif [[ "$USER" = "ariashell" ]]; then
+  export PROMPT='%2{💖%} %2~> '
 else
-  export PROMPT='‼️ ERR>'
+  export PROMPT='%2{‼️ %} ERR:%n>'
 fi
 
 # vim style history with shift-up/down\pageup/down
