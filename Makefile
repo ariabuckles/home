@@ -7,10 +7,11 @@ workspace: nativeutils install
 BREW=/usr/local/bin/brew
 
 nativeutils:
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	${BREW} install node
 	${BREW} install the_silver_searcher
 	${BREW} install tig
+	${BREW} install python@2
 
 npmutils:
 	npm install
