@@ -19,6 +19,7 @@
 [core]
     excludesfile = ~/.gitignore
     hooksPath = ~/.githooks
+    abbrev = 8
 [merge]
     tool = vimdiff
     conflictstyle = diff3
