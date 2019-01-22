@@ -5,7 +5,8 @@ export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH
 export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
 export PATH="$HOME/khan/devtools/git-bigfile/bin:$PATH"
-export PATH=$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin
+export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+export PATH="$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin"
 export EDITOR=vim 
 bindkey -e
 export NACL_SDK_ROOT="$HOME/Code/nacl_sdk/pepper_18"

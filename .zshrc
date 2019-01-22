@@ -15,6 +15,7 @@ elif [[ "$USER" = "aria" ]] && `id ariashell &>/dev/null`; then
 elif [[ "$USER" = "aria" ]]; then
   export PROMPT='%2{❣️ %} %2~> '
 elif [[ "$USER" = "ariashell" ]]; then
+  alias brew="sudo -u homebrew -i"
   export PROMPT='%2{💖%} %2~> '
 else
   export PROMPT='%2{‼️ %} ERR:%n>'
@@ -91,9 +92,6 @@ fi
 
 # aliases
 alias -r ls="ls $ls_color"
-alias -r cp='cp -i'
-alias -r mv='mv -i'
-alias -r rm='rm -i'
 alias -r cim='vim'
 alias -r vm='vim'
 alias -r make='make --warn-undefined-variables'
@@ -119,7 +117,7 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*"'
+alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*" --ignore "*.css.map*"'
 alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)
@@ -181,4 +179,7 @@ alias yarn="identify && yarn"
 export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
 export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
 
-alias brew="sudo -u homebrew -i"
+# Seesaw
+alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
+alias superctl="supervisorctl -s http://localhost:9001"
+

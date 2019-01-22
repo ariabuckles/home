@@ -4,12 +4,11 @@
     email = aria@seesaw.me
 [alias]
     p = pull --rebase
+    st = status -u
     co = checkout
-    su = branch --set-upstream-to master
-    p = pull --rebase
     br = branch
+    su = branch --set-upstream-to master
     lp = log -p
-    st = status
     ri = rebase -i
     rc = rebase --continue
     ci = commit
