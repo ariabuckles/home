@@ -1,5 +1,7 @@
 autocmd!
 
+execute pathogen#infect()
+
 " located in /etc/vimrc
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
