@@ -118,6 +118,8 @@ endfunction
 
 autocmd BufRead examples.jsx highlight Comment ctermfg=8
 
+autocmd BufRead *.js,*.jsx source ${HOME}/.vim/aria/jshighlight.vim
+
 "Okay, time to get crazy and make this more usable.
 "Game mode controls. -_-
 "Right hand game controls because we apparently use the
