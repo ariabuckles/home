@@ -109,10 +109,10 @@ function! TrimWhiteSpace()
     %s/\s\s*$//e
 endfunction
 
-autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
-autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
-autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
-autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 
 autocmd BufRead examples.jsx highlight Comment ctermfg=8
 

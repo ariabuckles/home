@@ -44,9 +44,9 @@
     "no-unsafe-negation": "warn",
 
     "object-shorthand": ["warn", "never"],
-    "no-var": "warn",
+    "no-var": "off",
     "no-restricted-syntax": [
-      "warn",
+      "off",
       {
         "selector": "FunctionDeclaration",
         "message": "Please use `let f = function()` instead of `function f()`"

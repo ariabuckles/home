@@ -11,12 +11,12 @@
     lp = log -p
     ri = rebase -i
     rc = rebase --continue
-    ci = commit
+    ci = commit -v
     alias = config --get-regexp ^alias
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
     rpl = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
 [core]
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignoreglobal
     hooksPath = ~/.githooks
     abbrev = 8
 [merge]
