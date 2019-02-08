@@ -13,7 +13,7 @@ if [[ "$USER" = "aria" && -o login ]] && `id ariashell &>/dev/null`; then
 elif [[ "$USER" = "aria" ]] && `id ariashell &>/dev/null`; then
   export PROMPT='%2{❗️%} %2~> '
 elif [[ "$USER" = "aria" ]]; then
-  export PROMPT='%2{❣️ %} %2~> '
+  export PROMPT='%2{❤️ %} %2~> '
 elif [[ "$USER" = "ariashell" ]]; then
   alias brew="sudo -u homebrew -i"
   export PROMPT='%2{💖%} %2~> '
@@ -117,7 +117,7 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*" --ignore "*.css.map*"'
+alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*" --ignore "*.css.map*" --ignore "*node_modules*"'
 alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)

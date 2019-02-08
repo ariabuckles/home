@@ -1,0 +1,4 @@
+#!/bin/bash
+# Pretend to be a global prettier, but just shell out to the nearest install:
+# This makes vim-prettier use the local install anywhere in the tree \o/
+node -e 'require("prettier/bin-prettier")' -- ./node_modules/.bin/prettier "$@"
