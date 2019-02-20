@@ -6,7 +6,7 @@
     p = pull --rebase
     st = status -u
     co = checkout
-    br = branch
+    br = branch --list '[^z]*' 'z[^-/]*'
     su = branch --set-upstream-to master
     lp = log -p
     ri = rebase -i
@@ -15,6 +15,8 @@
     alias = config --get-regexp ^alias
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
     rpl = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
+    zbr = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
+    clean-branches = "!git branch --list \"ss_web_qa_*\" | xargs -t -I% git branch -D %"
 [core]
     excludesfile = ~/.gitignoreglobal
     hooksPath = ~/.githooks

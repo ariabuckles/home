@@ -208,4 +208,3 @@ augroup END
 " vim-prettier
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.es6.js,*.test.js,*.web.js,*.cypress.js,*.testscreen.js Prettier
-

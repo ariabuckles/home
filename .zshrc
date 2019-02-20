@@ -105,6 +105,8 @@ alias -r c="cd"
 alias -r m="make --warn-undefined-variables"
 alias -r v="vim"
 lg() { ls | grep -i -e $@ | xargs ls -G; }
+alias -r viewer='view -'
+alias -r vim='vim -p'
 
 # git aliases
 alias -r g='git'
@@ -183,3 +185,5 @@ export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
 alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
 alias superctl="supervisorctl -s http://localhost:9001"
 
+# re-enable global rcs after we're done...
+setopt GLOBAL_RCS

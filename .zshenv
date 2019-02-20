@@ -1,6 +1,14 @@
 # System Variables
 #Macports path:
 export ZDOTDIR=$HOME
+
+# Source any zprofile here; then ignore GLOBAL_RCS, since we
+# want more control over our path
+if [[ -o login ]] && [[ -e /etc/zprofile ]]; then
+    source /etc/zprofile
+fi
+unsetopt GLOBAL_RCS
+
 export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH
 export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
