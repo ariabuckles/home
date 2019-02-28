@@ -107,6 +107,10 @@ alias -r v="vim"
 lg() { ls | grep -i -e $@ | xargs ls -G; }
 alias -r viewer='view -'
 alias -r vim='vim -p'
+# Open file(s) with name matching regex:
+vif() { vim -- $(fd $@) }
+# Open file(s) with content matching regex:
+vig() { vim -c "/$1" -- $(rg -l $@) }
 
 # git aliases
 alias -r g='git'
@@ -119,7 +123,8 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='ag -S --ignore "*.min.*" --ignore "*.bundle.*" --ignore "*.js.map*" --ignore "*.css.map*" --ignore "*node_modules*"'
+alias -r ag='rg -S'
+alias -r rg='rg -S'
 alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)

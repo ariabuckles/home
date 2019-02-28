@@ -4,7 +4,9 @@
     email = aria@seesaw.me
 [alias]
     p = pull --rebase
+    b = "!git checkout -b $@ && git branch --set-upstream-to master && true"
     st = status -u
+    ls = status -u
     co = checkout
     br = branch --list '[^z]*' 'z[^-/]*'
     su = branch --set-upstream-to master

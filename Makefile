@@ -9,7 +9,7 @@ BREW=/usr/local/bin/brew
 nativeutils:
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	${BREW} install node
-	${BREW} install the_silver_searcher
+	${BREW} install ripgrep
 	${BREW} install tig
 	${BREW} install python@2
 
@@ -19,16 +19,16 @@ npmutils:
 
 # Env files
 install: copy-npmrc decrypt install-prefs
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s "`pwd`/%" ~
 
 update: encrypt update-prefs
 	echo "update"
 
 reinstall: decrypt
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s -F "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
 
 copy-only:
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -I% ln -s -F "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
 
 
 # Encrypts

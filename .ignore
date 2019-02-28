@@ -1,0 +1,5 @@
+*.min.*
+*.bundle.*"
+*.js.map*
+*.css.map*
+*node_modules*

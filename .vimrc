@@ -116,8 +116,8 @@ endfunction
 "autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
 "autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 
-autocmd BufRead examples.jsx highlight Comment ctermfg=8
-
+hi clear Search
+hi! def Search ctermfg=0 ctermbg=11
 autocmd BufRead *.js,*.jsx source ${HOME}/.vim/aria/jshighlight.vim
 
 "Okay, time to get crazy and make this more usable.
