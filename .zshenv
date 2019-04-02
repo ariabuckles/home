@@ -15,12 +15,16 @@ export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
 export PATH="$HOME/khan/devtools/git-bigfile/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Python/2.7/bin"
 export PATH="$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin"
-export EDITOR=vim 
+export EDITOR=vim
 bindkey -e
 export NACL_SDK_ROOT="$HOME/Code/nacl_sdk/pepper_18"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_SDK=$HOME/android-sdk-macosx
-export ANDROID_NDK=$HOME/your_unix_name/android-ndk/android-ndk-r10e
+export ANDROID_SDK="$ANDROID_HOME"
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+#export ANDROID_NDK=$HOME/your_unix_name/android-ndk/android-ndk-r10e
 
 # Custom Variables
 export POLARIS='toole1@ews-polaris04.cs.illinois.edu'

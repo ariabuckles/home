@@ -21,6 +21,11 @@ else
   export PROMPT='%2{‼️ %} ERR:%n>'
 fi
 
+# Zsh options
+# roughly alias cd=pushd:
+setopt autopushd
+alias pd=popd
+
 # vim style history with shift-up/down\pageup/down
 bindkey "\033[5~" history-beginning-search-backward
 bindkey "\033[6~" history-beginning-search-forward
@@ -189,6 +194,10 @@ export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
 # Seesaw
 alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
 alias superctl="supervisorctl -s http://localhost:9001"
+
+# Current work:
+export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
+export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

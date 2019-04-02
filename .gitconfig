@@ -4,7 +4,7 @@
     email = aria@seesaw.me
 [alias]
     p = pull --rebase
-    b = "!git checkout -b $@ && git branch --set-upstream-to master && true"
+    cb = "!git checkout -b $@ && git branch --set-upstream-to master && true"
     st = status -u
     ls = status -u
     co = checkout
@@ -19,6 +19,8 @@
     rpl = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
     zbr = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-branches = "!git branch --list \"ss_web_qa_*\" | xargs -t -I% git branch -D %"
+    annotate = blame
+    ann = blame
 [core]
     excludesfile = ~/.gitignoreglobal
     hooksPath = ~/.githooks
