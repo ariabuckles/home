@@ -139,12 +139,12 @@ noremap L w
 noremap H I
 
 "Line/page navigation with control
-noremap <C-i> <PageUp>
+"noremap <C-i> <PageUp> "we rebind ctrl-i in terminal.app...
 noremap <C-j> ^
 noremap <C-k> <PageDown>
 noremap <C-l> $
 "Keep line/page navigation while in insert mode
-inoremap <C-i> <C-o><PageUp>
+"inoremap <C-i> <PageUp> "we rebind ctrl-i in terminal.app...
 inoremap <C-j> <C-o>^
 inoremap <C-k> <C-o><PageDown>
 inoremap <C-l> <C-o>$
@@ -169,6 +169,9 @@ function! Tab_Or_Complete()
 	endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+"Normal mode: tab navigation!
+nnoremap <Tab> <C-w>w
 
 "Line number magicks:
 "use hybrid absolute/relative numbers

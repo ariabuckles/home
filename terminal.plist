@@ -858,6 +858,10 @@
 				<string>[34~</string>
 				<key>~^F728</key>
 				<string>[3;5~</string>
+				<key>^0049</key>
+				<string>[5~</string>
+				<key>^0069</key>
+				<string>[5~</string>
 			</dict>
 			<key>name</key>
 			<string>Adaptive</string>
