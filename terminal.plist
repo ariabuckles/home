@@ -861,7 +861,13 @@
 				<key>^0049</key>
 				<string>[5~</string>
 				<key>^0069</key>
-				<string>[5~</string>
+				<string></string>
+				<key>^006A</key>
+				<string></string>
+				<key>^006B</key>
+				<string></string>
+				<key>^006C</key>
+				<string></string>
 			</dict>
 			<key>name</key>
 			<string>Adaptive</string>
