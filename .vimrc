@@ -139,15 +139,16 @@ noremap L w
 noremap H I
 
 "Line/page navigation with control
-"noremap <C-i> <PageUp> "we rebind ctrl-i in terminal.app...
-noremap <C-j> ^
-noremap <C-k> <PageDown>
-noremap <C-l> $
-"Keep line/page navigation while in insert mode
-"inoremap <C-i> <PageUp> "we rebind ctrl-i in terminal.app...
-inoremap <C-j> <C-o>^
-inoremap <C-k> <C-o><PageDown>
-inoremap <C-l> <C-o>$
+"We rebind C-ijkl in terminal.app to standard ctrl-pbnf:
+noremap <C-p> <PageUp>
+noremap <C-b> ^
+noremap <C-n> <PageDown>
+noremap <C-f> $
+"Control uses single char navigation while in insert mode:
+inoremap <C-p> <Up>
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-f> <Right>
 
 "Tab completion
 "For some reason this needs to be after our <C-i> remapping >_>
