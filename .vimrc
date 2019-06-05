@@ -1,8 +1,14 @@
+" Security disables:
+" Modelines have occasional vulnerabilities and we don't use them, so:
+set modelines=0
+set nomodeline
+
 autocmd!
 
+" Set up pathogen package manager:
 execute pathogen#infect()
 
-" located in /etc/vimrc
+" located in /etc/vimrc from centos
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
 endif
@@ -29,20 +35,6 @@ if has("autocmd")
   augroup END
 endif
 
-if has("cscope") && filereadable("/usr/bin/cscope")
-   set csprg=/usr/bin/cscope
-   set csto=0
-   set cst
-   set nocsverb
-   " add any database in current directory
-   if filereadable("cscope.out")
-      cs add cscope.out
-   " else add database pointed to by environment
-   elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-   endif
-   set csverb
-endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -87,7 +79,7 @@ filetype plugin on
 
 set viminfo='20,<200,s10,h
 
-"lnoremap does "language mode", which applies in all text insert situations,
+"lnoremap does 'language mode', which applies in all text insert situations,
 "but not normal/visaul/visualblock. Notably, this includes search.
 "To enable it, we have to set:
 ":set iminsert=1
@@ -212,3 +204,8 @@ augroup END
 " vim-prettier
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.es6.js,*.test.js,*.web.js,*.cypress.js,*.testscreen.js Prettier
+
+" Security disables:
+" Modelines have occasional vulnerabilities and we don't use them, so:
+set modelines=0
+set nomodeline
