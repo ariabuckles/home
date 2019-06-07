@@ -191,6 +191,10 @@ alias yarn="identify && yarn"
 export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
 export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
 
+function path {
+  echo $PATH | tr ':' '\n'
+}
+
 # Seesaw
 alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
 alias superctl="supervisorctl -s http://localhost:9001"
@@ -198,6 +202,7 @@ alias superctl="supervisorctl -s http://localhost:9001"
 # Current work:
 export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
 export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
+export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

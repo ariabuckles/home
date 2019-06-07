@@ -9,22 +9,34 @@ if [[ -o login ]] && [[ -e /etc/zprofile ]]; then
 fi
 unsetopt GLOBAL_RCS
 
-export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
-export MANPATH=/opt/local/share/man:$MANPATH
-export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
-export PATH="$HOME/khan/devtools/git-bigfile/bin:$PATH"
+
+# Set up $PATH safely:
+# Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
+export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
+# Custom executables:
+export PATH="$PATH:$HOME/bin"
+# Homebrew:
+export PATH="$PATH:/usr/local/bin"
+# Macports:
+export PATH="$PATH:/opt/local/bin"
+export MANPATH="$MANPATH:/opt/local/share/man"
+# Python bins:
 export PATH="$PATH:$HOME/Library/Python/2.7/bin"
-export PATH="$HOME/bin:$HOME/opt/bin:$PATH:./node_modules/.bin"
-export EDITOR=vim
-bindkey -e
-export NACL_SDK_ROOT="$HOME/Code/nacl_sdk/pepper_18"
+# And last in the list, node modules bins:
+export PATH="$PATH:./node_modules/.bin"
+
+# Android setup & paths:
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK="$ANDROID_HOME"
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-#export ANDROID_NDK=$HOME/your_unix_name/android-ndk/android-ndk-r10e
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+
+# Vim / commandline setup:
+export EDITOR=vim
+bindkey -e
 
 # Custom Variables
 export POLARIS='toole1@ews-polaris04.cs.illinois.edu'
@@ -33,11 +45,11 @@ export MONAD='https://ariabuckles@bitbucket.org/ariabuckles/monad'
 alias -r watchman="/usr/local/Cellar/watchman/4.7.0_1/libexec/bin/watchman --foreground --logfile=/usr/local/var/run/watchman/ariashell-state/log --log-level=1 --sockname=/usr/local/var/run/watchman/ariashell-state/sock --statefile=/usr/local/var/run/watchman/ariashell-state/state --pidfile=/usr/local/var/run/watchman/ariashell-state/pid"
 
 if [ -e ~/.env_vars ]; then
-	source ~/.env_vars
+  source ~/.env_vars
 fi
 
 if [ -e ~/.secrets.env ]; then
-	source ~/.secrets.env
+  source ~/.secrets.env
 fi
 
 if [ -e ~/.virtualenv/khan27/bin/activate ]; then
