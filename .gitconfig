@@ -3,8 +3,13 @@
     name = Aria Buckles
     email = aria@seesaw.me
 [alias]
+    rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
+    create-branch = "!git checkout -b $@ && git branch --set-upstream-to master && true"
+    archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
+    clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
+    clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
     p = pull --rebase
-    cb = "!git checkout -b $@ && git branch --set-upstream-to master && true"
+    cb = "!git create-branch $@"
     st = status -u
     ls = status -u
     co = checkout
@@ -15,10 +20,9 @@
     rc = rebase --continue
     ci = commit -v
     alias = config --get-regexp ^alias
-    rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
-    rpl = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
-    zbr = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
-    clean-branches = "!git branch --list \"ss_web_qa_*\" | xargs -t -I% git branch -D %"
+    rpl = "!git rebase-package-lock"
+    zbr = "!git archive-branch \"$1*\""
+    cbr = "!git clean-branches"
     annotate = blame
     ann = blame
     pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
