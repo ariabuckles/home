@@ -4,10 +4,11 @@
     email = aria@seesaw.me
 [alias]
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX}/package-lock.json && git checkout -- ${GIT_PREFIX}/package-lock.json && cd ${GIT_PREFIX} && npm install && git add -- package-lock.json; }; f"
-    create-branch = "!git checkout -b \"$@\" && git branch --set-upstream-to master && true"
+    create-branch = "!git checkout -b $@ && git branch --set-upstream-to master && true"
     archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
     clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
+    view = "!git show $@ | view - && true"
     p = pull --rebase
     cb = "!git create-branch"
     st = status -u
