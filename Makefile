@@ -1,17 +1,17 @@
 make: install
 
-workspace: nativeutils install
+workspace: homebrew install
 
 
 # Programs
 BREW=/usr/local/bin/brew
 
-nativeutils:
+homebrew:
+ifeq ("$(wildcard $(BREW))","")
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	${BREW} install node
-	${BREW} install ripgrep
-	${BREW} install tig
-	${BREW} install python@2
+endif
+	${BREW} analytics off
+	${BREW} bundle # installs deps in Brewfile
 
 npmutils:
 	npm install
