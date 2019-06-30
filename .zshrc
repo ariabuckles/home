@@ -195,6 +195,31 @@ function path {
   echo $PATH | tr ':' '\n'
 }
 
+# Json tricks (https://news.ycombinator.com/item?id=20245913)
+# Writing https://github.com/tomnomnom/gron in jq
+function gron {
+  # Pass stdin or $1 as the file, if specified:
+  if (( $# == 0 )) ; then cat - ; else cat $1 ; fi | jq -r --stream '
+    select(length > 1)
+    | (
+      .[0] | map(
+        if tostring | test("^[A-Za-z$_][0-9A-Za-z$_]*$")
+        then "." + .
+        else "[" + @json + "]"
+        end
+      ) | add
+    )
+    + " = "
+    + (.[1] | @json)
+  '
+}
+function ungron {
+  # Add ' |' to every line, add '.' to the last line,
+  # then pass that input as the program to jq, to operate
+  # on a default null/empty object
+  sed -e 's/$/ |/' -e '$s/$/./' | jq -nf /dev/stdin
+}
+
 # Seesaw
 alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
 alias superctl="supervisorctl -s http://localhost:9001"
