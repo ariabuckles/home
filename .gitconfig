@@ -9,6 +9,7 @@
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
     clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
     view = "!git show $@ | view - && true"
+    vlog = "!git log $(git merge-base HEAD origin/master)..HEAD \"$@\" | view - && true"
     p = pull --rebase
     cb = "!git create-branch"
     st = status -u
@@ -26,8 +27,8 @@
     cbr = "!git clean-branches"
     annotate = blame
     ann = blame
-    pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
-    fmt = "!cd -- ${GIT_PREFIX:-.} && npm run format && git add . && git commit -m 'Formatting: `npm run format`'"
+    pr = "!git push -f origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
+    fmt = "!cd -- ${GIT_PREFIX:-.} && npm run format && git commit -am 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
 [core]

@@ -228,6 +228,7 @@ alias superctl="supervisorctl -s http://localhost:9001"
 export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
 export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
 export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
+export library="$seesaw_library"
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

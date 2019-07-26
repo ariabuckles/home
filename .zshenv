@@ -15,8 +15,8 @@ unsetopt GLOBAL_RCS
 export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 # Custom executables:
 export PATH="$PATH:$HOME/bin"
-# Homebrew:
-export PATH="$PATH:/usr/local/bin"
+# Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Macports:
 export PATH="$PATH:/opt/local/bin"
 export MANPATH="$MANPATH:/opt/local/share/man"
