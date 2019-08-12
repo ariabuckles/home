@@ -1,11 +1,9 @@
 bind main i move-up
 bind main k move-down
-bind main <Ctrl-i> move-page-up
-bind main <Tab> move-page-up
-bind main <Ctrl-k> move-page-down
+bind main I move-page-up
+bind main K move-page-down
 
 bind diff i move-up
 bind diff k move-down
-bind diff <Ctrl-i> move-page-up
-bind diff <Tab> move-page-up
-bind diff <Ctrl-k> move-page-down
+bind diff I move-page-up
+bind diff K move-page-down

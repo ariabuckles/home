@@ -10,6 +10,8 @@
     clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
     view = "!git show $@ | view - && true"
     vlog = "!git log $(git merge-base HEAD origin/master)..HEAD \"$@\" | view - && true"
+# From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
+    bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
     p = pull --rebase
     cb = "!git create-branch"
     st = status -u

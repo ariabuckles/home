@@ -227,6 +227,7 @@ alias superctl="supervisorctl -s http://localhost:9001"
 # Current work:
 export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
 export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
+export family_app="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/family_app"
 export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
 export library="$seesaw_library"
 
