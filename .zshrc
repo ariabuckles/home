@@ -8,9 +8,9 @@ OS=`uname -s`
 
 # command prompt
 # export PROMPT='%2~> '
-if [[ "$USER" = "aria" && -o login ]] && `id ariashell &>/dev/null`; then
+if [[ "$USER" = "aria" && -o login ]] && id ariashell &>/dev/null; then
   exec sudo -u ariashell -s
-elif [[ "$USER" = "aria" ]] && `id ariashell &>/dev/null`; then
+elif [[ "$USER" = "aria" ]] && id ariashell &>/dev/null; then
   export PROMPT='%2{❗️%} %2~> '
 elif [[ "$USER" = "aria" ]]; then
   export PROMPT='%2{❤️ %} %2~> '
