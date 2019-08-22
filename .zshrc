@@ -8,29 +8,16 @@ OS=`uname -s`
 
 # command prompt
 export PROMPT='%2~> '
-function heartcode () {
-  result=$?
-  if [[ $result -eq 0 ]]; then
-    if [[ "$1" = "aria" ]]; then
-      echo "❤️ "
-    else
-      echo "💖"
-    fi
-  else
-    echo "💔"
-  fi
-  exit $result
-}
-setopt PROMPT_SUBST
+setopt promptpercent
 if [[ "$USER" = "aria" && -o login ]] && id ariashell &>/dev/null; then
   exec sudo -u ariashell -s
 elif [[ "$USER" = "aria" ]] && id ariashell &>/dev/null; then
   export PROMPT='%2{❗️%} %2~> '
 elif [[ "$USER" = "aria" ]]; then
-  export PROMPT='%2{$(heartcode aria)%} %2~> '
+  export PROMPT='%2{%(0?.❤️ .💔)%} %2~> '
 elif [[ "$USER" = "ariashell" ]]; then
   alias brew="sudo -u homebrew -i"
-  export PROMPT='%2{$(heartcode ariashell)%} %2~> '
+  export PROMPT='%2{%(0?.💖.💔)%} %2~> '
 else
   export PROMPT='%2{‼️ %} ERR:%n>'
 fi
