@@ -95,6 +95,7 @@ noremap <C-a> ^
 
 autocmd BufRead *.al set filetype=javascript
 autocmd BufRead *.md set filetype=markdown
+autocmd BufRead *.ts,*.tsx set filetype=javascript
 
 autocmd FileType java setlocal shiftwidth=4
 autocmd FileType java setlocal tabstop=4

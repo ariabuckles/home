@@ -221,6 +221,32 @@ function ungron {
   sed -e 's/$/ |/' -e '$s/$/./' | jq -nf /dev/stdin
 }
 
+function hi {
+  local hour="$(date +%H)"
+  local name
+  id -F | read -r -d ' ' name
+  local partOfDay
+  local message
+  if [[ $hour -lt 6 ]]; then
+    partOfDay='night'
+    message="Please set yourself up for sleep before you get tired 🌌!"
+  elif [[ $hour -lt 12 ]]; then
+    partOfDay='morning'
+    message="Hope you've got some tea 🍵!"
+  elif [[ $hour -lt 18 ]]; then
+    partOfDay='afternoon'
+    message="Please remember to take a step back and decide what to do next 💖~"
+  elif [[ $hour -lt 21 ]]; then
+    partOfDay='evening'
+    message="What's something you're proud of about today? 🎀"
+  else
+    partOfDay='night'
+    message="Please go to bed 🌌!"
+  fi
+
+  echo "Good ${partOfDay}, ${name}. ${message}"
+}
+
 # Seesaw
 alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
 alias superctl="supervisorctl -s http://localhost:9001"
