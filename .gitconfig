@@ -13,10 +13,11 @@
 # From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
     bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
     p = pull --rebase
-    cb = "!git create-branch"
+    cb = create-branch
     st = status -u
     ls = status -u
     co = checkout
+    c = "!git checkout $(git br | grep \"$1\" | sed 's/\\*//' | tail -1) && true"
     br = branch --list '[^z]*' 'z[^-/]*'
     su = branch --set-upstream-to master
     lp = log -p
@@ -24,9 +25,9 @@
     rc = rebase --continue
     ci = commit -v
     alias = config --get-regexp ^alias
-    rpl = "!git rebase-package-lock"
-    zbr = "!git archive-branch"
-    cbr = "!git clean-branches"
+    rpl = rebase-package-lock
+    zbr = archive-branch
+    cbr = clean-branches
     annotate = blame
     ann = blame
     update-pr = "!git push -f origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
@@ -44,7 +45,7 @@
     pr-message-raw-list = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'1. %h %s' || true"
     pr-message-raw-test = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
     pr = "!bash -c \"git update-pr && hub pull-request -c --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base master --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
-    new-pr = "!git pr"
+    new-pr = pr
 [core]
     excludesfile = ~/.gitignoreglobal
     hooksPath = ~/.githooks
