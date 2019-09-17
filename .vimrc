@@ -35,6 +35,14 @@ if has("autocmd")
   augroup END
 endif
 
+" Turn on backups in ~/.Trash:
+" https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
+set backup
+set backupdir=${HOME}/.Trash
+let datebackups = strftime("%y-%m-%d_%Hh%Mm")
+let datebackups = "set backupext=~". datebackups
+execute datebackups
+
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -210,3 +218,22 @@ autocmd BufWritePre *.es6.js,*.test.js,*.web.js,*.cypress.js,*.testscreen.js Pre
 " Modelines have occasional vulnerabilities and we don't use them, so:
 set modelines=0
 set nomodeline
+
+" coc.nvim:
+" From https://github.com/neoclide/coc.nvim
+set hidden
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
