@@ -12,5 +12,6 @@
     "dmv.ca.gov": "$2a$15$yRCqhN1yzhwmCavUU8Myhu",
     "google.com": "$2a$18$7kxiR5HCO9jg3yAm/xNip.",
     "github.com": "$2a$18$uSMsncU7PeNWLNuGfLfYOO",
-    "seesaw.me@aws.amazon.com": "$2a$15$7XfIAsdkaqJg5B0cBzsMzu"
+    "seesaw.me@aws.amazon.com": "$2a$15$7XfIAsdkaqJg5B0cBzsMzu",
+    "launchdarkly.com": "$2a$18$m/Ef9DL9T7NqyKkcumy6nO"
 }
