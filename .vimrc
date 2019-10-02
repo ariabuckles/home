@@ -191,8 +191,8 @@ set nonumber norelativenumber
 augroup numbertoggle
   autocmd!
 augroup END
-set showtabline=2
-set scrolloff=0
+"set showtabline=2
+"set scrolloff=0
 
 "Disable neovim cursor resizing:
 set guicursor=
@@ -209,7 +209,9 @@ augroup END
 
 " vim-prettier
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.es6.js,*.test.js,*.web.js,*.cypress.js,*.testscreen.js Prettier
+if or(filereadable(findfile('prettier.conf.js', '.;')), filereadable(findfile('.prettierrc.js', '.;')))
+  autocmd BufWritePre *.js Prettier
+endif
 
 " Security disables:
 " Modelines have occasional vulnerabilities and we don't use them, so:
