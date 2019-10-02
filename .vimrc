@@ -213,11 +213,6 @@ if or(filereadable(findfile('prettier.conf.js', '.;')), filereadable(findfile('.
   autocmd BufWritePre *.js Prettier
 endif
 
-" Security disables:
-" Modelines have occasional vulnerabilities and we don't use them, so:
-set modelines=0
-set nomodeline
-
 " coc.nvim:
 " From https://github.com/neoclide/coc.nvim
 "set hidden
@@ -235,4 +230,12 @@ set nomodeline
 "  let col = col('.') - 1
 "  return !col || getline('.')[col - 1]  =~# '\s'
 "endfunction
-"
+
+" Parity between vim and nvim:
+set background=light
+
+" Security disables:
+" Modelines have occasional vulnerabilities and we don't use them, so:
+set modelines=0
+set nomodeline
+
