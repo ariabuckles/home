@@ -11,6 +11,7 @@ brew "gnupg"
 brew "libpng"
 
 # Better Utils:
+brew "neovim"
 brew "ripgrep"
 brew "fd"
 brew "jq"
