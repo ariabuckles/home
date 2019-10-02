@@ -5,9 +5,6 @@ set nomodeline
 
 autocmd!
 
-" Set up pathogen package manager:
-execute pathogen#infect()
-
 " located in /etc/vimrc from centos
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
@@ -119,7 +116,7 @@ endfunction
 
 hi clear Search
 hi! def Search ctermfg=0 ctermbg=11
-autocmd FileType javascript source ${HOME}/.vim/aria/jshighlight.vim
+"autocmd FileType javascript source ${HOME}/.vim/aria/jshighlight.vim
 
 "Okay, time to get crazy and make this more usable.
 "Game mode controls. -_-
