@@ -103,7 +103,7 @@ alias -r vm='vim'
 alias -r make='make --warn-undefined-variables'
 alias -r valgrindall='valgrind --trace-children=yes'
 alias -r valgrindallq='valgrind --trace-children=yes --quiet'
-alias -r src='source ~/.zshenv && source ~/.zshrc'
+alias -r src='source ~/.zshenv && source ~/.zshrc && rehash'
 svnlog() { svn log $@ --verbose | less; }
 xarg() { while read arg ; do ; $@ "$arg" ; done }
 alias -r l="ls $ls_color"

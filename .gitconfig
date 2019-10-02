@@ -31,7 +31,7 @@
     annotate = blame
     ann = blame
     update-pr = "!git push -f origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
-    fmt = "!cd -- ${GIT_PREFIX:-.} && npm run format && git commit -am 'Formatting: `npm run format`'"
+    fmt = "!cd -- ${GIT_PREFIX:-.} && npm run format -- $(git log --format=%H --grep '^Formatting: `npm run format`$' | head -n1) && git add app && git commit -m 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     pr-message = "!(git pr-message-title && echo && git pr-message-issues && git pr-message-changes && git pr-message-list && git pr-message-test) | jsed '(\\n)\\n+' '$1$1' || true"

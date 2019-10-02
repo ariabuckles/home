@@ -61,3 +61,7 @@ export MOCHA_REPORTER='spec'
 function share {
   chmod -R g=u "$@"
 }
+
+function link-docker-sock {
+  su aria -c 'chmod g=u "$HOME/Library/Containers/com.docker.docker/Data/docker.sock"'
+}
