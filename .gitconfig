@@ -50,7 +50,7 @@
     excludesfile = ~/.gitignoreglobal
     hooksPath = ~/.githooks
     abbrev = 8
-	pager = less -+FX -i
+    pager = less -+FX -i
 [merge]
     tool = vimdiff
     conflictstyle = diff3
