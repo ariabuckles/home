@@ -2,9 +2,9 @@
 OS=`uname -s`
 
 # zsh magic completion
-# disabled cause insecure warning right now
-#autoload -zU compinit
-#compinit
+# Re-enabled after fixing fpath in .zshenv:
+autoload -zU compinit
+compinit
 
 # command prompt
 export PROMPT='%2~> '
@@ -27,9 +27,12 @@ fi
 setopt autopushd
 alias pd=popd
 
-# vim style history with shift-up/down\pageup/down
-bindkey "\033[5~" history-beginning-search-backward
-bindkey "\033[6~" history-beginning-search-forward
+# vim style history with up/down
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+# old sort-of vim style history with shift-up/down\pageup/down
+#bindkey "\033[5~" history-beginning-search-backward
+#bindkey "\033[6~" history-beginning-search-forward
 
 # case insensitive tabbing
 # OLD zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -247,16 +250,12 @@ function hi {
   echo "Good ${partOfDay}, ${name}. ${message}"
 }
 
-# Seesaw
-alias mc="cd ~/depot/mcam/MagicCameraServer/mcserver"
-alias superctl="supervisorctl -s http://localhost:9001"
-
 # Current work:
-export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
-export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
-export family_app="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/family_app"
-export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
-export library="$seesaw_library"
+#export webapp="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp"
+#export drawing_tool="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/creative_tools/drawing_tool"
+#export family_app="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/family_app"
+#export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
+#export library="$seesaw_library"
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

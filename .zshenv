@@ -9,6 +9,8 @@ if [[ -o login ]] && [[ -e /etc/zprofile ]]; then
 fi
 unsetopt GLOBAL_RCS
 
+# Set up zsh compinit paths safely (ignore homebrew):
+fpath=($(echo $fpath | sed 's|^/usr/local/[^ ]*||'))
 
 # Set up $PATH safely:
 # Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
