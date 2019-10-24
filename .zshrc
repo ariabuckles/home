@@ -28,8 +28,13 @@ setopt autopushd
 alias pd=popd
 
 # vim style history with up/down
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+# https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
 # old sort-of vim style history with shift-up/down\pageup/down
 #bindkey "\033[5~" history-beginning-search-backward
 #bindkey "\033[6~" history-beginning-search-forward
