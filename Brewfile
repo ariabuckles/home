@@ -1,5 +1,5 @@
 # Language ecosystems:
-brew "node@10", link: true
+brew "node@12", link: true
 brew "python"
 brew "python@2"
 brew "lua"
@@ -16,6 +16,7 @@ brew "ripgrep"
 brew "fd"
 brew "jq"
 brew "tig"
+brew "fzf"
 
 # Service CLIs:
 brew "hub" # GitHub

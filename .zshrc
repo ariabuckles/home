@@ -204,6 +204,9 @@ function path {
   echo $PATH | tr ':' '\n'
 }
 
+# https://sidneyliebrand.io/blog/how-fzf-and-ripgrep-improved-my-workflow#installing-brew-plugins
+export FZF_DEFAULT_COMMAND='fd -H'
+
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
 function gron {
