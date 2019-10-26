@@ -231,9 +231,10 @@ endif
 "  return !col || getline('.')[col - 1]  =~# '\s'
 "endfunction
 
-if has("nvim")
-  set termguicolors
-endif
+" Enable true color support things once we have a terminal for that?
+"if has("nvim")
+"  set termguicolors
+"endif
 
 " Parity between vim and nvim:
 set background=light
