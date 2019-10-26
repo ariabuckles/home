@@ -194,8 +194,8 @@ augroup END
 "set showtabline=2
 "set scrolloff=0
 
-"Disable neovim cursor resizing:
-set guicursor=
+"Neovim cursor styling:
+set guicursor=n-v-c-sm:block-blinkoff0,i-ci:blinkwait0-blinkoff500-blinkon500,r-cr-o:hor20
 
 " https://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character
 " Show whitespace
@@ -230,6 +230,10 @@ endif
 "  let col = col('.') - 1
 "  return !col || getline('.')[col - 1]  =~# '\s'
 "endfunction
+
+if has("nvim")
+  set termguicolors
+endif
 
 " Parity between vim and nvim:
 set background=light
