@@ -265,5 +265,10 @@ function hi {
 #export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
 #export library="$seesaw_library"
 
+# Load our zsh hooks:
+if [[ -e ~/.zsh/load-hooks ]]; then
+  source ~/.zsh/load-hooks
+fi
+
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS
