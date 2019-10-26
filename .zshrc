@@ -124,7 +124,7 @@ alias -r vim='vim -p'
 # Open file(s) with name matching regex:
 vif() { vim -- $(fd $@) }
 # Open file(s) with content matching regex:
-vig() { vim -c "/$1" -- $(rg -l $@) }
+vig() { vim -c "/$1" -- $(git grep -l $@) }
 
 # git aliases
 alias -r g='git'
@@ -137,9 +137,6 @@ alias -r gco='git checkout'
 alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
-alias -r ag='rg -S'
-alias -r rg='rg -S'
-alias -r wget='curl -O'
 
 # Set up command line mode (currently vim mode...)
 
