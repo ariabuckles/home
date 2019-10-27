@@ -122,7 +122,8 @@ lg() { ls | grep -i -e $@ | xargs ls -G; }
 alias -r viewer='view -'
 alias -r vim='vim -p'
 # Open file(s) with name matching regex:
-vif() { vim -- $(fd $@) }
+vif() { vim -p -- $(find . -type f | grep $@) }
+vifa() { vim -p -- $(find . -type f | grep $@) }
 # Open file(s) with content matching regex:
 vig() { vim -c "/$1" -- $(git grep -l $@) }
 
@@ -202,7 +203,8 @@ function path {
 }
 
 # https://sidneyliebrand.io/blog/how-fzf-and-ripgrep-improved-my-workflow#installing-brew-plugins
-export FZF_DEFAULT_COMMAND='fd -H'
+# https://github.com/junegunn/fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
