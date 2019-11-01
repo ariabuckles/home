@@ -16,10 +16,13 @@ elif [[ "$USER" = "aria" ]] && id ariashell &>/dev/null; then
 elif [[ "$USER" = "aria" ]]; then
   export PROMPT='%2{%(0?.❤️ .💔)%} %2~> '
 elif [[ "$USER" = "ariashell" ]]; then
-  alias brew="sudo -u homebrew -i"
   export PROMPT='%2{%(0?.💖.💔)%} %2~> '
 else
   export PROMPT='%2{‼️ %} ERR:%n>'
+fi
+
+if id homebrew &>/dev/null; then
+  alias brew="sudo -u homebrew brew"
 fi
 
 # Zsh options

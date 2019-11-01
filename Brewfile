@@ -1,5 +1,5 @@
 # Language ecosystems:
-brew "node@12", link: true
+brew "node@10", link: true
 brew "python"
 brew "python@2"
 brew "lua"
