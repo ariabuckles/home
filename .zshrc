@@ -22,7 +22,9 @@ else
 fi
 
 if id homebrew &>/dev/null; then
-  alias brew="sudo -u homebrew -H brew"
+  brew() {
+    sudo -u homebrew -i zsh -c "cd '$(pwd)'; brew $*"
+  }
 fi
 
 # Zsh options
