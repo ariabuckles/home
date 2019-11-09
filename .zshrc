@@ -209,7 +209,9 @@ function path {
 
 # https://sidneyliebrand.io/blog/how-fzf-and-ripgrep-improved-my-workflow#installing-brew-plugins
 # https://github.com/junegunn/fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!/.git/'"
+export FZF_DEFAULT_OPTIONS="--exact --reverse --tiebreak=length,end"
 
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
