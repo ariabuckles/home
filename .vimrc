@@ -269,6 +269,7 @@ if executable('fzf')
   endif
   noremap <silent> <leader>o :Files<CR>
   noremap <silent> <leader>f :Windows<CR>
+  noremap <silent> <C-o> :Files<CR>
 endif
 
 " Colors
