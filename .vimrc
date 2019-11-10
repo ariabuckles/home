@@ -235,7 +235,7 @@ if executable('fzf')
     call setbufvar(buf, '&signcolumn', 'no')
 
     let height = float2nr(20)
-    let width = float2nr(80)
+    let width = float2nr(120)
     let horizontal = float2nr((&columns - width) / 2)
     let vertical = float2nr((&lines - height) / 2 - 1)
 
@@ -262,9 +262,9 @@ if executable('fzf')
   endfunction
   command! -nargs=+ GotoOrOpen call s:GotoOrOpen(<f-args>)
   " Set up fzf to go top-down
-  let $FZF_DEFAULT_OPTS='--exact --reverse --tiebreak=length,end --margin=1,4 --color=16'
+  let $FZF_DEFAULT_OPTS="--exact --reverse --tiebreak=length,end --margin=1,4 --color=16 --preview='bat --style=changes --color=always {}'"
   " Use <enter> to open result in new tab
-  let g:fzf_action = { 'enter': 'GotoOrOpen tab', 'ctrl-t': 'tab split', 'ctrl-x': 'split', 'ctrl-v': 'vsplit', 'ctrl-b': 'edit' }
+  let g:fzf_action = { 'enter': 'GotoOrOpen tab', 'ctrl-t': 'tab split', 'ctrl-x': 'split', 'ctrl-v': 'vsplit', 'ctrl-e': 'edit' }
   " When opening, jump to existing buffer if found
   let g:fzf_buffers_jump = 1
   " Put fzf in a floating window:
@@ -284,7 +284,7 @@ set hidden
 let $HOOKS_LOADED="" "reset zsh-hooks
 if has('nvim')
   autocmd TermOpen * startinsert
-  tnoremap <C-v> <C-\><C-n>$
+  tnoremap <C-x> <C-\><C-n>$
 endif
 
 " coc.nvim:

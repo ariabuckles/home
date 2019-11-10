@@ -17,6 +17,7 @@ brew "fd"
 brew "jq"
 brew "tig"
 brew "fzf"
+brew "bat"
 
 # Service CLIs:
 brew "hub" # GitHub

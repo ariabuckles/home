@@ -1,10 +1,10 @@
 #!/bin/zsh
 vif() {
   if [[ "$#" -gt 0 ]]; then
-    file=$(fzf -1 -q "$*")
+    file=$(fzf --preview='bat --style=full --color=always {}' -1 -q "$*")
     [[ -n "$file" ]] && nvim -- "$file"
   else
-    file=$(fzf)
+    file=$(fzf --preview='bat --style=full --color=always {}')
     [[ -n "$file" ]] && nvim -- "$file"
   fi
 }
