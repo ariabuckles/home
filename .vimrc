@@ -214,7 +214,7 @@ set guicursor=n-v-c-sm:block-blinkoff0,i-ci:blinkwait0-blinkoff500-blinkon500,r-
 
 " https://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character
 " Show whitespace
-set listchars=tab:↦ ,trail:·,extends:»,precedes:«
+set listchars=tab:↦ ,trail:·,nbsp:_,extends:»,precedes:«
 set list
 augroup trailingwhitespace
   autocmd!
@@ -279,9 +279,16 @@ endif
 " Colors
 highlight Pmenu ctermbg=gray
 
+" :terminal support
+set hidden
+let $HOOKS_LOADED="" "reset zsh-hooks
+if has('nvim')
+  autocmd TermOpen * startinsert
+  tnoremap <C-c><C-c> <C-\><C-n>$
+endif
+
 " coc.nvim:
 " From https://github.com/neoclide/coc.nvim
-"set hidden
 "set cmdheight=2
 "set updatetime=300
 "set shortmess+=c
