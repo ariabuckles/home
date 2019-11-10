@@ -180,6 +180,10 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 nnoremap <Tab> <C-w>w
 nnoremap <leader><Tab> gt
 
+" Closing files
+nnoremap <silent> <leader>q :bdel<CR>
+nnoremap <silent> <leader>w :update<CR>:file<CR>
+
 "Line number magicks:
 "use hybrid absolute/relative numbers
 set number relativenumber
