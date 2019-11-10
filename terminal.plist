@@ -96,9 +96,9 @@
 	<key>NSWindow Frame TTAppPreferences</key>
 	<string>93 136 667 533 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>133 53 1297 791 0 0 1440 900 </string>
+	<string>10 60 1297 791 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow Adaptive</key>
-	<string>207 278 730 450 0 0 1440 900 </string>
+	<string>228 255 730 450 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>493 316 810 471 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow Basic3</key>
@@ -891,7 +891,7 @@
 				</dict>
 			</array>
 			<key>shellExitAction</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>type</key>
 			<string>Window Settings</string>
 			<key>warnOnShellCloseAction</key>
