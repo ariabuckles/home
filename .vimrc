@@ -284,7 +284,7 @@ set hidden
 let $HOOKS_LOADED="" "reset zsh-hooks
 if has('nvim')
   autocmd TermOpen * startinsert
-  tnoremap <C-c><C-c> <C-\><C-n>$
+  tnoremap <C-v> <C-\><C-n>$
 endif
 
 " coc.nvim:
