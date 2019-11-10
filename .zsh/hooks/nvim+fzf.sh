@@ -1,7 +1,7 @@
 #!/bin/zsh
 vif() {
-  if [[ -n "$1" ]]; then
-    file=$(fzf -1 -q "$1")
+  if [[ "$#" -gt 0 ]]; then
+    file=$(fzf -1 -q "$*")
     [[ -n "$file" ]] && nvim -- "$file"
   else
     file=$(fzf)
@@ -9,5 +9,5 @@ vif() {
   fi
 }
 vifa() {
-  nvim -p -- $(fzf -f "$1")
+  nvim -p -- $(fzf -f "$*")
 }
