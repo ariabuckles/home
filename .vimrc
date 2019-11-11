@@ -222,6 +222,15 @@ augroup trailingwhitespace
   autocmd InsertLeave * set list
 augroup END
 
+" statusline
+set laststatus=2
+set statusline=""
+set statusline+=%f\ %h%w%m%r
+set statusline+=%=
+set statusline+=%-14.(%l,%c%)
+set statusline+=\ %P
+
+
 " vim-prettier
 let g:prettier#autoformat = 0
 if or(filereadable(findfile('prettier.conf.js', '.;')), filereadable(findfile('.prettierrc.js', '.;')))
