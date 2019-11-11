@@ -224,11 +224,14 @@ augroup END
 
 " statusline
 set laststatus=2
+highlight default AriaStatus ctermfg=black ctermbg=darkgray
+highlight default AriaStatusFile cterm=inverse
+highlight default AriaStatusInfo ctermfg=white ctermbg=darkgray
 set statusline=""
-set statusline+=%f\ %h%w%m%r
+set statusline+=%#AriaStatusFile#\ %f\ %h%w%m%r%#AriaStatus#
 set statusline+=%=
-set statusline+=%-14.(%l,%c%)
-set statusline+=\ %P
+set statusline+=%#AriaStatusInfo#%-14.(%l,%c%)
+set statusline+=\ %P\ 
 
 
 " vim-prettier
