@@ -1,3 +1,9 @@
 [submodule ".vim/bundle/coc.nvim"]
 	path = .vim/bundle/coc.nvim
 	url = git@github.com:neoclide/coc.nvim.git
+[submodule ".vim/pack/main/start/fzf.vim"]
+	path = .vim/pack/main/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule ".vim/pack/main/start/lightline.vim"]
+	path = .vim/pack/main/start/lightline.vim
+	url = https://github.com/itchyny/lightline.vim.git
