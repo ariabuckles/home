@@ -235,7 +235,11 @@ set statusline+=%#AriaStatusInfo#%-14.(%l:%c%)
 set statusline+=%5.(%p%%\ %)
 " Use lightline:
 set noshowmode
-let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright' }
+let g:lightline = {
+\    'colorscheme': 'Tomorrow_Night_Bright',
+\    'tabline_separator': { 'left': '', 'right': '' },
+\    'tabline_subseparator': { 'left': '', 'right': '' },
+\ }
 
 
 " vim-prettier
