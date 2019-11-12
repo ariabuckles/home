@@ -233,6 +233,9 @@ set statusline+=%#AriaStatusInfo#\ [%{&filetype}]
 set statusline+=%#AriaStatus#%=
 set statusline+=%#AriaStatusInfo#%-14.(%l:%c%)
 set statusline+=%5.(%p%%\ %)
+" Use lightline:
+set noshowmode
+let g:lightline = { 'colorscheme': 'wombat' }
 
 
 " vim-prettier
