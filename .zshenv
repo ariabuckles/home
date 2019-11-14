@@ -1,6 +1,7 @@
 # System Variables
 #Macports path:
-export ZDOTDIR=$HOME
+export ARIAHOME=$HOME
+export ZDOTDIR=$ARIAHOME
 
 # Source any zprofile here; then ignore GLOBAL_RCS, since we
 # want more control over our path
@@ -16,25 +17,29 @@ fpath=($(echo $fpath | sed 's|^/usr/local/[^ ]*||'))
 # Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
 export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 # Custom executables:
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$ARIAHOME/bin"
 # Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Macports:
 export PATH="$PATH:/opt/local/bin"
 export MANPATH="$MANPATH:/opt/local/share/man"
 # Python bins:
-export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+export PATH="$PATH:$ARIAHOME/Library/Python/2.7/bin"
 # And last in the list, node modules bins:
 export PATH="$PATH:./node_modules/.bin"
 
 # Android setup & paths:
-export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
 export ANDROID_SDK="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
+# Custom home directory for ariashell
+if [[ "$USER" == "ariashell" && -d "$ARIAHOME/shell" ]]; then
+  export HOME="$ARIAHOME/shell"
+fi
 
 # Vim / commandline setup:
 export EDITOR=vim
@@ -65,5 +70,5 @@ function share {
 }
 
 function link-docker-sock {
-  su aria -c 'chmod g=u "$HOME/Library/Containers/com.docker.docker/Data/docker.sock"'
+  su aria -c 'chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data/docker.sock"'
 }

@@ -66,16 +66,13 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
-if [[ "$USER" = "ariashell" ]]; then
-  HISTFILE=/Users/ariashell/.zsh_history
-else
-  HISTFILE=~/.zsh_history
-  chmod 600 "$HISTFILE"
-fi
+HISTFILE="$HOME/.zsh_history"
+touch "$HISTFILE"
+chmod 600 "$HISTFILE"
 
 # hack to make mac git complete fast
 __git_files () { 
-	_wanted files expl 'local files' _files     
+	_wanted files expl 'local files' _files
 }
 
 # OS-Specific things (ls colors etc)

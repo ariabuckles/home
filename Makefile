@@ -18,18 +18,23 @@ npmutils:
 
 
 # Env files
-install: copy-npmrc decrypt install-prefs
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s "`pwd`/%" ~
+install: copy-npmrc decrypt install-prefs link-dotfiles crontab
+	echo installed
 
 update: encrypt update-prefs
-	echo "update"
+	echo updated
 
-reinstall: decrypt
+reinstall: decrypt link-dotfiles
+
+.PHONY: link-dotfiles
+link-dotfiles:
+	mkdir -p ~/shell
 	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~/shell/
 
-copy-only:
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
-
+.PHONY:crontab
+crontab:
+	crontab ./crontab
 
 # Encrypts
 encrypt: setup-viridium encrypt-secrets encrypt-keychain
