@@ -9,8 +9,8 @@ if [[ "$USER" == "root" ]]; then
   find -P ~aria/shell -type d -print0 | xargs -0 chown -PRh ariashell
 fi
 if [[ "$USER" != "ariashell" ]]; then
-  chmod -R u=rwX,g=rX,o= ~aria/home
-  chmod -R u=rwX,g=rX,o= ~aria/bin
+  chmod -R u=rwX,go=rX ~aria/home
+  chmod -R u=rwX,go=rX ~aria/bin
   chmod 700 ~aria/Documents
   chmod 750 ~aria/shell
 fi

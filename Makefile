@@ -35,7 +35,7 @@ link-dotfiles:
 .PHONY:crontab
 crontab:
 	# Run .ensure-permissions.sh every 4 hours
-	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | crontab -
+	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -
 
 # Encrypts
 encrypt: setup-viridium encrypt-secrets encrypt-keychain
