@@ -18,7 +18,7 @@ npmutils:
 
 
 # Env files
-install: copy-npmrc decrypt install-prefs link-dotfiles crontab
+install: copy-npmrc decrypt install-prefs link-dotfiles
 	echo installed
 
 update: encrypt update-prefs
@@ -34,7 +34,8 @@ link-dotfiles:
 
 .PHONY:crontab
 crontab:
-	crontab ./crontab
+	# Run .ensure-permissions.sh every 4 hours
+	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | crontab -
 
 # Encrypts
 encrypt: setup-viridium encrypt-secrets encrypt-keychain
