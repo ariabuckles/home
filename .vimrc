@@ -143,6 +143,10 @@ noremap K }
 noremap L w
 noremap H I
 
+"Tab navigation with <space>j/l
+nnoremap <leader>j gT
+nnoremap <leader>l gt
+
 "Line/page navigation with control
 "We rebind C-ijkl in terminal.app to standard ctrl-pbnf:
 noremap <C-p> <PageUp>
@@ -174,7 +178,7 @@ function! Tab_Or_Complete()
 		return "\<Tab>"
 	endif
 endfunction
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+inoremap <silent> <Tab> <C-R>=Tab_Or_Complete()<CR>
 
 "Normal mode: tab navigation!
 nnoremap <Tab> <C-w>w
