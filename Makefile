@@ -1,31 +1,65 @@
+# ========================
+# Top-level commands
+# ========================
+
+.PHONY: make install workspace admin update
 make: install
+workspace: admin install
+admin: install-homebrew install-crontab
+	@echo admin installed
+install: install-npm install-dotfiles install-prefs
+	@echo installed
+update: update-prefs update-dotfiles
+	@echo updated
 
-workspace: homebrew install
 
+# ========================
+# Definitions / Programs
+# ========================
 
-# Programs
 BREW=/usr/local/bin/brew
 
-homebrew:
+
+# ========================
+# Admin (dependencies which require admin privileges)
+# ========================
+
+.PHONY: install-homebrew
+install-homebrew:
 ifeq ("$(wildcard $(BREW))","")
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 endif
 	${BREW} analytics off
+	${BREW} update
 	${BREW} bundle # installs deps in Brewfile
 
-npmutils:
-	# Install package.json dependencies globally
+.PHONY:install-crontab
+install-crontab:
+	# Run .ensure-permissions.sh every 4 hours
+	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -
+
+
+# ========================
+# Dependencies
+# ========================
+
+.PHONY: install-npm
+install-npm:
+	# Install package.json dependencies globally using jq from brew
 	cat package.json | jq -r '.dependencies | to_entries | .[] | .key + "@" + .value' | xargs npm install -g
 
+.PHONY: install-npm
+update-npm:
+	@echo "Please update npm manually for now :( <3"
 
-# Env files
-install: copy-npmrc install-prefs link-dotfiles
-	echo installed
 
-update: update-prefs
-	echo updated
+# ========================
+# Dotfiles
+# ========================
 
-reinstall: link-dotfiles
+.PHONY: install-dotfiles update-dotfiles
+install-dotfiles: copy-npmrc link-dotfiles
+update-dotfiles: update-npmrc
 
 .PHONY: link-dotfiles
 link-dotfiles:
@@ -33,12 +67,31 @@ link-dotfiles:
 	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
 	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~/shell/
 
-.PHONY:crontab
-crontab:
-	# Run .ensure-permissions.sh every 4 hours
-	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -
+.PHONY: copy-npmrc update-npmrc
+# We do this so that the npmrc in git doesn't have the registry token
+copy-npmrc:
+	cp npmrc .npmrc
+update-npmrc:
+	cat .npmrc | grep -iv 'authtoken' | sed "s|$$HOME|\\\$${HOME}|"> npmrc
 
-# Encrypts
+
+# ========================
+# Prefs for GUI programs
+# ========================
+
+update-prefs:
+	defaults export com.apple.Terminal - > terminal.plist
+	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
+
+install-prefs:
+	defaults import com.apple.Terminal terminal.plist
+	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
+
+
+# ========================
+# Secrets (currently unused)
+# ========================
+
 encrypt: setup-viridium encrypt-secrets encrypt-keychain
 decrypt: setup-viridium decrypt-secrets decrypt-keychain
 
@@ -58,19 +111,6 @@ decrypt-keychain: npmutils
 
 encrypt-keychain: npmutils
 	~/bin/viridium home.keychain | openssl aes-256-cbc -out home.keychain -in ~/Library/Keychains/home.keychain -pass stdin
-
-update-prefs:
-	defaults export com.apple.Terminal - > terminal.plist
-	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
-
-install-prefs:
-	defaults import com.apple.Terminal terminal.plist
-	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
-
-
-# We do this so that the npmrc in git doesn't have the registry token
-copy-npmrc:
-	cp npmrc .npmrc
 
 
 # Write protect a file:
