@@ -212,6 +212,9 @@ function path {
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!/.git/'"
 export FZF_DEFAULT_OPTS="--exact --reverse --tiebreak=length,end --color=16"
 
+# Node
+export NODE_REPL_HISTORY=".local/.node_repl_history"
+
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
 function gron {
