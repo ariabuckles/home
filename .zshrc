@@ -27,6 +27,14 @@ if id homebrew &>/dev/null; then
   }
 fi
 
+function ado {
+  if [[ "$*" = "" ]]; then
+    su aria
+  else
+    su aria -c "$*"
+  fi
+}
+
 # Zsh options
 # roughly alias cd=pushd:
 setopt autopushd
