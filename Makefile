@@ -14,17 +14,18 @@ endif
 	${BREW} bundle # installs deps in Brewfile
 
 npmutils:
-	npm install
+	# Install package.json dependencies globally
+	cat package.json | jq -r '.dependencies | to_entries | .[] | .key + "@" + .value' | xargs npm install -g
 
 
 # Env files
-install: copy-npmrc decrypt install-prefs link-dotfiles
+install: copy-npmrc install-prefs link-dotfiles
 	echo installed
 
-update: encrypt update-prefs
+update: update-prefs
 	echo updated
 
-reinstall: decrypt link-dotfiles
+reinstall: link-dotfiles
 
 .PHONY: link-dotfiles
 link-dotfiles:
@@ -47,16 +48,16 @@ setup-viridium:
 # TODO: make .secrets.env local to this file
 decrypt-secrets: npmutils
 	-mv ~/.secrets.env ~/.secrets.env.bak
-	./node_modules/.bin/viridium secrets.env | openssl aes-256-cbc -d -in secrets.env -out ~/.secrets.env -pass stdin
+	~/bin/viridium secrets.env | openssl aes-256-cbc -d -in secrets.env -out ~/.secrets.env -pass stdin
 
 encrypt-secrets: npmutils
-	./node_modules/.bin/viridium secrets.env | openssl aes-256-cbc -in ~/.secrets.env -out secrets.env -pass stdin
+	~/bin/viridium secrets.env | openssl aes-256-cbc -in ~/.secrets.env -out secrets.env -pass stdin
 
 decrypt-keychain: npmutils
-	./node_modules/.bin/viridium home.keychain | openssl aes-256-cbc -d -in home.keychain -out ~/Library/Keychains/home.keychain -pass stdin
+	~/bin/viridium home.keychain | openssl aes-256-cbc -d -in home.keychain -out ~/Library/Keychains/home.keychain -pass stdin
 
 encrypt-keychain: npmutils
-	./node_modules/.bin/viridium home.keychain | openssl aes-256-cbc -out home.keychain -in ~/Library/Keychains/home.keychain -pass stdin
+	~/bin/viridium home.keychain | openssl aes-256-cbc -out home.keychain -in ~/Library/Keychains/home.keychain -pass stdin
 
 update-prefs:
 	defaults export com.apple.Terminal - > terminal.plist
