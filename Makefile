@@ -5,7 +5,7 @@
 .PHONY: make install workspace admin update
 make: install
 workspace: admin install
-admin: install-homebrew install-crontabs install-sudoers
+admin: create-users install-homebrew install-crontabs install-sudoers
 	@echo admin installed
 install: install-npm install-dotfiles install-prefs
 	@echo installed
@@ -23,6 +23,10 @@ BREW=/usr/local/bin/brew
 # ========================
 # Admin (dependencies which require admin privileges)
 # ========================
+
+.PHONY: create-users
+create-users:
+	sudo zsh ./create-user.sh ariashell
 
 .PHONY: install-homebrew
 install-homebrew:
