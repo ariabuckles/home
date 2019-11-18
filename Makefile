@@ -5,7 +5,7 @@
 .PHONY: make install workspace admin update
 make: install
 workspace: admin install
-admin: install-homebrew install-crontab
+admin: install-homebrew install-crontabs
 	@echo admin installed
 install: install-npm install-dotfiles install-prefs
 	@echo installed
@@ -33,10 +33,12 @@ endif
 	${BREW} update
 	${BREW} bundle # installs deps in Brewfile
 
-.PHONY:install-crontab
-install-crontab:
+
+.PHONY:install-crontabs
+install-crontabs:
 	# Run .ensure-permissions.sh every 4 hours
-	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -
+	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -u root -
+	echo "0 */3 * * * zsh 'cd $(shell pwd) && make update'" | sudo crontab -u aria -
 
 
 # ========================
