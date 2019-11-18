@@ -92,11 +92,13 @@ update-npmrc:
 update-prefs:
 	defaults export com.apple.Terminal - > terminal.plist
 	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
+	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -extract NSUserKeyEquivalents json ~/Library/Preferences/com.google.Chrome.plist -r -o chrome-keybinds.plist
 
 .PHONY: install-prefs
 install-prefs:
 	defaults import com.apple.Terminal terminal.plist
 	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
+	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -replace NSUserKeyEquivalents -json "$$(cat chrome-keybinds.plist)" ~/Library/Preferences/com.google.Chrome.plist
 
 
 # ========================
