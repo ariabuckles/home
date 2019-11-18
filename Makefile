@@ -33,13 +33,13 @@ endif
 	${BREW} update
 	${BREW} bundle # installs deps in Brewfile
 
-.PHONY:install-crontabs
+.PHONY: install-crontabs
 install-crontabs:
 	# Run .ensure-permissions.sh every 4 hours
 	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -u root -
 	echo "0 */3 * * * zsh 'cd $(shell pwd) && make update'" | sudo crontab -u aria -
 
-.PHONY:install-sudoers
+.PHONY: install-sudoers
 install-sudoers:
 	find sudoers.d -type f -print0 | sudo xargs -0 -I% cp % /private/etc/sudoers.d
 
@@ -84,10 +84,12 @@ update-npmrc:
 # Prefs for GUI programs
 # ========================
 
+.PHONY: update-prefs
 update-prefs:
 	defaults export com.apple.Terminal - > terminal.plist
 	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
 
+.PHONY: install-prefs
 install-prefs:
 	defaults import com.apple.Terminal terminal.plist
 	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
