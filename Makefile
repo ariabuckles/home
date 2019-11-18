@@ -5,7 +5,7 @@
 .PHONY: make install workspace admin update
 make: install
 workspace: admin install
-admin: install-homebrew install-crontabs
+admin: install-homebrew install-crontabs install-sudoers
 	@echo admin installed
 install: install-npm install-dotfiles install-prefs
 	@echo installed
@@ -33,12 +33,15 @@ endif
 	${BREW} update
 	${BREW} bundle # installs deps in Brewfile
 
-
 .PHONY:install-crontabs
 install-crontabs:
 	# Run .ensure-permissions.sh every 4 hours
 	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -u root -
 	echo "0 */3 * * * zsh 'cd $(shell pwd) && make update'" | sudo crontab -u aria -
+
+.PHONY:install-sudoers
+install-sudoers:
+	find sudoers.d -type f -print0 | sudo xargs -0 -I% cp % /private/etc/sudoers.d
 
 
 # ========================
