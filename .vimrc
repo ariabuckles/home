@@ -134,7 +134,6 @@ noremap j h
 noremap k j
 "restore an insert command (but try to use a more?)
 noremap h i
-noremap ; a
 
 "Word/paragraph navigation with shift
 noremap I {
