@@ -247,7 +247,7 @@ let g:lightline = {
 
 " vim-prettier
 let g:prettier#autoformat = 0
-if or(filereadable(findfile('prettier.conf.js', '.;')), filereadable(findfile('.prettierrc.js', '.;')))
+if or(filereadable(findfile('prettier.config.js', '.;')), filereadable(findfile('.prettierrc.js', '.;')))
   autocmd BufWritePre *.js Prettier
 endif
 
