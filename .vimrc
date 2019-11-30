@@ -112,7 +112,6 @@ noremap <C-a> ^
 
 hi clear Search
 hi! def Search ctermfg=0 ctermbg=11
-autocmd FileType javascript source ${HOME}/.vim/aria/jshighlight.vim
 
 "Okay, time to get crazy and make this more usable.
 "Game mode controls. -_-

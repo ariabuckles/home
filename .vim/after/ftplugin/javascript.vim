@@ -1,3 +1,6 @@
+" Custom javascript highlighting
+" TODO(aria): Maybe this should be a colorscheme?
+
 " general lang
 hi! def link ariaKey NONE
 hi! def Noise ctermfg=Blue

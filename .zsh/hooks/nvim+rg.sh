@@ -1,3 +1,3 @@
 #!/bin/zsh
 # Open file(s) with content matching regex:
-vig() { vim -c "/$1" -- $(rg -l $@) }
+vig() { vim -c '/\v'"$1" -- $(rg -l $@) }
