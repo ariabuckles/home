@@ -89,10 +89,7 @@ autocmd FileType java setlocal shiftwidth=4
 autocmd FileType java setlocal tabstop=4
 autocmd FileType text set wrap
 
-" Ignore bundle & compressed filetypes:
-"let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|bundle\.*\)$'
 autocmd BufRead,BufNewFile *.al setfiletype javascript
-autocmd BufRead,BufNewFile *.ts,*.tsx setfiletype javascript
 
 " Keybinds:
 
