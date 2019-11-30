@@ -1,41 +1,40 @@
-" Security disables:
-" Modelines have occasional vulnerabilities and we don't use them, so:
-set modelines=0
-set nomodeline
+" Security (turns off modelines):
+source ${HOME}/.vim/after/plugin/security.vim
 
+" Initialization:
+
+" Clear autocommands:
 autocmd!
+" Enable plugins
+filetype plugin on
 
-" Add fzf brew package support:
-if executable('fzf')
+if executable('fzf') " Add fzf brew package support:
   set runtimepath+=/usr/local/opt/fzf/
 endif
 
-" located in /etc/vimrc from centos
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=utf-8,latin1
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$" " file encoding
+  set fileencodings=utf-8,latin1 " detect file encodings
+  setglobal fileencoding=utf-8   " new file encoding
 endif
 
-set nocompatible	" Use Vim defaults (much better!)
-set bs=indent,eol,start		" allow backspacing over everything in insert mode
-"set ai			" always set autoindenting on
-"set backup		" keep a backup file
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
-			" than 50 lines of registers
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
 
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  augroup redhat
-    " In text files, always limit the width of text to 78 characters
-    "autocmd BufRead *.txt set tw=78
-    " When editing a file, always jump to the last cursor position
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
-  augroup END
+" Compatibility Baseline Config:
+
+set nocompatible        " Use Vim defaults (much better!)
+set bs=indent,eol,start " allow backspacing over everything in insert mode
+set autoindent          " always set autoindenting on
+set history=100         " keep 100 lines of command line history
+set hlsearch
+
+if &t_Co > 2 || has("gui_running") " turn syntax hl on when terminal is on
+  syntax on
 endif
+
+" open files to the last cursor position
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ endif
 
 " Turn on backups in ~/.Trash:
 " https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
@@ -46,18 +45,12 @@ let datebackups = "set backupext=~". datebackups
 execute datebackups
 
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-if &term=="xterm"
-     set t_Co=8
-     set t_Sb=[4%dm
-     set t_Sf=[3%dm
-endif
+" TODO(aria): what is this from and why keep it?
+"if &term=="xterm"
+"     set t_Co=8
+"     set t_Sb=[4%dm
+"     set t_Sf=[3%dm
+"endif
 
 "Custom settings
 set nocompatible
@@ -73,8 +66,8 @@ autocmd FileType ruby setlocal shiftwidth=2
 autocmd FileType haml setlocal tabstop=2
 autocmd FileType haml setlocal shiftwidth=2
 autocmd FileType coffee setlocal tabstop=2
-autocmd FileType coffee setlocal tabstop=2
-autocmd FileType html setlocal shiftwidth=2
+autocmd FileType coffee setlocal shiftwidth=2
+autocmd FileType html setlocal tabstop=2
 autocmd FileType html setlocal shiftwidth=2
 set smartindent
 set autoindent
@@ -85,10 +78,11 @@ set scrolloff=2
 set wildmode=longest,list
 set nowrap
 autocmd BufRead *.txt set wrap
-filetype plugin on
 
-set viminfo='20,<200,s10,h
+" https://neovim.io/doc/user/options.html#'shada'
+set viminfo=!,'50,<200,s100,h
 
+" Set <leader> to <space>
 let mapleader=" "
 
 "lnoremap does 'language mode', which applies in all text insert situations,
@@ -134,6 +128,11 @@ noremap j h
 noremap k j
 "restore an insert command (but try to use a more?)
 noremap h i
+" Map z commands to new movement keys
+noremap zi zk
+noremap zj zh
+noremap zk zj
+noremap zh zi
 
 "Word/paragraph navigation with shift
 noremap I {
@@ -157,6 +156,16 @@ inoremap <C-p> <Up>
 inoremap <C-b> <Left>
 inoremap <C-n> <Down>
 inoremap <C-f> <Right>
+
+" Swap c and s
+"nnoremap c s
+"nnoremap s c
+"nnoremap ss cl
+
+" Better visual mode <-> visual line mode switching:
+" https://vi.stackexchange.com/questions/21427/different-mapping-behavior-for-the-different-visual-modes
+" Remap vv to V:
+xnoremap <expr> v { 'v': "V", 'V': "v", '<c-v>': "v" }[mode()]
 
 "Tab completion
 "For some reason this needs to be after our <C-i> remapping >_>
@@ -225,8 +234,10 @@ augroup trailingwhitespace
   autocmd InsertLeave * set list
 augroup END
 
-" statusline
-set laststatus=2
+" statusline progressive definition
+set ruler        " show the cursor position all the time
+set laststatus=2 " show the status line all the time
+" Define a custom statusline
 highlight default AriaStatus ctermfg=black ctermbg=darkgray
 highlight default AriaStatusFile ctermfg=black ctermbg=lightgray
 highlight default AriaStatusInfo ctermfg=white ctermbg=darkgray
@@ -236,7 +247,7 @@ set statusline+=%#AriaStatusInfo#\ [%{&filetype}]
 set statusline+=%#AriaStatus#%=
 set statusline+=%#AriaStatusInfo#%-14.(%l:%c%)
 set statusline+=%5.(%p%%\ %)
-" Use lightline:
+" But use lightline if available:
 set noshowmode
 let g:lightline = {
 \    'colorscheme': 'Tomorrow_Night_Bright',
@@ -296,7 +307,6 @@ if executable('fzf')
   endif
   noremap <silent> <leader>o :Files<CR>
   noremap <silent> <leader>f :Windows<CR>
-  noremap <silent> <C-o> :Files<CR>
 endif
 
 " Colors
@@ -304,11 +314,17 @@ highlight Pmenu ctermbg=gray
 
 " :terminal support
 set hidden
-let $HOOKS_LOADED="" "reset zsh-hooks
 if has('nvim')
   autocmd TermOpen * startinsert
   tnoremap <C-x> <C-\><C-n>$
 endif
+
+" Parity between vim and nvim:
+set background=light
+
+" Disabled Or Not Sure What These Are:
+" In text files, always limit the width of text to 78 characters
+"autocmd BufRead *.txt set tw=78
 
 " coc.nvim:
 " From https://github.com/neoclide/coc.nvim
@@ -332,11 +348,4 @@ endif
 "  set termguicolors
 "endif
 
-" Parity between vim and nvim:
-set background=light
-
-" Security disables:
-" Modelines have occasional vulnerabilities and we don't use them, so:
-set modelines=0
-set nomodeline
 
