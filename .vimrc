@@ -5,8 +5,8 @@ source ${HOME}/.vim/after/plugin/security.vim
 
 " Clear autocommands:
 autocmd!
-" Enable plugins
-filetype plugin on
+" Enable filetype detect & indent plugins
+filetype plugin indent on
 
 if executable('fzf') " Add fzf brew package support:
   set runtimepath+=/usr/local/opt/fzf/
@@ -20,12 +20,25 @@ endif
 
 " Compatibility Baseline Config:
 
-set nocompatible        " Use Vim defaults (much better!)
-set bs=indent,eol,start " allow backspacing over everything in insert mode
-set autoindent          " always set autoindenting on
-set history=100         " keep 100 lines of command line history
-set hlsearch
+set nocompatible
+" allow backspacing over everything in insert mode:
+set backspace=indent,eol,start
+" https://neovim.io/doc/user/options.html#'shada'
+set viminfo=!,'50,<200,s100,h
+" Parity between vim and nvim:
+set background=light
 
+" Indentation
+set autoindent
+set smartindent
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Syntax Highlighting
 if &t_Co > 2 || has("gui_running") " turn syntax hl on when terminal is on
   syntax on
 endif
@@ -36,28 +49,31 @@ autocmd BufReadPost *
 \   exe "normal! g'\"" |
 \ endif
 
+
+" Backups:
+
 " Turn on backups in ~/.Trash:
 " https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
 set backup
+set history=100 " keep 100 lines of command line history
 set backupdir=${HOME}/.vimbackups
 let datebackups = strftime("%y-%m-%d_%Hh%Mm")
 let datebackups = "set backupext=~". datebackups
 execute datebackups
 
 
-" TODO(aria): what is this from and why keep it?
-"if &term=="xterm"
-"     set t_Co=8
-"     set t_Sb=[4%dm
-"     set t_Sf=[3%dm
-"endif
 
 "Custom settings
-set nocompatible
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
+set scrolloff=2
+set wildmode=longest,list
+set nowrap
+
+
+" Filetype Settings:
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal shiftwidth=4
 autocmd FileType make setlocal tabstop=4
@@ -69,24 +85,22 @@ autocmd FileType coffee setlocal tabstop=2
 autocmd FileType coffee setlocal shiftwidth=2
 autocmd FileType html setlocal tabstop=2
 autocmd FileType html setlocal shiftwidth=2
-set smartindent
-set autoindent
-set incsearch
-set ignorecase
-set smartcase
-set scrolloff=2
-set wildmode=longest,list
-set nowrap
-autocmd BufRead *.txt set wrap
+autocmd FileType java setlocal shiftwidth=4
+autocmd FileType java setlocal tabstop=4
+autocmd FileType text set wrap
 
-" https://neovim.io/doc/user/options.html#'shada'
-set viminfo=!,'50,<200,s100,h
+" Ignore bundle & compressed filetypes:
+"let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|bundle\.*\)$'
+autocmd BufRead,BufNewFile *.al setfiletype javascript
+autocmd BufRead,BufNewFile *.ts,*.tsx setfiletype javascript
+
+" Keybinds:
 
 " Set <leader> to <space>
 let mapleader=" "
 
 "lnoremap does 'language mode', which applies in all text insert situations,
-"but not normal/visaul/visualblock. Notably, this includes search.
+"but not normal/visual/visualblock. Notably, this includes search.
 "To enable it, we have to set:
 ":set iminsert=1
 "wellll i couldn't get that to work, so noremap! maps something for insert and
@@ -98,22 +112,6 @@ inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
 noremap <C-e> $
 noremap <C-a> ^
-
-autocmd BufRead *.al set filetype=javascript
-autocmd BufRead *.md set filetype=markdown
-autocmd BufRead *.ts,*.tsx set filetype=javascript
-
-autocmd FileType java setlocal shiftwidth=4
-autocmd FileType java setlocal tabstop=4
-
-function! TrimWhiteSpace()
-    %s/\s\s*$//e
-endfunction
-
-"autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
-"autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
-"autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
-"autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 
 hi clear Search
 hi! def Search ctermfg=0 ctermbg=11
@@ -319,8 +317,6 @@ if has('nvim')
   tnoremap <C-x> <C-\><C-n>$
 endif
 
-" Parity between vim and nvim:
-set background=light
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
@@ -347,5 +343,21 @@ set background=light
 "if has("nvim")
 "  set termguicolors
 "endif
+
+" TODO(aria): what is this from and why keep it?
+"if &term=="xterm"
+"     set t_Co=8
+"     set t_Sb=[4%dm
+"     set t_Sf=[3%dm
+"endif
+
+"function! TrimWhiteSpace()
+"    %s/\s\s*$//e
+"endfunction
+
+"autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
+"autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 
 
