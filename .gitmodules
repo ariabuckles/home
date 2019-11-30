@@ -7,3 +7,6 @@
 [submodule ".vim/pack/main/start/lightline.vim"]
 	path = .vim/pack/main/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim.git
+[submodule ".vim/pack/main/start/vim-jsx-pretty"]
+	path = .vim/pack/main/start/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
