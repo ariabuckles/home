@@ -13,6 +13,9 @@ unsetopt GLOBAL_RCS
 # Set up zsh compinit paths safely (ignore homebrew):
 fpath=($(echo $fpath | sed 's|^/usr/local/[^ ]*||'))
 
+export PYENV_ROOT="$ARIAHOME/.pyenv"
+export PYENV_SHELL=$SHELL
+
 # Set up $PATH safely:
 # Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
 export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
@@ -23,8 +26,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Macports:
 export PATH="$PATH:/opt/local/bin"
 export MANPATH="$MANPATH:/opt/local/share/man"
-# Python bins:
-export PATH="$PATH:$ARIAHOME/Library/Python/2.7/bin"
+# Python with pyenv
+export PATH="$PYENV_ROOT/shims:$PATH"
 # And last in the list, node modules bins:
 export PATH="$PATH:./node_modules/.bin"
 

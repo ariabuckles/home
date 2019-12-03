@@ -1,2 +1,14 @@
+# Mac Finder:
 .DS_Store
+# Vim:
 *.swp
+
+# Pilot:
+# Mac
+pip-wheel-metadata
+.DS_Store
+# Twisted
+_trial_temp.lock
+# diff-cover
+coverage.xml
+diff-cover.html

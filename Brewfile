@@ -1,14 +1,16 @@
 # Language ecosystems:
-brew "node@10", link: true
+brew "node@12", link: true
 brew "python"
-brew "python@2"
+brew "pyenv"
 brew "lua"
 brew "cocoapods" # XCode package manager
 brew "watchman" # For fb react tools
+brew "postgres"
 
 # Standard util polyfills for mac:
 brew "gnupg"
 brew "libpng"
+brew "openssl"
 
 # Better Utils:
 brew "neovim"

@@ -51,6 +51,8 @@
     hooksPath = ~/.githooks
     abbrev = 8
     #pager = less -+FX -i
+[pull]
+    rebase = true
 [merge]
     tool = vimdiff
     conflictstyle = diff3

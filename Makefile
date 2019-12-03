@@ -1,3 +1,5 @@
+# TODO(aria): Need to make ariashell subdirectories (.local etc.) from here
+
 # ========================
 # Top-level commands
 # ========================
@@ -7,7 +9,7 @@ make: install
 workspace: admin install
 admin: create-users install-homebrew install-crontabs install-sudoers
 	@echo admin installed
-install: install-npm install-dotfiles install-prefs
+install: install-dotfiles install-npm install-prefs
 	@echo installed
 update: update-prefs update-dotfiles
 	@echo updated
@@ -53,7 +55,8 @@ install-sudoers:
 # ========================
 
 .PHONY: install-npm
-install-npm:
+# TODO(aria): remove .config directory if non-symlink first.
+install-npm: install-dotfiles
 	# Install package.json dependencies globally using jq from brew
 	cat package.json | jq -r '.dependencies | to_entries | .[] | .key + "@" + .value' | xargs npm install -g
 
