@@ -10,3 +10,6 @@
 [submodule ".vim/pack/main/start/vim-jsx-pretty"]
 	path = .vim/pack/main/start/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule ".vim/pack/main/start/vim-vue"]
+	path = .vim/pack/main/start/vim-vue
+	url = https://github.com/posva/vim-vue.git
