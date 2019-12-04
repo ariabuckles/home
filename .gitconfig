@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
     name = Aria Buckles
-    email = aria@toole1.com
+    email = aria@pilot.com
 [alias]
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX:-.}/package-lock.json && git checkout -- ${GIT_PREFIX:-.}/package-lock.json && cd ${GIT_PREFIX:-.} && npm install && git add -- package-lock.json; }; f"
     create-branch = "!git checkout -b $@ && git branch --set-upstream-to master && true"
