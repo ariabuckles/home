@@ -34,6 +34,13 @@ function ado {
     su aria -c "$*"
   fi
 }
+function revan {
+  if [[ "$*" = "" ]]; then
+    su revan -c "zsh"
+  else
+    su revan -c "$*"
+  fi
+}
 
 # Zsh options
 # roughly alias cd=pushd:
@@ -280,6 +287,241 @@ function hi {
 #export family_app="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/app/react/family_app"
 #export seesaw_library="$HOME/depot/mcam/MagicCameraServer/mcserver/webapp/app/js/shared/react/library"
 #export library="$seesaw_library"
+
+# Pilot dotfiles/shared_terminal_file:
+
+if [[ -d $HOME/pilot/zapgram ]]; then
+  export PILOT_ZAPGRAM="$HOME/pilot/zapgram"
+fi
+if [[ -d $HOME/pilot/connections ]]; then
+  export PILOT_CONNECTIONS="$HOME/pilot/connections"
+fi
+if [[ -d $HOME/pilot/dotfiles ]]; then
+  export PILOT_DOTFILES="$HOME/pilot/dotfiles"
+  export PSQLRC="$PILOT_DOTFILES/.psqlrc"
+fi
+
+############## SETTING UP ##########################
+
+# Set up functions for switching between your local environment, your staging
+# environment, and the shared e2e environment.
+#   - For now, almost all work (local, staging, and prod) happens in aws_prod.
+#   - The pilottesting environment is a shared credential for all testing through Travis
+pilot_local() {
+    export PILOT_ENVIRONMENT=local;
+    export AWS_PROFILE=pilotprod;
+}
+pilot_staging() {
+    export PILOT_ENVIRONMENT=staging;
+    export AWS_PROFILE=pilotprod;
+}
+pilot_e2e() {
+    export PILOT_ENVIRONMENT=e2e;
+    export AWS_PROFILE=pilottesting;
+}
+pilot_unset() {
+    unset PILOT_ENVIRONMENT;
+    unset AWS_PROFILE;
+}
+# Don't make an alias for PILOT_ENVIRONMENT=PRODUCTION. This should be harder to do.
+
+
+# Run this command basically every time you open a new Pilot terminal
+#   - Go to the zapgram directory
+#   - Default to a local development environment
+#   - Activate the zapgram virtual environment
+zgs() {
+    cd "${PILOT_ZAPGRAM}";
+    . .ve/bin/activate;
+    pilot_local;
+}
+
+
+############## OCCASIONAL COMMANDS #################
+
+# Set up a function to add your IP address to the AWS ingress rules
+#   - If you have PILOT_ENVIRONMENT set to local, staging, or e2e,
+#     this will add your IP to AWS region us-west-1
+#   - If you have PILOT_ENVIRONMENT set to PRODUCTION,
+#     this will force you to confirm that you really want
+#     production then add your IP to AWS region us-west-2
+pilot_work_remotely() {
+    zg deployment --task=connect;
+}
+pilot_work_remotely_production() {
+    PILOT_ENVIRONMENT=PRODUCTION zg deployment --task=connect --env=PRODUCTION;
+}
+
+# Sometimes the Docker disk image runs out of space (typically every few months).
+#   - There isn't any garbage collection of old images in Docker.
+#   - Run this command if you see "No space left on device" when trying to run unit tests or deploy
+#     - psycopg2.errors.DiskFull: could not write to file "base/6747029/2603_vm": No space left on device
+pilot_prune_docker() {
+    docker system prune -a;
+}
+
+# Every 90 days, we each need to renew our staging and local certificates
+pilot_renew_certificates() {
+    PILOT_ENVIRONMENT=staging zg renew_certificates;
+    PILOT_ENVIRONMENT=local zg renew_certificates;
+}
+
+# If you see the error on your sandbox customer, you need to renew the sandbox's qbo oauth.
+#   - "Invalid credentials. Update this customer's QuickBooks credentials, then try again."
+#
+# Run this command, and follow the instructions to give it your username and your sandbox customer's username.
+# You will have to copy something from a URL. This is expected.
+pilot_renew_quickbooks_oauth() {
+    PILOT_ENVIRONMENT=PRODUCTION AWS_PROFILE=pilotprod zg configure_local_environment --stage=setup_quickbooks_oauth;
+}
+
+# Sometimes you want to see how your local versions of the repositories are different
+# from prod.
+#
+# Open two browser windows, one zapgram, and one connections, to the github compare URL
+# of the current HEAD to whatever is deployed on prod.
+pilot_compare_local_to_prod() {
+    github_base_url="https://github.com/Zapgram";
+    open "${github_base_url}/zapgram/compare/$(curl https://api.pilot.com/health-check 2> /dev/null | jq -r '.version')...$(cd ../zapgram || exit; git rev-parse HEAD)";
+    open "${github_base_url}/connections/compare/$(curl https://app.pilot.com/auth/health-check 2> /dev/null | jq -r '.version')...$(cd ../connections || exit; git rev-parse HEAD)";
+}
+
+
+#################### DATABASE ACCESS ################################
+
+# No alias needed! Just use `zg sql`
+# The database you connect to will depend on what the PILOT_ENVIRONMENT
+# and AWS_PROFILE variablis are set to.
+
+
+
+#################### RUN THE WEBSERVER ################################
+
+# Shortcuts: Every time you start your day, you'll want 4 tabs:
+#   - pilot_front in one tab
+#   - pilot_back in a second tab
+#   - zgs in a tab for git
+#   - zgs in a tab for tests (front or back)
+pilot_front() {
+    zgs;
+    cd "${PILOT_CONNECTIONS}";
+    node server/app.js;
+}
+pilot_back() {
+    zgs;
+    PORT_NUMBER=7443 zg api;
+}
+
+# If you restart your webserver backend while a zap is running, it may
+# get stuck. Use this command to un-stick it!
+pilot_reset_sandbox_zaps() {
+    zg eng-help reset_running_zaps --customer-username="${USER}sandbox";
+}
+
+
+#################### RUN TESTS ################################
+
+# This is to run tests on the frontend.
+#   - The argument should look like "institutions.test.js" or "test/end-to-end/institutions.test.js"
+pilot_test_front() {
+    cd "${PILOT_CONNECTIONS}";
+    DEBUG_TESTS=true npm test "$1";
+}
+
+# This is to run tests on the backend.
+#   - The argument should look like zg.test.unit.test_paypal_importer
+#   - In practice, you should just run it by calling trial
+#     yourself: `trial zg.test.unit.test_paypal_importer`
+pilot_test_back() {
+    cd "${PILOT_ZAPGRAM}";
+    trial "$1";
+}
+
+# The "fast" option below will run faster and show you errors faster when running lots
+# of tests at once, but some errors and print outputs are harder to see/understand, so
+# I usually run the slower version above when I'm looking at one test in detail.
+#   - The -j 8 makes 8 processes so that it runs faster.
+#   - The --rterrors option prints out error tracebacks in real time (as they happen)
+#       rather than waiting for the summary at the end of the run
+pilot_test_back_fast() {
+    cd "${PILOT_ZAPGRAM}";
+    trial -j "${PILOT_UNIT_TEST_PARALLELISM:-8}" --rterrors "$1";
+}
+
+# Run all of the backend tests through tox, which sets up various
+# environmental variables correctly for you.
+#   - The `-p auto` says "run all of the tox environments in parallel"
+pilot_test_back_full() {
+    cd "${PILOT_ZAPGRAM}";
+    tox -p auto;
+}
+
+# Sometimes Travis is kind of slow; sometimes due to weird service outages or
+# race conditions, codecov’s reports don’t make much sense.  You’ve got a fast
+# computer right in front of you, you don’t need to wait for all that!
+#
+# Run this to see coverage locally. You might have to run it twice the first time.
+#
+# You can read more later at https://coverage.readthedocs.io
+pilot_see_coverage() {
+    cd "${PILOT_ZAPGRAM}";
+    coverage combine; coverage erase;
+    tox -p auto &&
+    coverage combine &&
+    coverage xml &&
+    diff-cover coverage.xml --html-report=diff-cover.html &&
+    open ./diff-cover.html;
+}
+
+
+#################### RUN LINTERS ################################
+
+# These commands run the linters and type checkers on the
+# frontend and backend, respectively.
+pilot_lint_front() {
+    cd "${PILOT_CONNECTIONS}";
+    npm run-script lint:js;
+    npm run-script lint:css;
+}
+
+# You can learn more about tox by reading tox.ini
+# TODO: add more about tox
+pilot_lint_back() {
+    tox -e mypy -e lint -p auto;
+}
+
+
+#################### UPDATE REQUIREMENTS ##########################
+
+# Update requirements after you or others change them
+pilot_update_req_backend() {
+    cd "${PILOT_ZAPGRAM}";
+    pip install -Ur requirements.txt
+    pip install -Ur dev_requirements.txt
+}
+pilot_update_req_backend_complete() {
+    cd "${PILOT_ZAPGRAM}";
+    deactivate;
+    rm -rf .ve;
+    python3.6 -m venv .ve;
+    . .ve/bin/activate;
+    pip install -Ur requirements.txt;
+    pip install -Ur dev_requirements.txt;
+    pip install -e .;
+}
+pilot_update_req_frontend() {
+    cd "${PILOT_CONNECTIONS}";
+    nvm use;
+    npm ci;
+}
+pilot_update_req_tox() {
+    tox -r;
+}
+pilot_run_migrations() {
+    zg deployment --task=run-migrations;
+}
+
+############### END PILOT DOTFILES #################
 
 # Load our zsh hooks:
 if [[ -e ~/.zsh/load-hooks ]]; then

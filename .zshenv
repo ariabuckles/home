@@ -28,8 +28,9 @@ export PATH="$PATH:/opt/local/bin"
 export MANPATH="$MANPATH:/opt/local/share/man"
 # Python with pyenv
 export PATH="$PYENV_ROOT/shims:$PATH"
-# And last in the list, node modules bins:
+# And last in the list, node modules bins & python .ve virtualenv bins:
 export PATH="$PATH:./node_modules/.bin"
+export PATH="./.ve/bin:$PATH" # auto-be in a virtualenv if the virtualenv is named `.ve`
 
 # Android setup & paths:
 export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
@@ -46,6 +47,7 @@ fi
 
 # Vim / commandline setup:
 export EDITOR=vim
+export VISUAL=vim
 bindkey -e
 
 # Custom Variables

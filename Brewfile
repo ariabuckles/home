@@ -10,7 +10,6 @@ brew "postgres"
 # Standard util polyfills for mac:
 brew "gnupg"
 brew "libpng"
-brew "openssl"
 
 # Better Utils:
 brew "neovim"
@@ -25,3 +24,7 @@ brew "bat"
 brew "hub" # GitHub
 brew "awscli" # AWS
 brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~/.docker/config.json
+
+# Pilot deps:
+brew "openssl@1.1"
+brew "pinentry-mac"
