@@ -75,5 +75,11 @@ function share {
 }
 
 function link-docker-sock {
-  su aria -c 'chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data/docker.sock"'
+  su aria -c ' \
+    chmod g=u "$ARIAHOME/Library" && \
+    chmod g=u "$ARIAHOME/Library/Containers" && \
+    chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker" && \
+    chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data" && \
+    chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data/docker.sock" \
+  '
 }
