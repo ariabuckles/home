@@ -48,7 +48,6 @@
     new-pr = pr
 [core]
     excludesfile = ~/.gitignoreglobal
-    hooksPath = ~/.githooks
     abbrev = 8
     #pager = less -+FX -i
 [pull]

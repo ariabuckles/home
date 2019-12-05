@@ -521,6 +521,10 @@ pilot_run_migrations() {
     zg deployment --task=run-migrations;
 }
 
+############### UUID Gen ###########################
+
+alias -r uuid="uuidgen | tr '[:upper:]' '[:lower:]'  | tr -d '\n' | pbcopy && pbpaste && echo ''"
+
 ############### END PILOT DOTFILES #################
 
 # Load our zsh hooks:
