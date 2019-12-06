@@ -30,7 +30,7 @@ export MANPATH="$MANPATH:/opt/local/share/man"
 export PATH="$PYENV_ROOT/shims:$PATH"
 # And last in the list, node modules bins & python .ve virtualenv bins:
 export PATH="$PATH:./node_modules/.bin"
-export PATH="./.ve/bin:$PATH" # auto-be in a virtualenv if the virtualenv is named `.ve`
+#export PATH="./.ve/bin:$PATH" # auto-be in a virtualenv if the virtualenv is named `.ve`
 
 # Android setup & paths:
 export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
@@ -64,9 +64,9 @@ if [ -e ~/.secrets.env ]; then
   source ~/.secrets.env
 fi
 
-if [ -e ~/.virtualenv/khan27/bin/activate ]; then
-  source ~/.virtualenv/khan27/bin/activate
-fi
+#if [ -e ~/.virtualenv/khan27/bin/activate ]; then
+#  source ~/.virtualenv/khan27/bin/activate
+#fi
 
 export MOCHA_REPORTER='spec'
 
