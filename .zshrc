@@ -290,6 +290,9 @@ function hi {
 
 # Pilot dotfiles/shared_terminal_file:
 
+if [[ -d "$HOME/pilot" ]]; then
+  export PILOT_HOME="$HOME/pilot"
+fi
 if [[ -d $HOME/pilot/zapgram ]]; then
   export PILOT_ZAPGRAM="$HOME/pilot/zapgram"
 fi
@@ -524,6 +527,14 @@ pilot_run_migrations() {
 ############### UUID Gen ###########################
 
 alias -r uuid="uuidgen | tr '[:upper:]' '[:lower:]'  | tr -d '\n' | pbcopy && pbpaste && echo ''"
+
+################ Zulip #############################
+
+zulip() {
+    cd "$PILOT_HOME/zulip"
+    source .ve/bin/activate
+    zulip-term -c zuliprc
+}
 
 ############### END PILOT DOTFILES #################
 

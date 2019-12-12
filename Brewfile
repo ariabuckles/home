@@ -19,6 +19,7 @@ brew "jq"
 brew "tig"
 brew "fzf"
 brew "bat"
+brew "git-delta"
 
 # Service CLIs:
 brew "hub" # GitHub
