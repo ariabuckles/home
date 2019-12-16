@@ -828,6 +828,18 @@
 				<string></string>
 				<key>^0020</key>
 				<string>.</string>
+				<key>~006A</key>
+				<string>(</string>
+				<key>~006C</key>
+				<string>)</string>
+				<key>~0069</key>
+				<string>{</string>
+				<key>~006B</key>
+				<string>}</string>
+				<key>~0075</key>
+				<string>[</string>
+				<key>~006F</key>
+				<string>]</string>
 				<key>^F702</key>
 				<string>[1;5D</string>
 				<key>^F703</key>
