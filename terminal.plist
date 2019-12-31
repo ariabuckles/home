@@ -93,12 +93,14 @@
 	<string>792 399 314 391 0 0 1440 900 </string>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>705 236 547 77 0 0 1440 900 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>320 339 799 448 0 0 1440 900 </string>
 	<key>NSWindow Frame TTAppPreferences</key>
 	<string>93 136 667 533 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow</key>
-	<string>0 78 1432 800 0 0 1440 900 </string>
+	<string>0 100 1432 800 0 0 1440 877 </string>
 	<key>NSWindow Frame TTWindow Adaptive</key>
-	<string>84 358 730 450 0 0 1440 900 </string>
+	<string>168 266 730 450 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow Basic</key>
 	<string>493 316 810 471 0 0 1440 900 </string>
 	<key>NSWindow Frame TTWindow Basic3</key>
@@ -818,6 +820,8 @@
 				<string>[34~</string>
 				<key>F728</key>
 				<string>[3~</string>
+				<key>^0020</key>
+				<string>.</string>
 				<key>^0069</key>
 				<string></string>
 				<key>^006A</key>
@@ -826,26 +830,24 @@
 				<string></string>
 				<key>^006C</key>
 				<string></string>
-				<key>^0020</key>
-				<string>.</string>
-				<key>~006A</key>
-				<string>(</string>
-				<key>~006C</key>
-				<string>)</string>
-				<key>~0069</key>
-				<string>{</string>
-				<key>~006B</key>
-				<string>}</string>
-				<key>~0075</key>
-				<string>[</string>
-				<key>~006F</key>
-				<string>]</string>
 				<key>^F702</key>
 				<string>[1;5D</string>
 				<key>^F703</key>
 				<string>[1;5C</string>
 				<key>^F728</key>
 				<string>[3;5~</string>
+				<key>~0069</key>
+				<string>{</string>
+				<key>~006A</key>
+				<string>(</string>
+				<key>~006B</key>
+				<string>}</string>
+				<key>~006C</key>
+				<string>)</string>
+				<key>~006F</key>
+				<string>]</string>
+				<key>~0075</key>
+				<string>[</string>
 				<key>~F702</key>
 				<string>b</string>
 				<key>~F703</key>
