@@ -170,6 +170,13 @@ inoremap <C-f> <Right>
 " Remap vv to V:
 xnoremap <expr> v { 'v': "V", 'V': "v", '<c-v>': "v" }[mode()]
 
+" Make Y behave like D
+nnoremap Y y$
+
+" Prevent de-select when indenting blocks
+xnoremap < <gv
+xnoremap > >gv
+
 "Tab completion
 "For some reason this needs to be after our <C-i> remapping >_>
 "FROM:
