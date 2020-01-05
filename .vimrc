@@ -1,12 +1,31 @@
-" Security (turns off modelines):
+" Compatibility:
+
+" defaults.vim:
+if has('nvim')
+  " Recreate defaults.vim
+  map Q gq
+  inoremap <C-U> <C-G>u<C-U>
+  set mouse=a
+  " open files to the last cursor position
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+elseif filereadable(expand("$VIMRUNTIME/defaults.vim"))
+  unlet! skip_defaults_vim
+  source $VIMRUNTIME/defaults.vim
+else
+  set nocompatible
+  echo "Error: no defaults.vim or neovim found"
+endif
+
+" Security:
+
+" Turn off modelines and other potential vulnerabilities
 source ${HOME}/.vim/after/plugin/security.vim
 
-" Initialization:
 
-" Clear autocommands:
-autocmd!
-" Enable filetype detect & indent plugins
-filetype plugin indent on
+" Initialization:
 
 if executable('fzf') " Add fzf brew package support:
   set runtimepath+=/usr/local/opt/fzf/
@@ -18,11 +37,12 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$" " file encoding
 endif
 
 
-" Compatibility Baseline Config:
+" Baseline Config:
 
-set nocompatible
-" allow backspacing over everything in insert mode:
-set backspace=indent,eol,start
+" Disable mouse because it conflicts with the scrolling and copy-pasting I'm
+" used to:
+set mouse=""
+
 " https://neovim.io/doc/user/options.html#'shada'
 set viminfo=!,'50,<200,s100,h
 " Parity between vim and nvim:
@@ -34,20 +54,8 @@ set smartindent
 
 " Searching
 set hlsearch
-set incsearch
 set ignorecase
 set smartcase
-
-" Syntax Highlighting
-if &t_Co > 2 || has("gui_running") " turn syntax hl on when terminal is on
-  syntax on
-endif
-
-" open files to the last cursor position
-autocmd BufReadPost *
-\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-\   exe "normal! g'\"" |
-\ endif
 
 
 " Backups:
@@ -55,7 +63,6 @@ autocmd BufReadPost *
 " Turn on backups in ~/.Trash:
 " https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
 set backup
-set history=100 " keep 100 lines of command line history
 set backupdir=${HOME}/.vimbackups
 let datebackups = strftime("%y-%m-%d_%Hh%Mm")
 let datebackups = "set backupext=~". datebackups
@@ -229,7 +236,6 @@ augroup trailingwhitespace
 augroup END
 
 " statusline progressive definition
-set ruler        " show the cursor position all the time
 set laststatus=2 " show the status line all the time
 " Define a custom statusline
 highlight default AriaStatus ctermfg=black ctermbg=darkgray

@@ -7,3 +7,5 @@ node_modules
 !.config/nvim
 !.config/fish
 !.config/coc
+.vim/pack/**/tags
+.config/nvim/pack/**/tags
