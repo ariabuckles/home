@@ -45,6 +45,9 @@ set mouse=""
 
 " https://neovim.io/doc/user/options.html#'shada'
 set viminfo=!,'50,<200,s100,h
+if !has('nvim')
+  set viminfofile=${HOME}/.local/.viminfo
+endif
 " Parity between vim and nvim:
 set background=light
 
@@ -63,14 +66,16 @@ set smartcase
 " Turn on backups in ~/.Trash:
 " https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
 set backup
-set backupdir=${HOME}/.vimbackups
+set backupdir=${HOME}/.local/vim-backups
+" TODO(aria): mkdir -p ~/.local/vim-backups
 let datebackups = strftime("%y-%m-%d_%Hh%Mm")
-let datebackups = "set backupext=~". datebackups
+let datebackups = "set backupext=~" . datebackups
 execute datebackups
+autocmd BufNewFile,BufRead,BufWritePre * execute datebackups
 
 
+" Custom Settings:
 
-"Custom settings
 set tabstop=2
 set shiftwidth=2
 set expandtab
