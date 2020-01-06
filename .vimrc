@@ -105,8 +105,9 @@ autocmd BufRead,BufNewFile *.al setfiletype javascript
 
 " Keybinds:
 
-" Set <leader> to <space>
+" Set <leader> to <space>, and <space> alone to do nothing
 let mapleader=" "
+nnoremap <leader> <Nop>
 
 "lnoremap does 'language mode', which applies in all text insert situations,
 "but not normal/visual/visualblock. Notably, this includes search.
