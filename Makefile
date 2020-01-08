@@ -9,7 +9,7 @@ make: install
 workspace: admin install
 admin: create-users install-homebrew install-crontabs install-sudoers
 	@echo admin installed
-install: install-dotfiles install-npm install-prefs
+install: install-dotfiles install-npm install-prefs install-directories
 	@echo installed
 update: update-prefs update-dotfiles
 	@echo updated
@@ -85,6 +85,11 @@ copy-npmrc:
 	cp npmrc .npmrc
 update-npmrc:
 	cat .npmrc | grep -iv 'authtoken' | sed "s|$$HOME|\\\$${HOME}|"> npmrc
+
+.PHONY: install-directories
+install-directories:
+	mkdir -p ~/.local
+	mkdir -p ~/shell/.local
 
 
 # ========================

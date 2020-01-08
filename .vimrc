@@ -65,6 +65,7 @@ set smartcase
 
 " Turn on backups in ~/.Trash:
 " https://vim.fandom.com/wiki/Keep_incremental_backups_of_edited_files
+silent !mkdir -p ${HOME}/.local/vim-backups
 set backup
 set backupdir=${HOME}/.local/vim-backups
 " TODO(aria): mkdir -p ~/.local/vim-backups
