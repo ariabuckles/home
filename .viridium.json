@@ -13,5 +13,6 @@
     "google.com": "$2a$18$7kxiR5HCO9jg3yAm/xNip.",
     "github.com": "$2a$18$uSMsncU7PeNWLNuGfLfYOO",
     "seesaw.me@aws.amazon.com": "$2a$15$7XfIAsdkaqJg5B0cBzsMzu",
-    "launchdarkly.com": "$2a$18$m/Ef9DL9T7NqyKkcumy6nO"
+    "launchdarkly.com": "$2a$18$m/Ef9DL9T7NqyKkcumy6nO",
+    "cloudflare.com": "$2a$18$C34zx14ec0S1awePio7WD."
 }
