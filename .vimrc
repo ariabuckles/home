@@ -179,6 +179,9 @@ nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
 
+" Better `g` commands:
+nnoremap gf <C-w>gF
+
 "Tab completion
 "For some reason this needs to be after our <C-i> remapping >_>
 "FROM:
