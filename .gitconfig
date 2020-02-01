@@ -19,7 +19,7 @@
     co = checkout
     c = "!git checkout $(git br | grep \"$1\" | sed 's/\\*//' | tail -1) && true"
     br = branch --list '[^z]*' 'z[^-/]*'
-    su = branch --set-upstream-to master
+    su = "!git branch --set-upstream-to master && git rebase master && true"
     lp = log -p
     ri = rebase -i
     rc = rebase --continue
