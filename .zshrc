@@ -53,8 +53,10 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey '^[[A' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
+bindkey '^U' backward-word
+bindkey '^O' forward-word
 # old sort-of vim style history with shift-up/down\pageup/down
 #bindkey "\033[5~" history-beginning-search-backward
 #bindkey "\033[6~" history-beginning-search-forward
