@@ -29,3 +29,4 @@ brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~
 # Pilot deps:
 brew "openssl@1.1"
 brew "pinentry-mac"
+brew "pre-commit"
