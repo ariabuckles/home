@@ -30,7 +30,7 @@
     cbr = clean-branches
     annotate = blame
     ann = blame
-    update-pr = "!git push -f origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
+    update-pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
     fmt = "!cd -- ${GIT_PREFIX:-.} && npm run format -- $(git log --format=%H --grep '^Formatting: `npm run format`$' | head -n1) && git add app && git commit -m 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
@@ -44,7 +44,7 @@
     pr-message-raw-body = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -v '^\\S*\\s*\\S*/issues/' | jsed '/Test plan:[\\S\\s]*?END_OF_COMMIT\\s?/gi' '' || true"
     pr-message-raw-list = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'1. %h %s' || true"
     pr-message-raw-test = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
-    pr = "!bash -c \"git update-pr && hub pull-request -c --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base master --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
+    pr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base master --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
     new-pr = pr
 [core]
     excludesfile = ~/.gitignoreglobal
