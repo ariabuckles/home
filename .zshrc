@@ -144,7 +144,7 @@ alias -r vim='vim -p'
 vif() { vim -p -- $(find . -type f | grep $@) }
 vifa() { vim -p -- $(find . -type f | grep $@) }
 # Open file(s) with content matching regex:
-vig() { vim -c '\\v'"$*" -- $(git grep -l "$*") }
+vig() { vim +1 -c '\\v'"$*" -- $(git grep -l "$*") }
 # Alias vim-style space+o to vif
 alias o=vif
 

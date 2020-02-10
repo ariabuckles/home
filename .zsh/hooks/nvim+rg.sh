@@ -1,3 +1,3 @@
 #!/bin/zsh
 # Open file(s) with content matching regex:
-vig() { nvim -p -c '/\v'"$*" -- $(rg -S --hidden -l "$*") }
+vig() { nvim -p +1 -c '/\v'"$*" -- $(rg -S --hidden -l "$*") }
