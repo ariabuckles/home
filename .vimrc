@@ -60,6 +60,19 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" Hot-reloading
+" Vim only checks for updates when running :checktime, saving, or shell
+" commands: https://github.com/neovim/neovim/issues/1936
+" This checks for update when tabbing back to vim
+" note: may only work in neovim/gvim
+set autoread
+autocmd FocusGained * :checktime
+
+" Redraw the screen when re-focusing
+" Because I accidentally Cmd-K too much
+" note: may only work in neovim/gvim
+autocmd FocusGained * :mode
+
 
 " Backups:
 
