@@ -121,6 +121,8 @@
 	<real>2.0699999999999998</real>
 	<key>SecureKeyboardEntry</key>
 	<true/>
+	<key>Shell</key>
+	<string></string>
 	<key>Startup Window Settings</key>
 	<string>Adaptive</string>
 	<key>StringEncodings</key>
@@ -822,6 +824,10 @@
 				<string>[3~</string>
 				<key>^0020</key>
 				<string>.</string>
+				<key>^0027</key>
+				<string>`</string>
+				<key>^003B</key>
+				<string>/</string>
 				<key>^0069</key>
 				<string></string>
 				<key>^006A</key>
