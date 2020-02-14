@@ -12,7 +12,7 @@
     vlog = "!git log --name-status $(git merge-base HEAD origin/master)..HEAD \"$@\" | nvim -R - && true"
 # From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
     bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
-    p = pull --rebase
+    p = "!git pull --rebase && git submodule update --init && true"
     cb = create-branch
     st = status -u
     ls = status -u
