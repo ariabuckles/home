@@ -17,7 +17,7 @@
     st = status -u
     ls = status -u
     co = checkout
-    c = "!git checkout $(git br | grep \"$1\" | sed 's/\\*//' | tail -1) && true"
+    s = "!git checkout $(git br | grep \"$1\" | sed 's/\\*//' | tail -1) && true"
     br = branch --list '[^z]*' 'z[^-/]*'
     su = "!git branch --set-upstream-to master && git rebase master && true"
     l = log --name-status
