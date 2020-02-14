@@ -283,6 +283,12 @@ let g:lightline = {
 \ }
 
 
+" Signcolumn:
+set signcolumn=yes
+highlight SignColumn ctermbg=none
+
+
+" Linting And Formatting:
 " vim-prettier
 let g:prettier#autoformat = 0
 if or(or(filereadable(findfile('prettier.config.js', '.;')), filereadable(findfile('.prettierrc.js', '.;'))), filereadable(findfile('.prettierrc', '.;')))

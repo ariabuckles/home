@@ -25,3 +25,6 @@
 [submodule ".vim/pack/main/start/vim-repeat"]
 	path = .vim/pack/main/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule ".vim/pack/main/start/neomake"]
+	path = .vim/pack/main/start/neomake
+	url = https://github.com/neomake/neomake.git
