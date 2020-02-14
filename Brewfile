@@ -22,7 +22,8 @@ brew "bat"
 brew "git-delta"
 
 # Service CLIs:
-brew "hub" # GitHub
+brew "gh" # GitHub new
+brew "hub" # GitHub legacy
 brew "awscli" # AWS
 brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~/.docker/config.json
 
