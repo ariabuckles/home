@@ -309,6 +309,9 @@ if has('nvim')
   tnoremap <C-x> <C-\><C-n>$
 endif
 
+" Re-split window size on Cmd+/-
+autocmd VimResized * wincmd =
+
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
@@ -348,6 +351,7 @@ endif
 "endfunction
 
 "autocmd BufWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
+"
 "autocmd FileWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
 "autocmd FileAppendPre *.js,.jsx,*.py :call TrimWhiteSpace()
 "autocmd FilterWritePre *.js,.jsx,*.py :call TrimWhiteSpace()
