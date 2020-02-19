@@ -5,3 +5,5 @@ function FormatAndLint()
   Neomake
 endfunction
 nnoremap <leader>p :call FormatAndLint()<CR>
+
+autocmd TextChanged,TextChangedI,TextChangedP * :NeomakeClean
