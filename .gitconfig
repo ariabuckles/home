@@ -4,13 +4,13 @@
     email = aria@pilot.com
 [alias]
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX:-.}/package-lock.json && git checkout -- ${GIT_PREFIX:-.}/package-lock.json && cd ${GIT_PREFIX:-.} && npm install && git add -- package-lock.json; }; f"
-    create-branch = "!git checkout -b $@ && git branch --set-upstream-to master && true"
+    create-branch = "!if [ -n \"$1\" ]; then NAME=\"$1\"; else NAME=$(git rev-parse --abbrev-ref HEAD | jsed '/(?:-([a-z0-9]))?$/m' '(_, v) => `-` + (parseInt(v || 1, 36) + 1).toString(36)'); fi; git checkout -b $NAME && git branch --set-upstream-to master && true"
     archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
     clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
     view = "!git show $@ | nvim -R - -c 'set noreadonly' && true"
     vlog = "!git log --name-status $(git merge-base HEAD origin/master)..HEAD \"$@\" | nvim -R - -c 'set noreadonly' && true"
-# From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
+    # From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
     bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
     p = "!git pull --rebase && git submodule update --init && true"
     cb = create-branch
