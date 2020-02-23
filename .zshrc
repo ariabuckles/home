@@ -546,9 +546,20 @@ if [[ -e ~/.zsh/load-hooks ]]; then
 fi
 
 # viridum + pbcopy
-v() {
-  viridium "$@" | tr -d '\n' | /usr/bin/pbcopy
-}
+if [[ -e /usr/bin/pbcopy ]]; then
+  v() {
+    if [[ $# -eq 0 ]]; then
+      echo ' ' | tr -d '\n' | /usr/bin/pbcopy
+      echo 'cleared'
+    else
+      viridium "$@" | tr -d '\n' | /usr/bin/pbcopy
+    fi
+  }
+else
+  v() {
+    viridium "$@"
+  }
+fi
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS
