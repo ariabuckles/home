@@ -136,7 +136,7 @@ xarg() { while read arg ; do ; $@ "$arg" ; done }
 alias -r l="ls $ls_color"
 alias -r c="cd"
 alias -r m="make --warn-undefined-variables"
-alias -r v="vim"
+alias -r vi="vim"
 lg() { ls | grep -i -e $@ | xargs ls -G; }
 alias -r viewer='view -'
 alias -r vim='vim -p'
@@ -544,6 +544,11 @@ zulip() {
 if [[ -e ~/.zsh/load-hooks ]]; then
   source ~/.zsh/load-hooks
 fi
+
+# viridum + pbcopy
+v() {
+  viridium "$@" | tr -d '\n' | /usr/bin/pbcopy
+}
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS
