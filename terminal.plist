@@ -780,6 +780,26 @@
 				<string>[34~</string>
 				<key>$F728</key>
 				<string>[3;2~</string>
+				<key>^0031</key>
+				<string>OP</string>
+				<key>^0032</key>
+				<string>OQ</string>
+				<key>^0033</key>
+				<string>OR</string>
+				<key>^0034</key>
+				<string>OS</string>
+				<key>^0035</key>
+				<string>[15~</string>
+				<key>^0036</key>
+				<string>[17~</string>
+				<key>^0037</key>
+				<string>[18~</string>
+				<key>^0038</key>
+				<string>[19~</string>
+				<key>^0039</key>
+				<string>[20~</string>
+				<key>^0030</key>
+				<string>[21~</string>
 				<key>F704</key>
 				<string>OP</string>
 				<key>F705</key>

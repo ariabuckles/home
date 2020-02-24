@@ -195,6 +195,12 @@ xnoremap > >gv
 " Better `g` commands:
 nnoremap gf <C-w>gF
 
+" Search
+nnoremap <C-/> :Rg
+nnoremap <F8> :Rg<CR>
+nnoremap g# g*
+nnoremap g* :Rg<CR>
+
 "Tab completion
 "For some reason this needs to be after our <C-i> remapping >_>
 "FROM:
@@ -240,6 +246,7 @@ noremap <C-c> <C-[>
 noremap <C-C> <C-[>
 inoremap <C-C> <C-[>
 inoremap <C-c> <C-[>
+nnoremap <C-q> <C-c>
 
 "Settings for live coding:
 set nonumber norelativenumber
