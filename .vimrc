@@ -319,6 +319,8 @@ endif
 " Re-split window size on Cmd+/-
 autocmd VimResized * wincmd =
 
+" Print file name on tab to buffer
+autocmd BufEnter * file
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
