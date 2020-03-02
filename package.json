@@ -7,6 +7,7 @@
   "dependencies": {
     "@ariabuckles/jsed": "1.2.0",
     "eslint": "latest",
+    "eslint_d": "latest",
     "prettier": "latest",
     "react-native-cli": "latest",
     "serve": "latest",

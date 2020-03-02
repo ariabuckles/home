@@ -3,6 +3,8 @@
 let vuemaker = neomake#makers#ft#javascript#eslint()
 call extend(get(vuemaker, 'args', []), ['--plugin', 'vue'])
 let g:neomake_vue_eslint_maker = vuemaker
+let g:neomake_vue_eslint_d_maker = vuemaker
+let g:neomake_vue_enabled_makers = [ executable('eslint_d') ? 'eslint_d' : 'eslint' ]
 
 call neomake#configure#automake('w')
 function FormatAndLint()
