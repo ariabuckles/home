@@ -165,9 +165,9 @@ nnoremap <leader>l gt
 
 "Line/page navigation with control
 "We rebind C-ijkl in terminal.app to standard ctrl-pbnf:
-noremap <C-p> <PageUp>
+noremap <C-p> 20<Up>zz
 noremap <C-b> 0^
-noremap <C-n> <PageDown>
+noremap <C-n> 20<Down>zz
 noremap <C-f> $
 "Control uses single char navigation while in insert mode:
 inoremap <C-p> <Up>
