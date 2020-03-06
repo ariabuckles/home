@@ -73,6 +73,11 @@ autocmd FocusGained * :checktime
 " note: may only work in neovim/gvim
 autocmd FocusGained * :mode
 
+" Integrate with the system clipboard for default copy/paste ops:
+if has('nvim')
+  set clipboard=unnamedplus
+endif
+
 
 " Backups:
 
