@@ -552,6 +552,7 @@ if [[ -e /usr/bin/pbcopy ]]; then
       echo ' ' | tr -d '\n' | /usr/bin/pbcopy
       echo 'cleared'
     else
+      echo '' | tr -d '\n' | /usr/bin/pbcopy  # totally clear out the clipboard first
       viridium "$@" | tr -d '\n' | /usr/bin/pbcopy
     fi
   }
