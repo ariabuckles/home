@@ -1,11 +1,11 @@
 #!/bin/zsh
 vif() {
   if [[ "$#" -gt 0 ]]; then
-    file=$(fzf --preview='bat --style=full --color=always {}' -1 -q "$*")
-    [[ -n "$file" ]] && nvim -- "$file"
+    files=$(fzf --multi --preview='bat --style=full --color=always {}' -1 -q "$*" --print0)
+    [[ -n "$files" ]] && echo -n $files | xargs -0 nvim -p --
   else
-    file=$(fzf --preview='bat --style=full --color=always {}')
-    [[ -n "$file" ]] && nvim -- "$file"
+    files=$(fzf --multi --preview='bat --style=full --color=always {}' --print0)
+    [[ -n "$files" ]] && echo -n $files | xargs -0 nvim -p --
   fi
 }
 vifa() {
@@ -17,10 +17,10 @@ vifa() {
 }
 vifd() {
   if [[ "$#" -gt 0 ]]; then
-    file=$(git diff --relative --name-only master...HEAD | fzf --preview='bat --style=full --color=always {}' -1 -q "$*")
-    [[ -n "$file" ]] && nvim -- "$file"
+    files=$(git diff --relative --name-only master...HEAD | fzf --multi --preview='bat --style=full --color=always {}' -1 -q "$*" --print0)
+    [[ -n "$files" ]] && echo -n $files | xargs -0 nvim -p --
   else
-    file=$(git diff --relative --name-only master...HEAD | fzf --preview='bat --style=full --color=always {}')
-    [[ -n "$file" ]] && nvim -- "$file"
+    files=$(git diff --relative --name-only master...HEAD | fzf --multi --preview='bat --style=full --color=always {}' --print0)
+    [[ -n "$files" ]] && echo -n $files | xargs -0 nvim -p --
   fi
 }
