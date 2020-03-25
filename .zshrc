@@ -183,8 +183,13 @@ alias setjava7='source setjava7.sh'
 
 # Ruby & Rails settings
 # rbenv:
-if which rbenv &>/dev/null; then
-  eval "$(rbenv init - zsh)"
+# if command -v rbenv >/dev/null; then
+#   eval "$(rbenv init - zsh)"
+# fi
+
+# pyenv
+if command -v pyenv >/dev/null; then
+  pyenv rehash
 fi
 
 # bundle exec rails fanciness
