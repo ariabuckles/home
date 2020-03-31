@@ -1,3 +1,10 @@
+# Allow things from homebrew core or casks
+tap "homebrew/cask"
+cask_args appdir: "/Applications"
+
+# User software
+cask "chromium"
+
 # Language ecosystems:
 brew "node@12", link: true
 brew "python"
@@ -28,6 +35,7 @@ brew "awscli" # AWS
 brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~/.docker/config.json
 
 # Pilot deps:
+cask "1password-cli"
 brew "openssl@1.1"
 brew "pinentry-mac"
 brew "pre-commit"
