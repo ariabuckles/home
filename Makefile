@@ -43,7 +43,7 @@ endif
 install-crontabs:
 	# Run .ensure-permissions.sh every 4 hours
 	echo "0 */4 * * * zsh '$(shell pwd)/.ensure-permissions.sh'" | sudo crontab -u root -
-	echo "0 */3 * * * zsh 'cd $(shell pwd) && make update'" | sudo crontab -u aria -
+	echo "0 */3 * * * zsh -c 'cd $(shell pwd) && make update'" | sudo crontab -u aria -
 	sudo cp dev.buckles.aria.launchd.unmanage-chrome.plist /Library/LaunchDaemons
 	-sudo launchctl unload -w /Library/LaunchDaemons/dev.buckles.aria.launchd.unmanage-chrome.plist
 	sudo launchctl load -w /Library/LaunchDaemons/dev.buckles.aria.launchd.unmanage-chrome.plist
