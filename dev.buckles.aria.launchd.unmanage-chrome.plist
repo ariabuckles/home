@@ -12,7 +12,7 @@
 		<string>com.fleetsmith.mcx.googlechrome</string>
 	</array>
 	<key>StartInterval</key>
-	<integer>10</integer>
+	<integer>1</integer>
 	<key>UserName</key>
 	<string>root</string>
 </dict>
