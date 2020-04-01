@@ -8,8 +8,8 @@
     archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
     clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
-    view = "!cd ${GIT_PREFIX} && git show --relative $@ | nvim -R - -c 'set noreadonly' && true"
-    vlog = "!cd ${GIT_PREFIX} && git log --relative --name-status origin/master...HEAD \"$@\" | tr '\t' ' ' | nvim -R - -c 'set noreadonly' && true"
+    view = "!cd ${GIT_PREFIX} && git show --relative $@ | nvim - -c 'setlocal nomodified | setlocal nomodifiable' && true"
+    vlog = "!cd ${GIT_PREFIX} && git log --relative --name-status origin/master...HEAD \"$@\" | tr '\t' ' ' | nvim - -c 'setlocal nomodified | setlocal nomodifiable' && true"
     # From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
     bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
     p = "!git pull --rebase && git submodule update --init && true"
