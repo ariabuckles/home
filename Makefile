@@ -7,7 +7,7 @@
 .PHONY: make install workspace admin update
 make: install
 workspace: admin install
-admin: create-users install-homebrew install-crontabs install-sudoers
+admin: create-users install-brew install-crontabs install-sudoers
 	@echo admin installed
 install: install-dotfiles install-npm install-prefs install-directories
 	@echo installed
@@ -30,14 +30,16 @@ BREW=/usr/local/bin/brew
 create-users:
 	sudo zsh ./create-user.sh ariashell
 
-.PHONY: install-homebrew
-install-homebrew:
+.PHONY: install-brew
+install-brew:
 ifeq ("$(wildcard $(BREW))","")
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 endif
 	${BREW} analytics off
 	${BREW} update
 	${BREW} bundle # installs deps in Brewfile
+	xattr -r -d com.apple.quarantine /Applications/Chromium.app # Unquarantine chromium
+	xattr -r -d com.apple.quarantine /usr/local/bin/op # Unquarantine 
 
 .PHONY: install-crontabs
 install-crontabs:
