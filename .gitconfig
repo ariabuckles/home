@@ -36,7 +36,7 @@
     fmt-old = "!cd -- ${GIT_PREFIX:-.} && npm run format -- $(git log --format=%H --grep '^Formatting: `npm run format`$' | head -n1) && git add . && git commit -m 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
-    pr-message = "!(git pr-message-title && echo && git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | jsed '(\\n)\\n+' '$1$1' || true"
+    pr-message = "!(git pr-message-title && echo && git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | git stripspace || true"
     pr-message-title = "!git log -n1 --pretty=format:%s && echo || true"
     pr-message-issues = "!echo '## Relevant Issues' && echo && git pr-message-raw-issues && echo"
     pr-message-changes = "!echo '## Summary' && echo && git pr-message-raw-body"
