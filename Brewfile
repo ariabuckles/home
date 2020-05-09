@@ -13,6 +13,7 @@ brew "lua"
 brew "cocoapods" # XCode package manager
 brew "watchman" # For fb react tools
 brew "postgres"
+brew "shellcheck"
 
 # Standard util polyfills for mac:
 brew "gnupg"
