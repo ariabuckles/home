@@ -31,3 +31,9 @@
 [submodule ".vim/pack/main/start/vim-ripgrep"]
 	path = .vim/pack/main/start/vim-ripgrep
 	url = https://github.com/jremmen/vim-ripgrep.git
+[submodule ".vim/pack/main/start/vim-javascript"]
+	path = .vim/pack/main/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule ".vim/pack/main/start/typescript-vim"]
+	path = .vim/pack/main/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim
