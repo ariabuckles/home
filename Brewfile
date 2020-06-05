@@ -7,6 +7,7 @@ cask "chromium"
 
 # Language ecosystems:
 brew "node@12", link: true
+brew "node", link: false
 brew "python"
 brew "pyenv"
 brew "lua"
@@ -14,6 +15,7 @@ brew "cocoapods" # XCode package manager
 brew "watchman" # For fb react tools
 brew "postgres"
 brew "shellcheck"
+brew "yarn"
 
 # Standard util polyfills for mac:
 brew "gnupg"
@@ -39,4 +41,4 @@ brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~
 cask "1password-cli"
 brew "openssl@1.1"
 brew "pinentry-mac"
-brew "pre-commit"
+brew "terraform"
