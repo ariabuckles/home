@@ -14,5 +14,6 @@
     "github.com": "$2a$18$uSMsncU7PeNWLNuGfLfYOO",
     "seesaw.me@aws.amazon.com": "$2a$15$7XfIAsdkaqJg5B0cBzsMzu",
     "launchdarkly.com": "$2a$18$m/Ef9DL9T7NqyKkcumy6nO",
-    "cloudflare.com": "$2a$18$C34zx14ec0S1awePio7WD."
+    "cloudflare.com": "$2a$18$C34zx14ec0S1awePio7WD.",
+    "slack.com": "$2a$18$8aHb1PSmE4zww2/u9KkgoO"
 }
