@@ -142,15 +142,18 @@ inoremap <C-a> <C-o>^
 noremap <C-e> $
 noremap <C-a> ^
 
-"Okay, time to get crazy and make this more usable.
-"Game mode controls. -_-
-"Right hand game controls because we apparently use the
-"left hand keys....
+" Okay, time to get crazy and make this more usable.
+" Game mode controls. -_-
+" Right hand game controls because we apparently use the
+" left hand keys....
 noremap i k
 noremap j h
 noremap k j
 "restore an insert command (but try to use a more?)
 noremap h i
+" from normal mode, have insert on a blank line re-indent the line
+" ...this is sure to cause problems later, right?
+nnoremap h i<c-f>
 " Map z commands to new movement keys
 noremap zi zk
 noremap zj zh
@@ -324,8 +327,8 @@ endif
 " Re-split window size on Cmd+/-
 autocmd VimResized * wincmd =
 
-" Print file name on tab to buffer
-autocmd BufEnter * echo @%
+" Use more abbreviations in status messages
+set shortmess+=a
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
