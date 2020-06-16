@@ -7,9 +7,9 @@
     create-branch = "!if [ -n \"$1\" ]; then NAME=\"$1\"; else NAME=$(git rev-parse --abbrev-ref HEAD | jsed '/(?:-([a-z0-9]))?$/m' '(_, v) => `-` + (parseInt(v || 1, 36) + 1).toString(36)'); fi; git checkout -b $NAME && git branch --set-upstream-to master && true"
     archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
-    clean-branches = "!git branch --merged origin/master --no-column | grep -v '\\*\\| z-\\|master' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
+    clean-branches = "!git branch --merged origin/main --no-column | grep -v '\\*\\| z-\\|main' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
     view = "!cd ${GIT_PREFIX} && git show --relative $@ | nvim - -c 'setlocal nomodified | setlocal nomodifiable' && true"
-    vlog = "!cd ${GIT_PREFIX} && git log --relative --name-status origin/master...HEAD \"$@\" | tr '\t' ' ' | nvim - -c 'setlocal nomodified | setlocal nomodifiable' && true"
+    vlog = "!cd ${GIT_PREFIX} && git log --relative --name-status \"origin/$(git get-main)\"...HEAD \"$@\" | tr '\t' ' ' | nvim - -c 'setlocal nomodified | setlocal nomodifiable' && true"
     # From https://stackoverflow.com/questions/20240526/how-to-git-bisect-only-on-one-branchs-commits:
     bisect-merges = "!f() { git bisect start \"$1\" \"$2\" && git rev-list \"$2..$1\" --merges --first-parent | xargs -I% git rev-list \"%^2\" --not \"%^\" | xargs git bisect skip }; f"
     p = "!git pull --rebase && git submodule update --init && true"
@@ -19,7 +19,7 @@
     co = checkout
     s = "!git checkout $(git br | grep \"$1\" | sed 's/\\*//' | tail -1) && true"
     br = branch --list '[^z]*' 'z[^-/]*'
-    su = "!git branch --set-upstream-to master && git rebase master && true"
+    su = "!git branch --set-upstream-to $(git get-main) && git rebase $(git get-main) && true"
     l = log --name-status
     lp = log -p
     ri = rebase -i
@@ -31,9 +31,11 @@
     cbr = clean-branches
     annotate = blame
     ann = blame
+    set-main = "!git remote set-head origin $(git remote show origin | grep 'HEAD branch:' | sed 's/.*: *//') && true"
+    get-main = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's|.*/||' && true"
     update-pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
     force-update-pr = "!git push -f --no-verify origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
-    fmt = "!cd -- ${GIT_PREFIX:-.} && npx prettier --write $(git diff --relative --name-only master...HEAD) && git add . && git commit -m 'Formatting: `prettier --write`'"
+    fmt = "!cd -- ${GIT_PREFIX:-.} && npx prettier --write $(git diff --relative --name-only \"$(git get-main)\"...HEAD) && git add . && git commit -m 'Formatting: `prettier --write`'"
     fmt-old = "!cd -- ${GIT_PREFIX:-.} && npm run format -- $(git log --format=%H --grep '^Formatting: `npm run format`$' | head -n1) && git add . && git commit -m 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
@@ -45,10 +47,10 @@
     pr-message-test = "!echo '## Test plan' && git pr-message-raw-test && echo"
     pr-message-release = "!echo '## Release notes (User-facing)' && echo && echo ' - [ ] When the PR lands, paste the release notes above into the top of [the Release Notes paper document]' && echo || true"
     pr-message-rollback = "!echo '## Rollback Plan' && echo && echo && echo ' - [ ] This PR is safe to **roll back**' && echo"
-    pr-message-raw-issues = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:%b | grep -Ei '^(starts|completes|fixes|addresses) \\S+$' | jsed '^([A-Za-z-]+) ([A-Z]+-\\d+)$' '$1 https://pilothq.atlassian.net/browse/$2' || true"
-    pr-message-raw-body = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true"
-    pr-message-raw-list = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'1. %h %s' || true"
-    pr-message-raw-test = "!git log --reverse $(git merge-base HEAD origin/master)..HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
+    pr-message-raw-issues = "!git log --reverse $(git get-main)...HEAD --pretty=format:%b | grep -Ei '^(starts|completes|fixes|addresses) \\S+$' | jsed '^([A-Za-z-]+) ([A-Z]+-\\d+)$' '$1 https://pilothq.atlassian.net/browse/$2' || true"
+    pr-message-raw-body = "!git log --reverse $(git get-main)...HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true"
+    pr-message-raw-list = "!git log --reverse $(git get-main)...HEAD --pretty=format:'1. %h %s' || true"
+    pr-message-raw-test = "!git log --reverse $(git get-main)...HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
     pr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base master --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
     new-pr = pr
 [core]
