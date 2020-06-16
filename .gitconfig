@@ -31,7 +31,7 @@
     cbr = clean-branches
     annotate = blame
     ann = blame
-    set-main = "!git remote set-head origin $(git remote show origin | grep 'HEAD branch:' | sed 's/.*: *//') && true"
+    set-main = "!git fetch && git remote set-head origin $(git remote show origin | grep 'HEAD branch:' | sed 's/.*: *//') && true"
     get-main = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's|.*/||' && true"
     update-pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
     force-update-pr = "!git push -f --no-verify origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
