@@ -4,7 +4,7 @@
     email = aria@pilot.com
 [alias]
     rebase-package-lock = "!f() { git reset HEAD -- ${GIT_PREFIX:-.}/package-lock.json && git checkout -- ${GIT_PREFIX:-.}/package-lock.json && cd ${GIT_PREFIX:-.} && npm install && git add -- package-lock.json; }; f"
-    create-branch = "!if [ -n \"$1\" ]; then NAME=\"$1\"; else NAME=$(git rev-parse --abbrev-ref HEAD | jsed '/(?:-([a-z0-9]))?$/m' '(_, v) => `-` + (parseInt(v || 1, 36) + 1).toString(36)'); fi; git checkout -b $NAME && git branch --set-upstream-to master && true"
+    create-branch = "!if [ -n \"$1\" ]; then NAME=\"$1\"; else NAME=$(git rev-parse --abbrev-ref HEAD | jsed '/(?:-([a-z0-9]))?$/m' '(_, v) => `-` + (parseInt(v || 1, 36) + 1).toString(36)'); fi; git checkout -b $NAME && git branch --set-upstream-to $(git get-main) && true"
     archive-branch = "!git branch --list \"$1*\" | xargs -t -I% git branch -m % $(echo % | sed 's/^/z-/') && true"
     clean-deployed-branches = "!git branch --list \"ss_web_*\" | xargs -t -I% git branch -D %"
     clean-branches = "!git branch --merged origin/main --no-column | grep -v '\\*\\| z-\\|main' | sed 's/\\-[a-z0-9]*$//' | xargs -I% git zbr %"
@@ -51,7 +51,7 @@
     pr-message-raw-body = "!git log --reverse $(git get-main)...HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true"
     pr-message-raw-list = "!git log --reverse $(git get-main)...HEAD --pretty=format:'1. %h %s' || true"
     pr-message-raw-test = "!git log --reverse $(git get-main)...HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
-    pr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base master --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
+    pr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
     new-pr = pr
 [core]
     excludesfile = ~/.gitignoreglobal
