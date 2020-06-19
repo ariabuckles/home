@@ -12,7 +12,7 @@ vifa() {
   if [[ "$#" -gt 0 ]]; then
     nvim -p -- $(fzf -f "$*")
   else
-    nvim -p -- $(git diff --relative --name-only master...HEAD)
+    nvim -p -- $(git diff --relative --name-only $(git get-main)...HEAD)
   fi
 }
 vifd() {
