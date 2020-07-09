@@ -81,9 +81,11 @@ update-dotfiles: update-npmrc
 
 .PHONY: link-dotfiles
 link-dotfiles:
+	mkdir -p ~/.config
+	ls -A | grep '^\.' | grep -v '^\.git$$' | grep -v '^\.config' | xargs -tI% ln -sfn "`pwd`/%" ~
+	ls -A .config | xargs -tI% ln -sfn "`pwd`/.config/%" ~/.config/
 	mkdir -p ~/shell
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~
-	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -s -F "`pwd`/%" ~/shell/
+	ls -A | grep '^\.' | grep -v '^\.git$$' | xargs -tI% ln -sfn "`pwd`/%" ~/shell/
 
 .PHONY: copy-npmrc update-npmrc
 # We do this so that the npmrc in git doesn't have the registry token
