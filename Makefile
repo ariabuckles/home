@@ -1,5 +1,8 @@
 # TODO(aria): Need to make ariashell subdirectories (.local etc.) from here
 
+# OS cross-platform stuff:
+OS=$(shell uname -s)
+
 # ========================
 # Top-level commands
 # ========================
