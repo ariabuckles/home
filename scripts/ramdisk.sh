@@ -6,3 +6,7 @@ if ! grep -q ' /mnt/ramdisk ' /etc/fstab; then
   echo "tmpfs /mnt/ramdisk tmpfs defaults,size=32g" | sudo tee -a /etc/fstab
 fi
 sudo mount -a
+mkdir -p /mnt/ramdisk/src
+chmod 700 /mnt/ramdisk/src
+mkdir -p ~/gits
+ln -snf /mnt/ramdisk/src ~/src
