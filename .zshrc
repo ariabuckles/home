@@ -570,5 +570,8 @@ fi
 # Helpful functions
 alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
 
+# Set up git ramdisk workspace:
+git ramload
+
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS
