@@ -36,7 +36,7 @@ create-users:
 .PHONY: install-brew
 install-brew:
 ifeq ("$(wildcard $(BREW))","")
-	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 endif
 	${BREW} analytics off
 	${BREW} update

@@ -22,10 +22,7 @@ export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 # Custom executables:
 export PATH="$PATH:$ARIAHOME/bin"
 # Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-# Macports:
-export PATH="$PATH:/opt/local/bin"
-export MANPATH="$MANPATH:/opt/local/share/man"
+export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 # Python with pyenv
 export PATH="$PYENV_ROOT/shims:$PATH"
 # And last in the list, node modules bins & python .ve virtualenv bins:
