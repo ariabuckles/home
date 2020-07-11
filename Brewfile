@@ -11,8 +11,6 @@ brew "node", link: false
 brew "python"
 brew "pyenv"
 brew "lua"
-brew "cocoapods" # XCode package manager
-brew "watchman" # For fb react tools
 brew "postgres"
 brew "shellcheck"
 brew "yarn"
@@ -40,5 +38,5 @@ brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~
 # Pilot deps:
 cask "1password-cli"
 brew "openssl@1.1"
-brew "pinentry-mac"
+#brew "pinentry-mac"
 brew "terraform"

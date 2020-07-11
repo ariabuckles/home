@@ -1,8 +1,5 @@
 # TODO(aria): Need to make ariashell subdirectories (.local etc.) from here
 
-# OS cross-platform stuff:
-OS=$(shell uname -s)
-
 # ========================
 # Top-level commands
 # ========================
@@ -21,8 +18,7 @@ update: update-prefs update-dotfiles
 # ========================
 # Definitions / Programs
 # ========================
-
-BREW=/usr/local/bin/brew
+OS=$(shell uname -s)
 
 
 # ========================
@@ -35,12 +31,12 @@ create-users:
 
 .PHONY: install-brew
 install-brew:
-ifeq ("$(wildcard $(BREW))","")
+ifeq ("$(shell which brew)","")
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 endif
-	${BREW} analytics off
-	${BREW} update
-	${BREW} bundle # installs deps in Brewfile
+	brew analytics off
+	brew update
+	brew bundle # installs deps in Brewfile
 	xattr -r -d com.apple.quarantine /Applications/Chromium.app # Unquarantine chromium
 	xattr -r -d com.apple.quarantine /usr/local/bin/op # Unquarantine 
 
