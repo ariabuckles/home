@@ -572,7 +572,7 @@ alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
 
 # Set up git ramdisk workspace:
 if [[ -d /mnt/ramdisk ]]; then
-  mkdir -p --mode=700 /mnt/ramdisk
+  mkdir -p --mode=700 /mnt/ramdisk/src
   git ramload
 fi
 
