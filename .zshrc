@@ -550,6 +550,9 @@ if [[ -e ~/.zsh/load-hooks ]]; then
   source ~/.zsh/load-hooks
 fi
 
+# Set up git ramdisk workspace:
+source ~/.zsh/ramdisk
+
 # viridum + pbcopy
 if [[ -e /usr/bin/pbcopy ]]; then
   v() {
@@ -569,12 +572,6 @@ fi
 
 # Helpful functions
 alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
-
-# Set up git ramdisk workspace:
-if [[ -d /mnt/ramdisk ]]; then
-  mkdir -p --mode=700 /mnt/ramdisk/src
-  git ramload
-fi
 
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

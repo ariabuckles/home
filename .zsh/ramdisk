@@ -1,0 +1,56 @@
+#!/bin/zsh
+# Set up syncing from ~/sync-src to ~/src (which is mounted on the ramdisk)
+if [[ -d /mnt/ramdisk ]]; then
+
+  # npm sync: sync from ~/src to ~/sync-src:
+  npm() {
+    if [[ "$1" != "sync" ]]; then
+      command npm "$@"
+      retval=$?
+      if [[ "$retval" -ne 0 ]]; then
+        return $retval
+      fi
+    fi
+    if [[ "$1" == "sync" || "$1" == install* || "$1" == clean-install* || "$1" == ci* || "$1" == i || "$1" == it ]]; then
+      if [[ "$(pwd -P)" == /mnt/ramdisk/src/* ]]; then
+        if ! command -v rsync > /dev/null; then
+          echo "npm sync: could not sync npm; no rsync found"
+          return 0
+        fi
+        mkdir -p ~/sync-src/npm
+        srcdir="$(npm prefix)"
+        destdir="$(echo "$srcdir" | sed "s|^/mnt/ramdisk/src/|$HOME/sync-src/npm/|")"
+        mkdir -p "$destdir"
+        echo "(syncing to $destdir ...)"
+        cp "$srcdir/package-lock.json" "$destdir/package-lock.json"
+        rsync -a "$srcdir/node_modules/" "$destdir/node_modules/"
+      fi
+    fi
+  }
+
+  # npm ramload: sync from the sync src to ramdisk:
+  npm_ramload() {
+    mkdir -p "$HOME/sync-src/npm/"
+    for packagelock in $(cd "$HOME/sync-src/npm/" && fd --exclude node_modules package-lock.json); do
+      from="$HOME/sync-src/npm/$(dirname "$packagelock")"
+      to="$HOME/src/$(dirname "$packagelock")"
+      if [[ ! -d "$to/node_modules" ]]; then
+        mkdir -p "$to"
+        cp -R "$from/node_modules" "$to/node_modules"
+      fi
+    done
+    return 0
+  }
+
+  # Set up git ramdisk workspace & dirs:
+  mkdir -p --mode=700 /mnt/ramdisk/src
+  mkdir -p ~/sync-src/git
+  mkdir -p ~/sync-src/npm
+
+  # Load git repos
+  git ramload
+
+  # Load cached node_modules into ramdisk
+  npm_ramload
+
+fi
