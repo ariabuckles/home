@@ -42,15 +42,16 @@ if [[ -d /mnt/ramdisk ]]; then
     return 0
   }
 
-  # Set up git ramdisk workspace & dirs:
-  mkdir -p --mode=700 /mnt/ramdisk/src
-  mkdir -p ~/sync-src/git
-  mkdir -p ~/sync-src/npm
+  ramload() {
+    # Set up git ramdisk workspace & dirs:
+    mkdir -p --mode=700 /mnt/ramdisk/src
+    mkdir -p ~/sync-src/git
+    mkdir -p ~/sync-src/npm
 
-  # Load git repos
-  git ramload
+    # Load git repos
+    git ramload
 
-  # Load cached node_modules into ramdisk
-  npm_ramload
-
+    # Load cached node_modules into ramdisk
+    npm_ramload
+  }
 fi
