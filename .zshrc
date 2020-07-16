@@ -573,5 +573,10 @@ fi
 # Helpful functions
 alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
 
+Allow local excensions:
+if [[ -e ~/.zsh/local ]]; then
+  source ~/.zsh/local
+fi
+
 # re-enable global rcs after we're done...
 setopt GLOBAL_RCS

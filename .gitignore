@@ -9,3 +9,4 @@ node_modules
 !.config/coc
 .vim/pack/**/tags
 .config/nvim/pack/**/tags
+.zsh/local
