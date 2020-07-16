@@ -39,7 +39,17 @@ if [[ -d /mnt/ramdisk ]]; then
         cp -R "$from/node_modules" "$to/node_modules"
       fi
     done
-    return 0
+  }
+
+  venv_ramload() {
+    mkdir -p "$HOME/sync-src/venv/"
+    for ve in $(cd "$HOME/sync-src/venv/" && fd -H --exclude '.ve/*' '^\.ve$'); do
+      from="$HOME/sync-src/venv/$ve"
+      to="$HOME/src/$ve"
+      if [[ ! -e "$to" ]]; then
+        ln -snf "$from" "$to"
+      fi
+    done
   }
 
   ramload() {
@@ -48,10 +58,18 @@ if [[ -d /mnt/ramdisk ]]; then
     mkdir -p ~/sync-src/git
     mkdir -p ~/sync-src/npm
 
+    if ! command -v fd > /dev/null; then
+      echo 'Error: Could not find `fd` to load ramdisk utils'
+      return 1
+    fi
+
     # Load git repos
     git ramload
 
     # Load cached node_modules into ramdisk
     npm_ramload
+
+    # Link virtual envs
+    venv_ramload
   }
 fi
