@@ -297,17 +297,17 @@ function hi {
 
 # Pilot dotfiles/shared_terminal_file:
 
-if [[ -d "$HOME/pilot" ]]; then
-  export PILOT_HOME="$HOME/pilot"
+if [[ -d "$HOME/src/pilot" ]]; then
+  export PILOT_HOME="$HOME/src/pilot"
 fi
-if [[ -d $HOME/pilot/zapgram ]]; then
-  export PILOT_ZAPGRAM="$HOME/pilot/zapgram"
+if [[ -d $HOME/src/pilot/zapgram ]]; then
+  export PILOT_ZAPGRAM="$HOME/src/pilot/zapgram"
 fi
-if [[ -d $HOME/pilot/connections ]]; then
-  export PILOT_CONNECTIONS="$HOME/pilot/connections"
+if [[ -d $HOME/src/pilot/connections ]]; then
+  export PILOT_CONNECTIONS="$HOME/src/pilot/connections"
 fi
-if [[ -d $HOME/pilot/dotfiles ]]; then
-  export PILOT_DOTFILES="$HOME/pilot/dotfiles"
+if [[ -d $HOME/src/dotfiles ]]; then
+  export PILOT_DOTFILES="$HOME/src/dotfiles"
   export PSQLRC="$PILOT_DOTFILES/.psqlrc"
 fi
 
@@ -318,22 +318,22 @@ fi
 #   - For now, almost all work (local, staging, and prod) happens in aws_prod.
 #   - The pilottesting environment is a shared credential for all testing through Travis
 pilot_local() {
-    export PILOT_ENVIRONMENT=local;
+    export PILOT_ENV=local;
     export AWS_PROFILE=pilotprod;
 }
 pilot_staging() {
-    export PILOT_ENVIRONMENT=staging;
+    export PILOT_ENV=staging;
     export AWS_PROFILE=pilotprod;
 }
 pilot_e2e() {
-    export PILOT_ENVIRONMENT=e2e;
+    export PILOT_ENV=e2e;
     export AWS_PROFILE=pilottesting;
 }
 pilot_unset() {
-    unset PILOT_ENVIRONMENT;
+    unset PILOT_ENV;
     unset AWS_PROFILE;
 }
-# Don't make an alias for PILOT_ENVIRONMENT=PRODUCTION. This should be harder to do.
+# Don't make an alias for PILOT_ENV=PRODUCTION. This should be harder to do.
 
 
 # Run this command basically every time you open a new Pilot terminal
@@ -350,16 +350,16 @@ zgs() {
 ############## OCCASIONAL COMMANDS #################
 
 # Set up a function to add your IP address to the AWS ingress rules
-#   - If you have PILOT_ENVIRONMENT set to local, staging, or e2e,
+#   - If you have PILOT_ENV set to local, staging, or e2e,
 #     this will add your IP to AWS region us-west-1
-#   - If you have PILOT_ENVIRONMENT set to PRODUCTION,
+#   - If you have PILOT_ENV set to PRODUCTION,
 #     this will force you to confirm that you really want
 #     production then add your IP to AWS region us-west-2
 pilot_work_remotely() {
     zg deployment --task=connect;
 }
 pilot_work_remotely_production() {
-    PILOT_ENVIRONMENT=PRODUCTION zg deployment --task=connect --env=PRODUCTION;
+    PILOT_ENV=PRODUCTION zg dev db_authorize_current_ip
 }
 
 # Sometimes the Docker disk image runs out of space (typically every few months).
@@ -372,8 +372,8 @@ pilot_prune_docker() {
 
 # Every 90 days, we each need to renew our staging and local certificates
 pilot_renew_certificates() {
-    PILOT_ENVIRONMENT=staging zg renew_certificates;
-    PILOT_ENVIRONMENT=local zg renew_certificates;
+    PILOT_ENV=staging zg renew_certificates;
+    PILOT_ENV=local zg renew_certificates;
 }
 
 # If you see the error on your sandbox customer, you need to renew the sandbox's qbo oauth.
@@ -382,7 +382,7 @@ pilot_renew_certificates() {
 # Run this command, and follow the instructions to give it your username and your sandbox customer's username.
 # You will have to copy something from a URL. This is expected.
 pilot_renew_quickbooks_oauth() {
-    PILOT_ENVIRONMENT=PRODUCTION AWS_PROFILE=pilotprod zg configure_local_environment --stage=setup_quickbooks_oauth;
+    PILOT_ENV=PRODUCTION AWS_PROFILE=pilotprod zg configure_local_environment --stage=setup_quickbooks_oauth;
 }
 
 # Sometimes you want to see how your local versions of the repositories are different
@@ -400,7 +400,7 @@ pilot_compare_local_to_prod() {
 #################### DATABASE ACCESS ################################
 
 # No alias needed! Just use `zg sql`
-# The database you connect to will depend on what the PILOT_ENVIRONMENT
+# The database you connect to will depend on what the PILOT_ENV
 # and AWS_PROFILE variablis are set to.
 
 
