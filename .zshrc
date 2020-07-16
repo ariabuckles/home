@@ -573,7 +573,7 @@ fi
 # Helpful functions
 alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
 
-Allow local excensions:
+# Allow local excensions:
 if [[ -e ~/.zsh/local ]]; then
   source ~/.zsh/local
 fi
