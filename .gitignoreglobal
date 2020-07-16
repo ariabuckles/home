@@ -1,7 +1,15 @@
 # Mac Finder:
 .DS_Store
+
 # Vim:
 *.swp
+
+# node:
+node_modules
+.env
+
+# python:
+.ve
 
 # Pilot:
 # Mac
