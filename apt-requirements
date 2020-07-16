@@ -31,3 +31,6 @@ libgconf-2-4
 libasound2
 libxtst6
 xvfb
+
+# Pilot
+pinentry-qt
