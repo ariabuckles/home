@@ -19,6 +19,9 @@ miscfiles
 python3-dev
 libffi-dev
 libunwind-dev
+libdbus-1-dev
+libdbus-glib-1-dev
+libcairo2-dev
 
 # electron:
 libnss3

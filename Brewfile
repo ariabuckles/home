@@ -36,6 +36,8 @@ brew "awscli" # AWS
 brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~/.docker/config.json
 
 # Pilot deps:
+brew dbus
+brew dbus-glib
 cask "1password-cli"
 brew "openssl@1.1"
 #brew "pinentry-mac"
