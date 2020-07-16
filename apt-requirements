@@ -1,0 +1,30 @@
+#!/bin/sh
+# Run sh ~/home/apt-requirements to install!
+  sudo apt-get update
+  cat "$HOME/home/apt-requirements" | grep -ve '^#' -e '^ ' -e '^$' | sudo xargs apt-get install -y
+  exit 0
+
+# base ~/home setup:
+zsh
+neovim
+
+# brew:
+build-essential
+curl
+file
+git
+
+# python:
+miscfiles
+python3-dev
+libffi-dev
+libunwind-dev
+
+# electron:
+libnss3
+libgtk2.0-0
+libx11-xcb1
+libgconf-2-4
+libasound2
+libxtst6
+xvfb
