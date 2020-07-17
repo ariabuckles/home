@@ -1,6 +1,11 @@
 #!/bin/sh
 # Run sh ~/home/apt-requirements to install!
   cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$' | sudo xargs -t zypper install
+  # dpkg stub to run pilot:
+  mkdir -p "$HOME/bin"
+  echo '#!/bin/sh' > "$HOME/bin/dpkg"
+  echo 'echo "dpkg-stub" "$@"' >> "$HOME/bin/dpkg"
+  chmod u+x "$HOME/bin/dpkg"
   exit 0
 
 # cli essentials
@@ -44,10 +49,12 @@ ShellCheck
 postgresql
 
 # Pilot
+openssl
 pinentry
 pinentry-gnome3
 pinentry-qt
 terraform
+words
 
 # Applications
 epiphany
