@@ -188,6 +188,11 @@ alias setjava7='source setjava7.sh'
 # fi
 
 # pyenv
+if [[ -e "$PYENV_ROOT/.git" ]]; then
+  pyenv-update() {
+    (cd "$PYENV_ROOT" && git pull --rebase)
+  }
+fi
 if command -v pyenv >/dev/null; then
   pyenv rehash
 fi

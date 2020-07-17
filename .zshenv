@@ -23,8 +23,9 @@ export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 export PATH="$PATH:$ARIAHOME/bin"
 # Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
 export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-# Python with pyenv
-export PATH="$PYENV_ROOT/shims:$PATH"
+# Python with pyenv (bin is the pyenv executable when installed from source.
+# shims are the bins for python and installed python deps)
+export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 # And last in the list, node modules bins & python .ve virtualenv bins:
 export PATH="$PATH:./node_modules/.bin"
 #export PATH="./.ve/bin:$PATH" # auto-be in a virtualenv if the virtualenv is named `.ve`
