@@ -31,8 +31,8 @@
     cbr = clean-branches
     annotate = blame
     ann = blame
-    ramclone = "!git clone --bare \"$1\" \"${HOME}/gits/$(echo $1 | sed 's|.*/||')\" && git ramload"
-    ramload = "!for repo in $(ls \"${HOME}/gits\"); do dir=\"${HOME}/src/$(echo ${repo} | sed 's|.git$||')\"; test -d \"${dir}\" || (git init --separate-git-dir \"${HOME}/gits/${repo}\" \"${dir}\" && cd \"${dir}\" && git restore .); done; true"
+    ramclone = "!cd \"${HOME}/.src/\" && git clone -n \"$1\" && git ramload"
+    ramload = "!for repo in $(ls \"${HOME}/.src\"); do dir=\"${HOME}/src/${repo}\"; test -d \"${dir}\" || (git init --separate-git-dir \"${HOME}/.src/${repo}/.git\" \"${dir}\" && cd \"${dir}\" && git reset --hard); done; true"
     set-main = "!git fetch && git remote set-head origin $(git remote show origin | grep 'HEAD branch:' | sed 's/.*: *//') && true"
     get-main = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's|.*/||' && true"
     update-pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
