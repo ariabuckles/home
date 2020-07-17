@@ -3,18 +3,22 @@
   cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$' | sudo xargs -t zypper install
   exit 0
 
-# base ~/home setup:
-bat
+# cli essentials
 curl
-git
-fd
 file
+gcc
+git
+glibc
+make
+zsh
+
+# ~/home setup:
+bat
+fd
 fzf
 jq
-make
 neovim
 ripgrep
-zsh
 
 # Service CLIs
 hub
@@ -24,7 +28,6 @@ nodejs12
 npm12
 
 # python:
-pyenv
 python3-devel
 libffi7
 libffi-devel
@@ -45,3 +48,6 @@ pinentry
 pinentry-gnome3
 pinentry-qt
 terraform
+
+# Applications
+epiphany
