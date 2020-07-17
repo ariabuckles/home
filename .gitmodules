@@ -1,6 +1,6 @@
 [submodule ".vim/bundle/coc.nvim"]
 	path = .vim/bundle/coc.nvim
-	url = git@github.com:neoclide/coc.nvim.git
+	url = https://github.com/neoclide/coc.nvim.git
 [submodule ".vim/pack/main/start/fzf.vim"]
 	path = .vim/pack/main/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
@@ -15,7 +15,7 @@
 	url = https://github.com/posva/vim-vue.git
 [submodule ".vim/pack/main/start/vim-prettier"]
 	path = .vim/pack/main/start/vim-prettier
-	url = git@github.com:prettier/vim-prettier.git
+	url = https://github.com/prettier/vim-prettier.git
 [submodule ".vim/pack/main/start/vim-unimpaired"]
 	path = .vim/pack/main/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
