@@ -47,6 +47,9 @@ function revan {
 setopt autopushd
 alias pd=popd
 
+# Disable Ctrl-S stopping visible output:
+setopt noflowcontrol
+
 # vim style history with up/down
 # https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
 autoload -U up-line-or-beginning-search
