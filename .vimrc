@@ -28,7 +28,10 @@ source ${HOME}/.vim/after/plugin/security.vim
 " Initialization:
 
 if executable('fzf') " Add fzf brew package support:
+  " homebrew:
   set runtimepath+=/usr/local/opt/fzf/
+  " zypper:
+  set runtimepath+=/usr/share/vim/site/plugin/fzf.vim
 endif
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$" " file encoding
@@ -74,9 +77,10 @@ autocmd FocusGained * :checktime
 autocmd FocusGained * :mode
 
 " Integrate with the system clipboard for default copy/paste ops:
-if has('nvim')
-  set clipboard=unnamedplus
-endif
+" Disabled--was causing problems on linux
+" if has('nvim')
+"   set clipboard=unnamedplus
+" endif
 
 
 " Backups:

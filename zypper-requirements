@@ -21,6 +21,7 @@ zsh
 bat
 fd
 fzf
+vim-fzf
 jq
 neovim
 ripgrep
