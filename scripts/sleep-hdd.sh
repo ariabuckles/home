@@ -1,5 +1,6 @@
 #!/bin/zsh
-cat <<EOF | sudo tee -a /etc/systemd/system/sleep-hdd.service
+set -euo pipefail
+cat <<EOF | sudo tee /etc/systemd/system/sleep-hdd.service
 # Shut down the HDD in /dev/sda on startup
 # (only used for backups)
 
@@ -8,10 +9,12 @@ Description=sleep HDD on startup
 
 [Service]
 Type=oneshot
-ExecStart=$(which hdparm) -q -S 3 -Y /dev/sda
+ExecStart=$(sudo which hdparm) -q -S 3 -Y /dev/sda
 
 [Install]
 WantedBy=multi-user.target
 EOF
+set -x
 sudo systemctl daemon-reload
-sudo systemctl enable sleep-hdd.service
+sudo systemctl enable sleep-hdd.service --now
+systemctl status sleep-hdd.service
