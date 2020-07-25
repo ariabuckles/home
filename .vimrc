@@ -176,7 +176,12 @@ nnoremap <leader>j gT
 nnoremap <leader>l gt
 
 "Line/page navigation with control
-"We rebind C-ijkl in terminal.app to standard ctrl-pbnf:
+"We use QMK to rebind Ctrl-ijkl to arrow keys when possible:
+noremap <Up> 20<Up>zz
+noremap <Left> 0^
+noremap <Down> 20<Down>zz
+noremap <Right> $
+"On Mac, we rebind C-ijkl in terminal.app to standard ctrl-pbnf:
 noremap <C-p> 20<Up>zz
 noremap <C-b> 0^
 noremap <C-n> 20<Down>zz
