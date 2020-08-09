@@ -7,5 +7,5 @@ if ! grep -q ' /mnt/ramdisk ' /etc/fstab; then
 fi
 sudo mount -a
 mkdir -p --mode=700 /mnt/ramdisk/src
-mkdir -p ~/gits
+mkdir -p ~/.src
 ln -snf /mnt/ramdisk/src ~/src

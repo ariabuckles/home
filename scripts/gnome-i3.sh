@@ -1,6 +1,6 @@
 #!/bin/zsh
 set -euo pipefail
-cat <<EOF | sudo tee /etc/X11/sessions/gnome-i3.desktop
+cat <<EOF | sudo tee /usr/share/xsessions/gnome-i3.desktop
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
