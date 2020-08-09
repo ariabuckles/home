@@ -171,6 +171,16 @@ noremap K }
 noremap L w
 noremap H I
 
+" Colemak:
+noremap u <up>
+noremap n <left>
+noremap e <down>
+noremap i <right>
+noremap U 20<up>zz
+noremap N 0^
+noremap E 20<down>zz
+noremap I $
+
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
 nnoremap <leader>l gt
