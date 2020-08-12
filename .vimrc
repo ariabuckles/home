@@ -180,6 +180,8 @@ noremap U 20<up>zz
 noremap N 0^
 noremap E 20<down>zz
 noremap I $
+noremap l u
+noremap m n
 
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
