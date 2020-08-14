@@ -187,6 +187,8 @@ noremap <c-d> <c-v>
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
 nnoremap <leader>l gt
+nnoremap <leader>n gT
+nnoremap <leader>i gt
 
 "Line/page navigation with control
 "We use QMK to rebind Ctrl-ijkl to arrow keys when possible:
