@@ -8,6 +8,16 @@
   chmod u+x "$HOME/bin/dpkg"
   exit 0
 
+# Base patterns:
+pattern:base
+pattern:console
+pattern:devel_basis
+pattern:devel_C_C++
+pattern:documentation
+pattern:fonts
+pattern:gnome
+pattern:yast2_basis
+
 # cli essentials
 curl
 file
