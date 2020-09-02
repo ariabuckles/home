@@ -10,6 +10,7 @@
 
 # Base patterns:
 pattern:base
+pattern:enhanced_base
 pattern:console
 pattern:devel_basis
 pattern:devel_C_C++

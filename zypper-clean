@@ -1,5 +1,6 @@
 #!/bin/sh
 installed() {
+  sudo zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/
   sudo zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' '
 }
 plus_required() {
