@@ -1,0 +1,9 @@
+#!/bin/sh
+installed() {
+  sudo zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' '
+}
+plus_required() {
+  cat - "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$'
+}
+installed | plus_required | sort | uniq -u | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
+echo "Updated /var/lib/zypp/AutoInstalled"
