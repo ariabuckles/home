@@ -71,6 +71,9 @@ terraform
 words
 
 # Applications
+gnome-terminal
+MozillaFirefox
+chromium
 epiphany
 powertop
 vnstat
