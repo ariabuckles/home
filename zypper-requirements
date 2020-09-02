@@ -35,7 +35,6 @@ npm12
 
 # python:
 python3-devel
-libffi7
 libffi-devel
 libunwind
 libunwind-devel
@@ -48,6 +47,7 @@ python3-cairo-devel
 # Other language ecosystems:
 ShellCheck
 postgresql
+docker
 
 # Pilot
 openssl
