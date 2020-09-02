@@ -70,5 +70,7 @@ if [[ -d /mnt/ramdisk ]]; then
 
     # Link virtual envs
     venv_ramload
+
+    ln -s ~/.editorconfig ~/src/
   }
 fi
