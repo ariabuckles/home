@@ -247,6 +247,8 @@ export FZF_DEFAULT_OPTS="--exact --reverse --tiebreak=length,end --color=16"
 # Node
 export NODE_REPL_HISTORY="$HOME/.local/.node_repl_history"
 
+export PAGER='less -F'
+
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
 function gron {
