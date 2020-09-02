@@ -16,7 +16,9 @@ pattern:devel_basis
 pattern:devel_C_C++
 pattern:documentation
 pattern:fonts
+pattern:x11
 pattern:gnome
+pattern:gnome_x11
 pattern:yast2_basis
 
 # cli essentials
@@ -45,7 +47,7 @@ nodejs12
 npm12
 
 # python:
-python3-devel
+pattern:devel_python3
 libffi-devel
 libunwind
 libunwind-devel
@@ -64,9 +66,11 @@ docker
 openssl
 pinentry
 pinentry-gnome3
-pinentry-qt
+pinentry-qt5
 terraform
 words
 
 # Applications
 epiphany
+powertop
+vnstat
