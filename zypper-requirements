@@ -22,13 +22,10 @@ pattern:gnome_x11
 pattern:yast2_basis
 
 # cli essentials
-curl
-file
-gcc
-git
-glibc
-make
 zsh
+vim
+git
+make
 
 # ~/home setup:
 bat

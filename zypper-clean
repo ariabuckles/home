@@ -1,10 +1,19 @@
 #!/bin/sh
 installed() {
-  sudo zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/
-  sudo zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' '
+  zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/
+  zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' '
 }
-plus_required() {
-  cat - "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$'
+specified() {
+  cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$'
 }
-installed | plus_required | sort | uniq -u | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
+important() {
+  specified
+  zypper pa -i --recommended | grep '^i' | cut -d '|' -f 3 | tr -d ' '
+  zypper search -i -t package --supplements $(specified) | cut -d '|' -f 3 | tr -d ' '
+}
+important_uniq() {
+  important | sort | uniq
+}
+important_uniq
+(installed && important_uniq) | sort | uniq -u | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
 echo "Updated /var/lib/zypp/AutoInstalled"
