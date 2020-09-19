@@ -1,19 +1,17 @@
 #!/bin/sh
-installed() {
-  zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/
-  zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' '
-}
-specified() {
-  cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$'
-}
-important() {
-  specified
-  zypper pa -i --recommended | grep '^i' | cut -d '|' -f 3 | tr -d ' '
-  zypper search -i -t package --supplements $(specified) | cut -d '|' -f 3 | tr -d ' '
-}
-important_uniq() {
-  important | sort | uniq
-}
-important_uniq
-(installed && important_uniq) | sort | uniq -u | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
+set -eu
+
+installed_patterns=$(zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/)
+installed_packages=$(zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ')
+installed="${installed_patterns}\n${installed_packages}"
+
+specified=$(grep -ve '^#' -e '^ ' -e '^$' "$HOME/home/zypper-requirements")
+recommended=$(zypper pa -i --recommended | grep '^i' | cut -d '|' -f 3 | tr -d ' ')
+supplements=$(printf '%s\n%s\n' "${specified}" "${recommended}" | xargs zypper search -i -t package --supplements | cut -d '|' -f 3 | tr -d ' ')
+important=$(printf '%s\n%s\n%s\n' "${specified}" "${recommended}" "${supplements}" | sort | uniq)
+
+autoinstalled=$(printf '%s\n%s\n' "${installed}" "${important}" | sort | uniq -u)
+echo "$autoinstalled" | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
 echo "Updated /var/lib/zypp/AutoInstalled"
+
+zypper pa --unneeded
