@@ -87,3 +87,5 @@ function link-docker-sock {
     chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data/docker.sock" \
   '
 }
+
+export XCURSOR_THEME=Adwaita
