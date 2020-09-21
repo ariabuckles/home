@@ -18,6 +18,7 @@ pattern:documentation
 pattern:fonts
 pattern:x11
 pattern:gnome
+pattern:gnome_basic
 pattern:gnome_x11
 pattern:yast2_basis
 
