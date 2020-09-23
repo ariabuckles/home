@@ -22,6 +22,10 @@ pattern:gnome_basic
 pattern:gnome_x11
 pattern:yast2_basis
 
+# openSUSE system misc
+openSUSE-release
+release-notes-openSUSE
+
 # cli essentials
 zsh
 vim
@@ -36,6 +40,7 @@ vim-fzf
 jq
 neovim
 ripgrep
+tig
 
 # Service CLIs
 hub
