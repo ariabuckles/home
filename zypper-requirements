@@ -25,6 +25,7 @@ pattern:yast2_basis
 # openSUSE system misc
 openSUSE-release
 release-notes-openSUSE
+grub2-x86_64-efi
 
 # cli essentials
 zsh
