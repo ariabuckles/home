@@ -1,4 +1,4 @@
 #!/bin/sh
 set -eu
 
-zypper pa -r repo-oss --unneeded | grep '^i' | cut -d '|' -f 3 | tr -d ' ' | sudo zypper remove
+zypper pa -r repo-oss --unneeded | grep '^i' | cut -d '|' -f 3 | tr -d ' ' | xargs sudo zypper remove
