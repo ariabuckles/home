@@ -1,16 +1,16 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 recursive_requests() {
   requests=""
-  results="$1"
+  results=$(echo "$1" | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
   while [[ "$requests" != "$results" ]]; do
     requests="$results"
-    requires=$(echo "$requests" | xargs rpm -q --requires --recommends)
-    provides=$(echo "$requires" | xargs zypper search --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
+    requires=$(echo "$requests" | xargs -d '\n' rpm -q --requires --recommends)
+    provides=$(echo "$requires" | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
     results=$(printf '%s\n%s\n' "${requests}" "${provides}" | sort | uniq)
   done
-  echo "$results"
+  echo "$results" | sed 's/^pattern() = /pattern:/'
 }
 
 installed_patterns=$(zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/)
@@ -19,11 +19,12 @@ installed="${installed_patterns}\n${installed_packages}"
 
 specified=$(grep -ve '^#' -e '^ ' -e '^$' "$HOME/home/zypper-requirements")
 #recommended=$(zypper pa -i --recommended | grep '^i' | cut -d '|' -f 3 | tr -d ' ')
-#supplements=$(echo "${installed_packages}" | xargs zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
+#supplements=$(echo "${installed_packages}" | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
 needed=$(recursive_requests "${specified}")
-supplements=$(echo "${needed}" | xargs zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
+echo "$needed"
+supplements=$(echo "${needed}" | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
+echo "$supplements"
 important=$(printf '%s\n%s\n' "${needed}" "${supplements}" | sort | uniq)
-echo "$important"
 
 autoinstalled=$(printf '%s\n%s\n' "${installed}" "${important}" | sort | uniq -u)
 
