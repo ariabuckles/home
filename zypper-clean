@@ -1,27 +1,30 @@
 #!/bin/bash
 set -euo pipefail
+mkdir --mode=700 /dev/shm/zypper-clean
+cd /dev/shm/zypper-clean
 
 recurse_through_requests() {
-  echo '' > .cache/last_requested
-  cat .cache/requested | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/needed
-  while ! diff .cache/last_requested .cache/needed; do
-    mv .cache/needed .cache/last_requested
-    cat .cache/last_requested | xargs -d '\n' rpm -q --requires --recommends > .cache/requires
-    cat .cache/requires | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/provides
-    cat .cache/last_requested .cache/provides | sort | uniq > .cache/needed
+  echo '' > last_requested
+  cat requested | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -if --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > needed
+  while ! diff last_requested needed >/dev/null; do
+    mv needed last_requested
+    cat last_requested | xargs -d '\n' rpm -q --requires --recommends > requires
+    cat requires | xargs -d '\n' zypper search -if --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > provides
+    cat last_requested provides | sort | uniq > needed
   done
 }
 
-zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/ > .cache/installed
-zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ' >> .cache/installed
+zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/ > installed
+zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ' >> installed
 
-cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$' > .cache/requested
+#cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$' > requested
+echo 'pattern:gnome' > requested
 
 recurse_through_requests
 
-cat .cache/needed | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/supplements
-cat .cache/needed .cache/supplements | sort | uniq > .cache/important
-cat .cache/installed .cache/needed | sort | uniq -u > .cache/autoinstalled
+cat needed | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > supplements
+cat needed supplements | sort | uniq > important
+cat installed needed | sort | uniq -u > autoinstalled
 
 #autoinstalled=$(printf '%s\n%s\n' "${installed}" "${important}" | sort | uniq -u)
 #
