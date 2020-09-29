@@ -6,13 +6,13 @@ cd /dev/shm/zypper-clean
 
 recurse_through_requests() {
   echo '' > last_requested
-  cat requested | sed 's/^pattern:/pattern() = /' | grep -v '^/' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > needed
+  cat requested | sed 's/^pattern:/pattern() = /' | grep -v '^/' | xargs -d '\n' -L 1 zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > needed
   while ! diff last_requested needed; do
     echo 'A'
     mv needed last_requested
     cat last_requested | xargs -d '\n' rpm -q --requires --recommends > requires
     echo 'B'
-    cat requires | grep -v '^/' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > provides
+    cat requires | grep -v '^/' | grep -v '^rpmlib(' | xargs -d '\n' -tL 1 zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > provides
     echo 'C'
     cat last_requested provides | sort | uniq > needed
     echo 'D'
