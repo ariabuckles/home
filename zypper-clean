@@ -1,16 +1,21 @@
 #!/bin/bash
 set -euo pipefail
+rm -r /dev/shm/zypper-clean
 mkdir --mode=700 /dev/shm/zypper-clean
 cd /dev/shm/zypper-clean
 
 recurse_through_requests() {
   echo '' > last_requested
-  cat requested | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -if --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > needed
-  while ! diff last_requested needed >/dev/null; do
+  cat requested | sed 's/^pattern:/pattern() = /' | grep -v '^/' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > needed
+  while ! diff last_requested needed; do
+    echo 'A'
     mv needed last_requested
     cat last_requested | xargs -d '\n' rpm -q --requires --recommends > requires
-    cat requires | xargs -d '\n' zypper search -if --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > provides
+    echo 'B'
+    cat requires | grep -v '^/' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > provides
+    echo 'C'
     cat last_requested provides | sort | uniq > needed
+    echo 'D'
   done
 }
 
@@ -21,6 +26,8 @@ zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ' >> installed
 echo 'pattern:gnome' > requested
 
 recurse_through_requests
+
+echo 'done-recurse'
 
 cat needed | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > supplements
 cat needed supplements | sort | uniq > important
