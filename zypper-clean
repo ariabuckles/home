@@ -1,34 +1,31 @@
 #!/bin/bash
 set -euo pipefail
 
-recursive_requests() {
-  requests=""
-  results=$(echo "$1" | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
-  while [[ "$requests" != "$results" ]]; do
-    requests="$results"
-    requires=$(echo "$requests" | xargs -d '\n' rpm -q --requires --recommends)
-    provides=$(echo "$requires" | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
-    results=$(printf '%s\n%s\n' "${requests}" "${provides}" | sort | uniq)
+recurse_through_requests() {
+  echo '' > .cache/last_requested
+  cat .cache/requested | sed 's/^pattern:/pattern() = /' | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/needed
+  while ! diff .cache/last_requested .cache/needed; do
+    mv .cache/needed .cache/last_requested
+    cat .cache/last_requested | xargs -d '\n' rpm -q --requires --recommends > .cache/requires
+    cat .cache/requires | xargs -d '\n' zypper search -i --provides --match-exact | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/provides
+    cat .cache/last_requested .cache/provides | sort | uniq > .cache/needed
   done
-  echo "$results" | sed 's/^pattern() = /pattern:/'
 }
 
-installed_patterns=$(zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/)
-installed_packages=$(zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ')
-installed="${installed_patterns}\n${installed_packages}"
+zypper pt -i | grep '^i' | cut -d '|' -f 2 | tr -d ' ' | sed s/^/pattern:/ > .cache/installed
+zypper pa -i | grep '^i' | cut -d '|' -f 3 | tr -d ' ' >> .cache/installed
 
-specified=$(grep -ve '^#' -e '^ ' -e '^$' "$HOME/home/zypper-requirements")
-#recommended=$(zypper pa -i --recommended | grep '^i' | cut -d '|' -f 3 | tr -d ' ')
-#supplements=$(echo "${installed_packages}" | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
-needed=$(recursive_requests "${specified}")
-echo "$needed"
-supplements=$(echo "${needed}" | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ')
-echo "$supplements"
-important=$(printf '%s\n%s\n' "${needed}" "${supplements}" | sort | uniq)
+cat "$HOME/home/zypper-requirements" | grep -ve '^#' -e '^ ' -e '^$' > .cache/requested
 
-autoinstalled=$(printf '%s\n%s\n' "${installed}" "${important}" | sort | uniq -u)
+recurse_through_requests
 
-echo "$autoinstalled" | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
-echo "Updated /var/lib/zypp/AutoInstalled"
+cat .cache/needed | xargs -d '\n' zypper search -i -t package --supplements | grep '^i' | cut -d '|' -f 2 | tr -d ' ' > .cache/supplements
+cat .cache/needed .cache/supplements | sort | uniq > .cache/important
+cat .cache/installed .cache/needed | sort | uniq -u > .cache/autoinstalled
 
-zypper pa -r repo-oss --unneeded
+#autoinstalled=$(printf '%s\n%s\n' "${installed}" "${important}" | sort | uniq -u)
+#
+#echo "$autoinstalled" | sudo tee /var/lib/zypp/AutoInstalled > /dev/null
+#echo "Updated /var/lib/zypp/AutoInstalled"
+#
+#zypper pa -r repo-oss --unneeded

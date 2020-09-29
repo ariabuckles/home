@@ -10,3 +10,4 @@ node_modules
 .vim/pack/**/tags
 .config/nvim/pack/**/tags
 .zsh/local
+.cache
