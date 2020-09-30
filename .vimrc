@@ -259,6 +259,8 @@ nnoremap <Tab> <C-w>w
 nnoremap <leader><Tab> gt
 
 " Closing files
+nnoremap <silent> q <C-w>q
+nnoremap <silent> Q q
 nnoremap <silent> <leader>q :bdel<CR>
 nnoremap <silent> <leader>w :update<CR>:file<CR>
 
