@@ -157,7 +157,14 @@ noremap k j
 noremap h i
 " from normal mode, have insert on a blank line re-indent the line
 " ...this is sure to cause problems later, right?
-nnoremap h i<c-f>
+function! MaybeIndent()
+  if &indentexpr !=# ""
+    return "\<C-f>"
+  else
+    return ""
+  endif
+endfunction
+nnoremap <silent> h i<C-r>=MaybeIndent()<CR>
 " Map z commands to new movement keys
 noremap zi zk
 noremap zj zh
@@ -181,10 +188,15 @@ noremap N 0^
 noremap E 20<down>zz
 noremap I $
 noremap l u
-noremap U <C-r>
+nnoremap U <C-r>
 noremap m n
 noremap M N
 noremap <c-d> <c-v>
+
+"Colemak insert mode on t:
+noremap t i
+noremap T I
+nnoremap <silent> t i<C-r>=MaybeIndent()<CR>
 
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
