@@ -181,7 +181,9 @@ noremap N 0^
 noremap E 20<down>zz
 noremap I $
 noremap l u
+noremap U <C-r>
 noremap m n
+noremap M N
 noremap <c-d> <c-v>
 
 "Tab navigation with <space>j/l
