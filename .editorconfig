@@ -10,7 +10,7 @@ indent_style = space
 indent_size = 2
 
 # hacks for pilot right now:
-[*.js,*.ts,*.vue,*.json]
+[*.{js,ts,vue,json}]
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
