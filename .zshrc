@@ -585,6 +585,11 @@ fi
 # Helpful functions
 alias new-ssh-key="ssh-keygen -t ed25519 -a 100 -C aria@$(hostname)"
 
+# gnome-terminal inherit cwd:
+if [[ -n $VTE_VERSION ]] && [[ -e /etc/profile.d/vte.sh ]]; then
+  source /etc/profile.d/vte.sh
+fi
+
 # Allow local excensions:
 if [[ -e ~/.zsh/local ]]; then
   source ~/.zsh/local
