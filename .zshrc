@@ -247,7 +247,10 @@ export FZF_DEFAULT_OPTS="--exact --reverse --tiebreak=length,end --color=16"
 # Node
 export NODE_REPL_HISTORY="$HOME/.local/.node_repl_history"
 
+# better interactive pagers:
 export PAGER='less -F'
+export MANPAGER='nvim +Man!'
+export MANWIDTH=80
 
 # Json tricks (https://news.ycombinator.com/item?id=20245913)
 # Writing https://github.com/tomnomnom/gron in jq
