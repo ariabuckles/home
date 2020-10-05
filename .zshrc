@@ -277,7 +277,7 @@ function ungron {
 function hi {
   local hour="$(date +%H)"
   local name
-  id -F | read -r -d ' ' name
+  (id -F 2>/dev/null || id -un 2>/dev/null) | read -r -d ' ' name
   local partOfDay
   local message
   if [[ $hour -lt 6 ]]; then
