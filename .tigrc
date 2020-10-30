@@ -1,9 +1,9 @@
-bind main i move-up
-bind main k move-down
-bind main I move-page-up
-bind main K move-page-down
+bind main u move-up
+bind main e move-down
+bind main U move-page-up
+bind main E move-page-down
 
-bind diff i move-up
-bind diff k move-down
-bind diff I move-page-up
-bind diff K move-page-down
+bind diff u move-up
+bind diff e move-down
+bind diff U move-page-up
+bind diff E move-page-down
