@@ -52,6 +52,7 @@ npm12
 
 # python:
 pattern:devel_python3
+pyenv
 libffi-devel
 libunwind
 libunwind-devel
