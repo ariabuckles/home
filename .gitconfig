@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
     name = Aria Buckles
-    email = aria@pilot.com
+    email = aria@toole1.com
 [alias]
     rebase-package-lock = "!f() { pwd && echo ${GIT_PREFIX:-.} && git reset HEAD -- ${GIT_PREFIX:-.}/package-lock.json && git checkout -- ${GIT_PREFIX:-.}/package-lock.json && cd ${GIT_PREFIX:-.} && npm install && git add -- package-lock.json; }; f"
     create-branch = "!if [ -n \"$1\" ]; then NAME=\"$1\"; else NAME=$(git rev-parse --abbrev-ref HEAD | jsed '/(?:-([a-z0-9]))?$/m' '(_, v) => `-` + (parseInt(v || 1, 36) + 1).toString(36)'); fi; git checkout -b $NAME && git branch --set-upstream-to $(git get-main) && true"
