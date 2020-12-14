@@ -3,10 +3,7 @@
 node_modules
 .npmrc
 .vim/.netrwhist
-.config/*
-!.config/nvim
-!.config/fish
-!.config/coc
+.config/dconf/user
 .vim/pack/**/tags
 .config/nvim/pack/**/tags
 .zsh/local
