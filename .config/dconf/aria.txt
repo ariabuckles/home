@@ -1,33 +1,25 @@
-[org/gnome/evolution-data-server]
-migrated=true
+[org/gnome/GWeather]
+temperature-unit='centigrade'
 
-network-monitor-gio-name=''
+[org/gnome/LightsOff]
+level=44
 
-[org/gnome/desktop/notifications/application/org-gnome-dejadup]
-application-id='org.gnome.DejaDup.desktop'
+[org/gnome/bijiben]
+default-location='local'
+text-size='medium'
+view-type='list'
 
-[org/gnome/desktop/notifications]
-application-children=['org-gnome-dejadup']
+[org/gnome/desktop/a11y/applications]
+screen-keyboard-enabled=false
 
-[org/gnome/shell]
-favorite-apps=['firefox.desktop', 'org.gnome.Evolution.desktop', 'empathy.desktop', 'org.gnome.Music.desktop', 'shotwell.desktop', 'writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Documents.desktop']
-
-[org/gnome/deja-dup]
-backend='google'
-
-prompt-check='2020-12-14T04:24:26.491413Z'
-
-[org/gnome/desktop/interface]
-gtk-im-module='gtk-im-context-simple'
-
-[org/gnome/desktop/input-sources]
-sources=[('xkb', 'us')]
+[org/gnome/desktop/a11y/keyboard]
+togglekeys-enable=true
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST']
 
 [org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gucharmap.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'simple-scan.desktop', 'vinagre.desktop', 'yelp.desktop']
+apps=['eog.desktop', 'gnome-abrt.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gucharmap.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.tweaks.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
 categories=['X-GNOME-Utilities']
 name='X-GNOME-Utilities.directory'
 translate=true
@@ -37,8 +29,185 @@ categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 translate=true
 
-[org/gnome/software]
-check-timestamp=int64 1607919750
+[org/gnome/desktop/interface]
+clock-show-weekday=true
+cursor-size=24
+cursor-theme='Adwaita'
+document-font-name='Cantarell 12'
+enable-animations=false
+enable-hot-corners=false
+font-name='Cantarell 11'
+gtk-im-module='gtk-im-context-simple'
+gtk-key-theme='Emacs'
+gtk-theme='Adwaita-dark'
+icon-theme='Adwaita'
+locate-pointer=true
+monospace-font-name='DejaVu Sans Mono 12'
+scaling-factor=uint32 0
+show-battery-percentage=true
+text-scaling-factor=1.0
+toolkit-accessibility=false
 
-[org/gnome/shell/world-clocks]
-locations=@av []
+[org/gnome/desktop/media-handling]
+autorun-x-content-ignore=@as []
+autorun-x-content-open-folder=@as []
+autorun-x-content-start-app=@as []
+
+[org/gnome/desktop/privacy]
+disable-microphone=false
+remove-old-temp-files=true
+remove-old-trash-files=true
+
+[org/gnome/desktop/search-providers]
+disable-external=false
+disabled=['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Epiphany.desktop', 'org.gnome.Photos.desktop', 'org.gnome.clocks.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Software.desktop']
+sort-order=['org.gnome.Calculator.desktop', 'org.gnome.Characters.desktop', 'org.gnome.GPaste.Ui.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Notes.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Software.desktop', 'org.gnome.Photos.desktop']
+
+[org/gnome/desktop/session]
+idle-delay=uint32 600
+
+[org/gnome/desktop/wm/keybindings]
+close=['<Super>q']
+maximize=['<Shift><Super>Up']
+move-to-monitor-down=@as []
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-monitor-up=@as []
+move-to-workspace-down=['<Super>Right']
+move-to-workspace-up=['<Super>Left']
+panel-main-menu=['<Super>space']
+panel-run-dialog=@as []
+switch-input-source=@as []
+switch-input-source-backward=@as []
+switch-to-workspace-down=['<Super>Down']
+switch-to-workspace-up=['<Super>Up']
+toggle-fullscreen=@as []
+unmaximize=['<Shift><Super>Down']
+
+[org/gnome/desktop/wm/preferences]
+titlebar-font='Cantarell Bold 11'
+workspace-names=['Home']
+
+[org/gnome/epiphany]
+ask-for-default=false
+
+[org/gnome/gnome-system-monitor]
+cpu-colors=[(uint32 0, 'rgb(153,0,204)'), (1, 'rgb(52,101,164)'), (2, 'rgb(115,210,22)'), (3, 'rgb(252,233,79)'), (4, 'rgb(245,121,0)'), (5, 'rgb(239,41,41)')]
+cpu-stacked-area-chart=true
+current-tab='resources'
+disks-interval=5000
+graph-update-interval=2000
+maximized=false
+mem-color='rgb(115,210,22)'
+net-in-color='rgb(114,159,207)'
+net-out-color='rgb(115,210,22)'
+show-dependencies=false
+show-whose-processes='user'
+solaris-mode=false
+swap-color='rgb(255,0,102)'
+update-interval=3000
+
+[org/gnome/mutter/keybindings]
+toggle-tiled-left=['<Primary><Shift>Page_Up']
+toggle-tiled-right=['<Primary><Shift>Page_Down']
+
+[org/gnome/mutter/wayland/keybindings]
+restore-shortcuts=@as []
+
+[org/gnome/nautilus/preferences]
+default-folder-viewer='list-view'
+search-filter-time-type='last_modified'
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=@as []
+screensaver=['<Shift><Super>q']
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=3600
+sleep-inactive-ac-type='suspend'
+sleep-inactive-battery-timeout=1800
+sleep-inactive-battery-type='suspend'
+
+[org/gnome/settings-daemon/plugins/xsettings]
+antialiasing='rgba'
+hinting='none'
+
+[org/gnome/shell/extensions/dash-to-dock]
+animate-show-apps=true
+apply-custom-theme=false
+background-opacity=0.75
+click-action='cycle-windows'
+custom-background-color=false
+custom-theme-customize-running-dots=false
+custom-theme-running-dots-border-color='#ffffff'
+custom-theme-running-dots-border-width=0
+custom-theme-running-dots-color='#ad7fa8'
+custom-theme-shrink=true
+dash-max-icon-size=48
+dock-fixed=true
+extend-height=true
+force-straight-corner=false
+height-fraction=0.90000000000000002
+hot-keys=false
+icon-size-fixed=true
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+max-alpha=0.80000000000000004
+middle-click-action='quit'
+preferred-monitor=0
+running-indicator-dominant-color=true
+running-indicator-style='DOTS'
+scroll-action='do-nothing'
+shift-click-action='previews'
+shift-middle-click-action='launch'
+show-apps-at-top=false
+show-favorites=true
+show-mounts=false
+show-show-apps-button=true
+show-trash=false
+transparency-mode='FIXED'
+unity-backlit-items=false
+
+[org/gnome/shell/extensions/window-list]
+grouping-mode='auto'
+
+[org/gnome/shell/keybindings]
+toggle-message-tray=@as []
+toggle-overview=@as []
+
+[org/gnome/terminal/legacy]
+new-tab-position='next'
+
+[org/gnome/terminal/legacy/keybindings]
+close-tab='<Super>w'
+close-window='<Super>q'
+copy='<Super>c'
+new-tab='<Super>t'
+new-window='<Super>n'
+next-tab='<Primary>Page_Down'
+paste='<Super>v'
+prev-tab='<Primary>Page_Up'
+reset='disabled'
+reset-and-clear='<Super>k'
+
+[org/gnome/terminal/legacy/profiles:]
+default='95c47838-d7a5-4015-a523-f69b4e3c28f9'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '95c47838-d7a5-4015-a523-f69b4e3c28f9']
+
+[org/gnome/terminal/legacy/profiles:/:95c47838-d7a5-4015-a523-f69b4e3c28f9]
+background-color='rgb(48,48,48)'
+bold-color-same-as-fg=true
+cursor-blink-mode='on'
+exit-action='hold'
+foreground-color='rgb(255,255,255)'
+palette=['rgb(0,0,0)', 'rgb(255,0,102)', 'rgb(51,204,51)', 'rgb(255,102,0)', 'rgb(51,153,255)', 'rgb(204,0,204)', 'rgb(0,153,153)', 'rgb(204,204,204)', 'rgb(102,102,102)', 'rgb(255,0,51)', 'rgb(0,255,51)', 'rgb(204,255,51)', 'rgb(102,204,255)', 'rgb(255,51,255)', 'rgb(51,204,204)', 'rgb(255,255,255)']
+use-theme-colors=false
+visible-name='Aria'
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+exit-action='close'
+palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,0,238)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(229,229,229)', 'rgb(127,127,127)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(92,92,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
+visible-name='Initial'
+
+[org/gtk/settings/color-chooser]
+custom-colors=[(0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0), (0.18823529411764706, 0.18823529411764706, 0.18823529411764706, 1.0), (0.090196078431372548, 0.078431372549019607, 0.12941176470588237, 1.0), (0.93725490196078431, 0.94901960784313721, 0.81960784313725488, 1.0), (0.17647058823529413, 0.49019607843137253, 0.70196078431372544, 1.0), (0.93333333333333335, 0.11372549019607843, 0.0, 1.0), (1.0, 0.0, 0.40000000000000002, 1.0), (0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1.0)]
+selected-color=(true, 0.80000000000000004, 0.80000000000000004, 0.80000000000000004, 1.0)

@@ -105,17 +105,18 @@ install-directories:
 
 .PHONY: update-prefs
 update-prefs:
-	defaults export com.apple.Terminal - > terminal.plist
-	plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist
-	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -extract NSUserKeyEquivalents json ~/Library/Preferences/com.google.Chrome.plist -r -o chrome-keybinds.plist
-	test -e ~/Library/Preferences/org.chromium.Chromium.plist && plutil -extract NSUserKeyEquivalents json ~/Library/Preferences/org.chromium.Chromium.plist -r -o chromium-keybinds.plist
+	command -v dconf > /dev/null && dconf dump / > .config/dconf/aria.txt || true
+	test -e ~/Library/Preferences/com.apple.Terminal.plist && defaults export com.apple.Terminal - > terminal.plist || true
+	test -e ~/Library/Colors/NSColorPanelSwatches.plist && plutil -convert xml1 ~/Library/Colors/NSColorPanelSwatches.plist -o color-swatches.plist || true
+	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -extract NSUserKeyEquivalents json ~/Library/Preferences/com.google.Chrome.plist -r -o chrome-keybinds.plist || true
+	test -e ~/Library/Preferences/org.chromium.Chromium.plist && plutil -extract NSUserKeyEquivalents json ~/Library/Preferences/org.chromium.Chromium.plist -r -o chromium-keybinds.plist || true
 
 .PHONY: install-prefs
 install-prefs:
-	defaults import com.apple.Terminal terminal.plist
-	plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist
-	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -replace NSUserKeyEquivalents -json "$$(cat chrome-keybinds.plist)" ~/Library/Preferences/com.google.Chrome.plist
-	test -e ~/Library/Preferences/org.chromium.Chromium.plist && plutil -replace NSUserKeyEquivalents -json "$$(cat chromium-keybinds.plist)" ~/Library/Preferences/org.chromium.Chromium.plist
+	test -e ~/Library/Preferences/ && defaults import com.apple.Terminal terminal.plist || true
+	test -e ~/Library/Colors/ && plutil -convert binary1 color-swatches.plist -o ~/Library/Colors/NSColorPanelSwatches.plist || true
+	test -e ~/Library/Preferences/com.google.Chrome.plist && plutil -replace NSUserKeyEquivalents -json "$$(cat chrome-keybinds.plist)" ~/Library/Preferences/com.google.Chrome.plist || true
+	test -e ~/Library/Preferences/org.chromium.Chromium.plist && plutil -replace NSUserKeyEquivalents -json "$$(cat chromium-keybinds.plist)" ~/Library/Preferences/org.chromium.Chromium.plist || true
 
 
 # ========================
