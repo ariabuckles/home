@@ -17,6 +17,10 @@ test -z "$PROFILEREAD" && . /etc/profile || true
 #export LANG=fr_FR.UTF-8	# uncomment this line for French output
 #export LANG=es_ES.UTF-8	# uncomment this line for Spanish output
 
+if [ -e ~/.env_vars ]; then
+  source ~/.env_vars
+fi
+
 # Start copying files from ~/sync-src to the ramdisk in ~/src
 # (if present)
 source $HOME/.zsh/ramdisk

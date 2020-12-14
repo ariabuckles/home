@@ -43,9 +43,6 @@ if [[ "$USER" == "ariashell" && -d "$ARIAHOME/shell" ]]; then
   export HOME="$ARIAHOME/shell"
 fi
 
-# XDG variables
-export XDG_CACHE_HOME="$HOME/.cache"
-
 # Vim / commandline setup:
 export EDITOR=vim
 export VISUAL=vim
@@ -61,8 +58,6 @@ if [ -e ~/.env_vars ]; then
   source ~/.env_vars
 fi
 
-# Node helpers
-export SPAWN_WRAP_SHIM_ROOT="$XDG_CACHE_HOME"
 
 if [ -e ~/.secrets.env ]; then
   source ~/.secrets.env
@@ -87,5 +82,3 @@ function link-docker-sock {
     chmod g=u "$ARIAHOME/Library/Containers/com.docker.docker/Data/docker.sock" \
   '
 }
-
-export XCURSOR_THEME=Adwaita
