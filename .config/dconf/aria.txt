@@ -1,0 +1,44 @@
+[org/gnome/evolution-data-server]
+migrated=true
+
+network-monitor-gio-name=''
+
+[org/gnome/desktop/notifications/application/org-gnome-dejadup]
+application-id='org.gnome.DejaDup.desktop'
+
+[org/gnome/desktop/notifications]
+application-children=['org-gnome-dejadup']
+
+[org/gnome/shell]
+favorite-apps=['firefox.desktop', 'org.gnome.Evolution.desktop', 'empathy.desktop', 'org.gnome.Music.desktop', 'shotwell.desktop', 'writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Documents.desktop']
+
+[org/gnome/deja-dup]
+backend='google'
+
+prompt-check='2020-12-14T04:24:26.491413Z'
+
+[org/gnome/desktop/interface]
+gtk-im-module='gtk-im-context-simple'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'us')]
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'YaST']
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gucharmap.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'simple-scan.desktop', 'vinagre.desktop', 'yelp.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[org/gnome/software]
+check-timestamp=int64 1607919750
+
+[org/gnome/shell/world-clocks]
+locations=@av []

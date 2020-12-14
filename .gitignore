@@ -4,6 +4,7 @@ node_modules
 .npmrc
 .vim/.netrwhist
 .config/dconf/user
+.config/dconf/aria.txt-lock
 .vim/pack/**/tags
 .config/nvim/pack/**/tags
 .zsh/local
