@@ -179,24 +179,26 @@ noremap L w
 noremap H I
 
 " Colemak:
-noremap u <up>
-noremap n <left>
-noremap e <down>
-noremap i <right>
-noremap U 20<up>zz
-noremap N 0^
-noremap E 20<down>zz
-noremap I $
-noremap l u
-nnoremap U <C-r>
-noremap m n
-noremap M N
-noremap <c-d> <c-v>
+if $KBD_LAYOUT ==? "colemak"
+  noremap u <up>
+  noremap n <left>
+  noremap e <down>
+  noremap i <right>
+  noremap U 20<up>zz
+  noremap N 0^
+  noremap E 20<down>zz
+  noremap I $
+  noremap l u
+  nnoremap U <C-r>
+  noremap m n
+  noremap M N
+  noremap <c-d> <c-v>
 
-"Colemak insert mode on t:
-noremap t i
-noremap T I
-nnoremap <silent> t i<C-r>=MaybeIndent()<CR>
+  "Colemak insert mode on t:
+  noremap t i
+  noremap T I
+  nnoremap <silent> t i<C-r>=MaybeIndent()<CR>
+endif
 
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
