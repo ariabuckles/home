@@ -22,7 +22,9 @@ set $menu rofi
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 12
 
-exec --no-startup-id dbus-launch
+#Moved to /usr/share/xsessions/i3.desktop:
+#Exec=dbus-launch --exit-with-session i3
+#exec --no-startup-id dbus-launch
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
