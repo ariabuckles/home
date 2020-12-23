@@ -1,0 +1,29 @@
+include /etc/sway/config
+output DP-2 scale 2
+
+# Use Super as the modifier key
+set $mod Mod4
+
+set $term gnome-terminal
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 12
+
+# close focused window
+bindsym $mod+q kill
+
+# open menu
+bindsym $mod+space exec $menu
+
+# change focus
+bindsym $mod+n focus left
+bindsym $mod+e focus down
+bindsym $mod+u focus up
+bindsym $mod+i focus right
+
+# move focused window
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+e move down
+bindsym $mod+Shift+u move up
+bindsym $mod+Shift+i move right
