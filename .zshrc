@@ -50,14 +50,6 @@ alias pd=popd
 # Disable Ctrl-S stopping visible output:
 setopt noflowcontrol
 
-# Colemak & Qwerty bindings:
-if [[ -z "$KBD_LAYOUT" ]]; then
-  export KBD_LAYOUT='qwerty'
-  if [[ -e /dev/input/by-id/usb-ZSA_Planck_EZ_0-event-kbd ]]; then
-    export KBD_LAYOUT='colemak'
-  fi
-fi
-
 # vim style history with up/down
 # https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
 autoload -U up-line-or-beginning-search
