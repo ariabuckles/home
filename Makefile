@@ -120,6 +120,14 @@ install-prefs:
 
 
 # ========================
+# System filesystem overrides
+# ========================
+.PHONY: install-system-files
+install-system-files:
+	fd --type=d . @ | sed 's:^@::' | sudo xargs mkdir -p
+	fd --type=f . @ | sed 's:^@::' | sudo xargs -I% cp -p @% /%
+
+# ========================
 # Secrets (currently unused)
 # ========================
 

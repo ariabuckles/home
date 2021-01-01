@@ -1,0 +1,16 @@
+#!/bin/sh
+# Modified from: https://github.com/i3-gnome/i3-gnome
+# MIT License; Copyright (c) 2014 Lorenzo Villani, i3-gnome team.
+
+# Register with gnome-session so that it does not kill the whole session thinking it is dead.
+test -n "$DESKTOP_AUTOSTART_ID" && {
+    dbus-send --print-reply --session --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:sway-gnome" "string:$DESKTOP_AUTOSTART_ID"
+}
+
+sway
+
+# Logout process.
+test -n "$DESKTOP_AUTOSTART_ID" && {
+    dbus-send --print-reply --session --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.Logout "uint32:1"
+}
+
