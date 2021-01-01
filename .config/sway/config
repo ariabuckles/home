@@ -3,7 +3,7 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
-# Logo key. Use Mod1 for Alt.
+# Use Super as the modifier key
 set $mod Mod4
 # Home row direction keys, like vim
 set $left n
@@ -63,11 +63,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+q kill
+    # Close focused window
+    bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -80,7 +80,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -138,22 +138,22 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+Shift+b splith
+    bindsym $mod+Shift+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+Shift+s layout stacking
+    bindsym $mod+Shift+w layout tabbed
+    bindsym $mod+Shift+g layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+d floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+d focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -231,11 +231,6 @@ exec swayidle -w \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
-bindsym --to-code {
-    $mod+b splith
-    $mod+v splitv
-}
-
 # Media keys
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
@@ -262,40 +257,18 @@ client.focused_inactive #6da741 #00a489 #173f4f
 
 exec_always {
     systemctl --user import-environment
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-    gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
     test -e $SWAYSOCK.wob || mkfifo $SWAYSOCK.wob
     tail -f $SWAYSOCK.wob | wob
 }
 
 output DP-2 scale 2
 
-# Use Super as the modifier key
-set $mod Mod4
-
-set $term gnome-terminal
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
-
-# close focused window
-bindsym $mod+q kill
-
-# open menu
-bindsym $mod+space exec $menu
-
-# change focus
-bindsym $mod+n focus left
-bindsym $mod+e focus down
-bindsym $mod+u focus up
-bindsym $mod+i focus right
-
-# move focused window
-bindsym $mod+Shift+n move left
-bindsym $mod+Shift+e move down
-bindsym $mod+Shift+u move up
-bindsym $mod+Shift+i move right
+# Default GNOME font
+font pango:Cantarell 11
 
 bindsym $mod+Shift+p exec swaynag -t warning -m "KBD_LAYOUT is $KBD_LAYOUT"
+
+# Fix GTK+ apps slowness:
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
