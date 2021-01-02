@@ -2,6 +2,19 @@
 # Modified from: https://github.com/i3-gnome/i3-gnome
 # MIT License; Copyright (c) 2014 Lorenzo Villani, i3-gnome team.
 
+
+# Session
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_DESKTOP=sway
+
+# this file imports openSUSEway desktop enviroments
+if [ -e /etc/sway/env ]; then
+  set -a
+  . /etc/sway/env
+  set +a
+fi
+
 # Register with gnome-session so that it does not kill the whole session thinking it is dead.
 test -n "$DESKTOP_AUTOSTART_ID" && {
     dbus-send --print-reply --session --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:sway-gnome" "string:$DESKTOP_AUTOSTART_ID"
