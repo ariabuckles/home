@@ -48,8 +48,8 @@ mosh
 hub
 
 # node:
-nodejs12
-npm12
+nodejs14
+npm14
 
 # python:
 pattern:devel_python3
