@@ -167,6 +167,37 @@ show-trash=false
 transparency-mode='FIXED'
 unity-backlit-items=false
 
+[org/gnome/shell/extensions/dash-to-panel]
+appicon-margin=0
+appicon-padding=8
+available-monitors=[0]
+dot-color-1='#5294e2'
+dot-color-2='#5294e2'
+dot-color-3='#5294e2'
+dot-color-4='#5294e2'
+dot-color-dominant=true
+dot-color-override=false
+dot-color-unfocused-1='#5294e2'
+dot-color-unfocused-2='#5294e2'
+dot-color-unfocused-3='#5294e2'
+dot-color-unfocused-4='#5294e2'
+dot-position='LEFT'
+dot-style-focused='DASHES'
+dot-style-unfocused='DASHES'
+focus-highlight-color='#ffffff'
+focus-highlight-dominant=false
+hotkeys-overlay-combo='TEMPORARILY'
+panel-element-positions='{"0":[{"element":"desktopButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":false,"position":"stackedBR"}]}'
+panel-positions='{"0":"LEFT"}'
+panel-size=64
+show-appmenu=false
+stockgs-keep-dash=false
+stockgs-keep-top-panel=true
+trans-bg-color='#222222'
+trans-panel-opacity=0.59999999999999998
+trans-use-custom-bg=true
+trans-use-custom-opacity=false
+
 [org/gnome/shell/extensions/window-list]
 grouping-mode='auto'
 
