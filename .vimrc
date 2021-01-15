@@ -31,7 +31,7 @@ if executable('fzf') " Add fzf brew package support:
   " homebrew:
   set runtimepath+=/usr/local/opt/fzf/
   " zypper:
-  set runtimepath+=/usr/share/vim/site/plugin/fzf.vim
+  set runtimepath+=/usr/share/vim/site/
 endif
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$" " file encoding
