@@ -37,3 +37,6 @@
 [submodule ".vim/pack/main/start/typescript-vim"]
 	path = .vim/pack/main/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim
+[submodule ".vim/pack/main/opt/nvim-lspconfig"]
+	path = .vim/pack/main/opt/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig.git

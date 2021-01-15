@@ -261,14 +261,29 @@ nnoremap g* :Rg<CR>
 "Never type the same word twice and maybe learn a new spellings!
 "Use the Linux dictionary when spelling is in doubt.
 "Window users can copy the file to their machine.
-function! Tab_Or_Complete()
-	if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-		return "\<C-N>"
-	else
-		return "\<Tab>"
-	endif
+function! TabComplete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\S'
+    if pumvisible()
+      if pum_getpos()["size"] == 1
+        return "\<C-Y>"
+      else
+        return "\<Down>"
+      endif
+    elseif &omnifunc ==? ""
+      return "\<C-N>"
+    else
+      return "\<C-X>\<C-O>"
+    endif
+  else
+    return "\<Tab>"
+  endif
 endfunction
-inoremap <silent> <Tab> <C-R>=Tab_Or_Complete()<CR>
+inoremap <silent> <Tab> <C-R>=TabComplete()<CR>
+
+" Omnicompletion:
+" keep menu: popup menu
+" remove preview: Disable info/preview window from appearing in omnicompletion:
+set completeopt=menu,menuone,noinsert
 
 "Normal mode: tab navigation!
 nnoremap <Tab> <C-w>w
@@ -374,6 +389,19 @@ set shortmess+=a
 
 " Neovim provider configuration
 let g:python3_host_prog="/usr/bin/python3"
+
+" Neovim LSP support
+if has('nvim')
+  lua if vim.lsp then vim.api.nvim_command('packadd nvim-lspconfig') end
+  lua if vim.lsp then require('lspconfig').tsserver.setup({}) end
+
+  autocmd FileType typescript set omnifunc=v:lua.vim.lsp.omnifunc
+
+  nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+  nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <silent> gc    <cmd>lua vim.lsp.buf.clear_references()<CR>
+endif
+
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
