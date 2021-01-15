@@ -372,6 +372,9 @@ autocmd VimResized * wincmd =
 " Use more abbreviations in status messages
 set shortmess+=a
 
+" Neovim provider configuration
+let g:python3_host_prog="/usr/bin/python3"
+
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
 "autocmd BufRead *.txt set tw=78

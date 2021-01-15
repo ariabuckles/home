@@ -9,6 +9,7 @@
     "eslint": "latest",
     "eslint_d": "latest",
     "prettier": "latest",
+    "neovim": "latest",
     "react-native-cli": "latest",
     "serve": "latest",
     "viridium": "=0.5.0"
