@@ -46,6 +46,7 @@ mosh
 
 # Service CLIs
 hub
+gh
 
 # node:
 nodejs14
