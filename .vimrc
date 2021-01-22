@@ -358,7 +358,6 @@ let g:lightline = {
 
 " Signcolumn:
 set signcolumn=yes
-highlight SignColumn ctermbg=none
 
 
 " Linting And Formatting:
@@ -370,9 +369,7 @@ endif
 
 
 " Colors
-hi clear Search
-hi! def Search ctermfg=0 ctermbg=11
-highlight Pmenu ctermbg=gray
+colorscheme aria
 
 
 " :terminal support
