@@ -123,6 +123,7 @@ autocmd FileType html setlocal shiftwidth=2
 autocmd FileType java setlocal shiftwidth=4
 autocmd FileType java setlocal tabstop=4
 autocmd FileType text set wrap
+autocmd FileType markdown set wrap
 
 autocmd BufRead,BufNewFile *.al setfiletype javascript
 
