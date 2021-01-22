@@ -391,18 +391,6 @@ set shortmess+=a
 " Neovim provider configuration
 let g:python3_host_prog="/usr/bin/python3"
 
-" Neovim LSP support
-if has('nvim')
-  lua if vim.lsp then vim.api.nvim_command('packadd nvim-lspconfig') end
-  lua if vim.lsp then require('lspconfig').tsserver.setup({}) end
-
-  autocmd FileType typescript set omnifunc=v:lua.vim.lsp.omnifunc
-
-  nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-  nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <silent> gc    <cmd>lua vim.lsp.buf.clear_references()<CR>
-endif
-
 
 " Disabled Or Not Sure What These Are:
 " In text files, always limit the width of text to 78 characters
