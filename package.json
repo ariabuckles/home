@@ -12,6 +12,7 @@
     "neovim": "latest",
     "react-native-cli": "latest",
     "serve": "latest",
+    "typescript-language-server": "latest",
     "viridium": "=0.5.0"
   },
   "devDependencies": {},
