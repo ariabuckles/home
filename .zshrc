@@ -242,7 +242,6 @@ function identify {
         eval ssh-add
     fi
 }
-alias yarn="identify && yarn"
 
 export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
 export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
