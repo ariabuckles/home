@@ -165,6 +165,19 @@ alias -r ga='git add'
 alias -r gs='git status'
 alias -r gb='git branch'
 
+# hacky cat?
+
+function cat {
+  for file in "$@"; do
+    echo "$var"
+    if [[ -d "$file" ]]; then
+      ls "$ls_color" "$file"
+    else
+      bat -pp "$file"
+    fi
+  done
+}
+
 # Set up command line mode (currently vim mode...)
 
 # Add -- COMMAND -- message when in command mode
