@@ -19,7 +19,7 @@ let g:colors_name="aria"
 " Colours:
 
 " Vim UI:
-hi SignColumn ctermbg=none              guibg=none
+hi SignColumn ctermbg=NONE              guibg=NONE
 hi Pmenu      ctermbg=250    ctermfg=16 guibg=#bcbcbc guifg=#000000
 hi PmenuSel   ctermbg=254    ctermfg=16 guibg=#e4e4e4 guifg=#000000
 hi Search     ctermbg=yellow ctermfg=16 guibg=#ccff33 guifg=#000000
@@ -42,16 +42,16 @@ hi Number         ctermfg=darkred
 hi Boolean        ctermfg=darkred
 hi Float          ctermfg=darkred
 
-hi Identifier     ctermfg=none
-hi Function       ctermfg=none
+hi Identifier     ctermfg=NONE
+hi Function       ctermfg=NONE
 
 hi Statement      ctermfg=darkyellow
 hi Conditional    ctermfg=darkyellow
 hi Repeat         ctermfg=darkyellow
 " TODO(aria): reset these to darkyellow, but prevent typescript from linking
 " to them erroneously:
-hi Label          ctermfg=none
-hi Operator       ctermfg=none
+hi Label          ctermfg=NONE
+hi Operator       ctermfg=NONE
 hi Keyword        ctermfg=darkyellow
 hi Exception      ctermfg=darkyellow
 
