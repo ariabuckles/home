@@ -1,0 +1,24 @@
+# cli essentials:
+zsh
+vim
+git
+make
+
+# ~/home setup:
+bat
+fd
+fzf
+vim-fzf
+jq
+neovim
+ripgrep
+tig
+mosh
+
+# Service CLIs:
+hub
+gh
+
+# System:
+words
+words-canadian

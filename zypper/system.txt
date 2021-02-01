@@ -1,0 +1,10 @@
+# App frameworks
+flatpak
+
+# CLI Monitoring
+powertop
+vnstat
+
+# Gnome Customizations
+gtk3-metatheme-greybird-geeko
+mint-x-icon-theme

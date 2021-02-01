@@ -1,0 +1,15 @@
+# Base patterns:
+pattern:base
+pattern:enhanced_base
+pattern:console
+pattern:devel_basis
+pattern:devel_C_C++
+pattern:documentation
+pattern:fonts
+pattern:gnome
+pattern:yast2_basis
+
+# openSUSE system misc
+openSUSE-release
+release-notes-openSUSE
+grub2-x86_64-efi
