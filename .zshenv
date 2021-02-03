@@ -44,8 +44,6 @@ if [[ "$USER" == "ariashell" && -d "$ARIAHOME/shell" ]]; then
 fi
 
 # Vim / commandline setup:
-export EDITOR=vim
-export VISUAL=vim
 bindkey -e
 
 # Custom Variables
