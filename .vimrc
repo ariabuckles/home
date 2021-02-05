@@ -131,7 +131,7 @@ autocmd BufRead,BufNewFile *.al setfiletype javascript
 
 " Set <leader> to <space>, and <space> alone to do nothing
 let mapleader=" "
-nnoremap <leader> <Nop>
+noremap <leader> <nop>
 
 "lnoremap does 'language mode', which applies in all text insert situations,
 "but not normal/visual/visualblock. Notably, this includes search.
@@ -201,11 +201,9 @@ if $KBD_LAYOUT ==? "colemak"
 endif
 
 " Unified undo/redo
-nnoremap z u
+nnoremap <nowait> z u
 nnoremap Z <C-R>
 nnoremap <C-R> :echo "Use Z to redo"<CR>
-" Don't wait for other z* bindings:
-set timeoutlen=50
 
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
