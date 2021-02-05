@@ -189,8 +189,7 @@ if $KBD_LAYOUT ==? "colemak"
   noremap N 0^
   noremap E 20<down>zz
   noremap I $
-  noremap l u
-  nnoremap U <C-r>
+  nnoremap l :echo "Use z to undo"<CR>
   noremap m n
   noremap M N
   noremap <c-d> <c-v>
@@ -200,6 +199,13 @@ if $KBD_LAYOUT ==? "colemak"
   noremap T I
   nnoremap <silent> t i<C-r>=MaybeIndent()<CR>
 endif
+
+" Unified undo/redo
+nnoremap z u
+nnoremap Z <C-R>
+nnoremap <C-R> :echo "Use Z to redo"<CR>
+" Don't wait for other z* bindings:
+set timeoutlen=50
 
 "Tab navigation with <space>j/l
 nnoremap <leader>j gT
