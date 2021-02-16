@@ -63,7 +63,7 @@ install-sudoers:
 # TODO(aria): remove .config directory if non-symlink first.
 install-npm: install-dotfiles
 	# Install package.json dependencies globally using jq from brew
-	cat package.json | jq -r '.dependencies | to_entries | .[] | .key + "@" + .value' | xargs npm install -g
+	cat package.json | jq -r '.dependencies | to_entries | .[] | .key + "@" + .value' | xargs npm14 install -g
 
 .PHONY: install-npm
 update-npm:

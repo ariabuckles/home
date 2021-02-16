@@ -1,0 +1,51 @@
+include <tunables/global>
+
+# To install global things, run unconfined node14 instead
+profile aria-dev /usr/bin/{node,npm,npx,node-default} {
+  include <abstractions/base>
+  include <abstractions/consoles>
+
+  deny capability setuid,
+
+  # Other executables
+  /bin/** mrix,
+  /usr/bin/** mrix,
+  /usr/lib*/** mrix,
+  /usr/include/node** mrix,
+  /usr/**/node_modules** mrwix,
+  owner @{HOME}/.pyenv/** mrix,
+
+  # TODO: limit these more?
+  /usr/share/** r,
+  owner @{HOME}/.local/share/** r,
+  /sys/fs/cgroup/memory/memory.limit_in_bytes r,
+  /usr/** r,
+  /etc/** r,
+  /run/** r,
+  /var/** r,
+  /sys/** r,
+  /tmp/** rw,
+
+  network,
+
+  owner @{HOME}/.local/.node_repl_history rw,
+  owner @{HOME}/.config/mimeapps.list r,
+  owner @{HOME}/.config/configstore/nodemon.** rw,
+
+  # TODO: limit this to only npm:
+  owner @{HOME}/.npm/** rw,
+  owner @{HOME}/bin/* mrix,
+  owner @{HOME}/lib/node_modules** r,
+
+  owner @{HOME}/.npmrc r,
+  owner @{HOME}/home/.npmrc r,
+
+  # TODO: limit these to viridium only:
+  owner @{HOME}/.viridium.json rw,
+  owner @{HOME}/home/.viridium.json rw,
+
+
+  # Allow access to dev directories:
+  owner @{HOME}/{src,code}/** mrwix,
+  owner /mnt/ramdisk/src/** mrwix,
+}
