@@ -2,44 +2,45 @@
 # Set up syncing from ~/.src to ~/src (which is mounted on the ramdisk)
 if [[ -d /mnt/ramdisk ]]; then
 
-  # npm sync: sync from ~/src to ~/.src:
-  npm() {
-    if [[ "$1" != "sync" ]]; then
-      command npm "$@"
-      retval=$?
-      if [[ "$retval" -ne 0 ]]; then
-        return $retval
-      fi
-    fi
-    if [[ "$1" == "sync" || "$1" == install* || "$1" == clean-install* || "$1" == ci* || "$1" == i || "$1" == it ]]; then
-      if [[ "$(pwd -P)" == /mnt/ramdisk/src/* ]]; then
-        if ! command -v rsync > /dev/null; then
-          echo "npm sync: could not sync npm; no rsync found"
-          return 0
-        fi
-        mkdir -p ~/.src
-        srcdir="$(npm prefix)"
-        destdir="$(echo "$srcdir" | sed "s|^/mnt/ramdisk/src/|$HOME/.src/|")"
-        mkdir -p "$destdir"
-        echo "(syncing to $destdir ...)"
-        cp "$srcdir/package-lock.json" "$destdir/package-lock.json"
-        rsync -a "$srcdir/node_modules/" "$destdir/node_modules/"
-      fi
-    fi
-  }
+  ## Disabled because npm ci is fast again
+  ## npm sync: sync from ~/src to ~/.src:
+  #npm() {
+  #  if [[ "$1" != "sync" ]]; then
+  #    command npm "$@"
+  #    retval=$?
+  #    if [[ "$retval" -ne 0 ]]; then
+  #      return $retval
+  #    fi
+  #  fi
+  #  if [[ "$1" == "sync" || "$1" == install* || "$1" == clean-install* || "$1" == ci* || "$1" == i || "$1" == it ]]; then
+  #    if [[ "$(pwd -P)" == /mnt/ramdisk/src/* ]]; then
+  #      if ! command -v rsync > /dev/null; then
+  #        echo "npm sync: could not sync npm; no rsync found"
+  #        return 0
+  #      fi
+  #      mkdir -p ~/.src
+  #      srcdir="$(npm prefix)"
+  #      destdir="$(echo "$srcdir" | sed "s|^/mnt/ramdisk/src/|$HOME/.src/|")"
+  #      mkdir -p "$destdir"
+  #      echo "(syncing to $destdir ...)"
+  #      cp "$srcdir/package-lock.json" "$destdir/package-lock.json"
+  #      rsync -a "$srcdir/node_modules/" "$destdir/node_modules/"
+  #    fi
+  #  fi
+  #}
 
-  # npm ramload: sync from the sync src to ramdisk:
-  npm_ramload() {
-    mkdir -p "$HOME/.src"
-    for packagelock in $(cd "$HOME/.src/" && fd --exclude node_modules package-lock.json); do
-      from="$HOME/.src/$(dirname "$packagelock")"
-      to="$HOME/src/$(dirname "$packagelock")"
-      if [[ ! -d "$to/node_modules" ]]; then
-        mkdir -p "$to"
-        cp -R "$from/node_modules" "$to/node_modules"
-      fi
-    done
-  }
+  ## npm ramload: sync from the sync src to ramdisk:
+  #npm_ramload() {
+  #  mkdir -p "$HOME/.src"
+  #  for packagelock in $(cd "$HOME/.src/" && fd --exclude node_modules package-lock.json); do
+  #    from="$HOME/.src/$(dirname "$packagelock")"
+  #    to="$HOME/src/$(dirname "$packagelock")"
+  #    if [[ ! -d "$to/node_modules" ]]; then
+  #      mkdir -p "$to"
+  #      cp -R "$from/node_modules" "$to/node_modules"
+  #    fi
+  #  done
+  #}
 
   venv_ramload() {
     mkdir -p "$HOME/.src"
