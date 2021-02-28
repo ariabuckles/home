@@ -47,6 +47,9 @@ fi
 
 # Vim / commandline setup:
 bindkey -e
+# 10ms key sequence timeout:
+export KEYTIMEOUT=1
+
 
 # Custom Variables
 export POLARIS='toole1@ews-polaris04.cs.illinois.edu'
