@@ -211,9 +211,9 @@ if [[ -e "$PYENV_ROOT/.git" ]]; then
     (cd "$PYENV_ROOT" && git pull --rebase)
   }
 fi
-if command -v pyenv >/dev/null; then
-  pyenv rehash
-fi
+#if command -v pyenv >/dev/null; then
+#  pyenv rehash
+#fi
 
 # bundle exec rails fanciness
 function r {

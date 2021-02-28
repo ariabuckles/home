@@ -18,11 +18,11 @@ export PYENV_SHELL=$SHELL
 
 # Set up $PATH safely:
 # Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
-export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
+#export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 # Custom executables:
 export PATH="$PATH:$ARIAHOME/bin"
 # Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
-export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+#export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 # Python with pyenv (bin is the pyenv executable when installed from source.
 # shims are the bins for python and installed python deps)
 #export PATH="$PYENV_ROOT/shims:$PATH"
@@ -33,12 +33,12 @@ export PATH="$PATH:./node_modules/.bin"
 #export VIRTUAL_ENV="./.ve"
 
 # Android setup & paths:
-export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
-export ANDROID_SDK="$ANDROID_HOME"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
+#export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
+#export ANDROID_SDK="$ANDROID_HOME"
+#export PATH="$PATH:$ANDROID_HOME/emulator"
+#export PATH="$PATH:$ANDROID_HOME/tools"
+#export PATH="$PATH:$ANDROID_HOME/tools/bin"
+#export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # Custom home directory for ariashell
 if [[ "$USER" == "ariashell" && -d "$ARIAHOME/shell" ]]; then
