@@ -25,10 +25,12 @@ export PATH="$PATH:$ARIAHOME/bin"
 export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 # Python with pyenv (bin is the pyenv executable when installed from source.
 # shims are the bins for python and installed python deps)
-export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+#export PATH="$PYENV_ROOT/shims:$PATH"
 # And last in the list, node modules bins & python .ve virtualenv bins:
 export PATH="$PATH:./node_modules/.bin"
-#export PATH="./.ve/bin:$PATH" # auto-be in a virtualenv if the virtualenv is named `.ve`
+# Auto-be in a virtualenv if the virtualenv is named `.ve`:
+#export PATH="$PATH:./.ve/bin"
+#export VIRTUAL_ENV="./.ve"
 
 # Android setup & paths:
 export ANDROID_HOME="$ARIAHOME/Library/Android/sdk"
