@@ -70,3 +70,5 @@
     algorithm = histogram
     renames = true
     renameLimit = 1500
+[init]
+	defaultBranch = main
