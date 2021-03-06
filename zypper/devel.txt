@@ -24,6 +24,7 @@ ShellCheck
 postgresql
 docker
 terraform
+vips-tools
 
 # System:
 openssl
