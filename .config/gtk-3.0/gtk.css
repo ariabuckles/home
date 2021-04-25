@@ -42,6 +42,7 @@
   bind "<super>x" { "cut-clipboard" () };
   bind "<super>c" { "copy-clipboard" () };
   bind "<super>v" { "paste-clipboard" () };
+  bind "<ctrl><backspace>" { "delete-from-cursor" (word-ends, -1) };
 }
 
 entry, textview {
