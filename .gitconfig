@@ -71,4 +71,7 @@
     renames = true
     renameLimit = 1500
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[blame]
+    markIgnoredLines = true
+    markUnblamableLines = true
