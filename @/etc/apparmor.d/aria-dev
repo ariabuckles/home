@@ -28,10 +28,6 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default} {
 
   network,
 
-  owner @{HOME}/.local/.node_repl_history rw,
-  owner @{HOME}/.config/mimeapps.list r,
-  owner @{HOME}/.config/configstore/nodemon.** rw,
-
   # TODO: limit this to only npm:
   owner @{HOME}/.npm/** rw,
   owner @{HOME}/bin/* mrix,
@@ -40,12 +36,18 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default} {
   owner @{HOME}/.npmrc r,
   owner @{HOME}/home/.npmrc r,
 
+  # Allow access to some config files
+  owner @{HOME}/.gitconfig r,
+  owner @{HOME}/home/.gitconfig r,
+  owner @{HOME}/.local/.node_repl_history rw,
+  owner @{HOME}/.config/mimeapps.list r,
+  owner @{HOME}/.config/configstore/nodemon.** rw,
+
   # TODO: limit these to viridium only:
   owner @{HOME}/.viridium.json rw,
   owner @{HOME}/home/.viridium.json rw,
 
-
   # Allow access to dev directories:
-  owner @{HOME}/{src,code}/** mrwix,
+  owner @{HOME}/{src,.src,code}/** mrwix,
   owner /mnt/ramdisk/src/** mrwix,
 }
