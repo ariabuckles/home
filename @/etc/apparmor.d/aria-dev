@@ -38,7 +38,9 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default} {
 
   # Allow access to some config files
   owner @{HOME}/.gitconfig r,
+  owner @{HOME}/.gitignoreglobal r,
   owner @{HOME}/home/.gitconfig r,
+  owner @{HOME}/home/.gitignoreglobal r,
   owner @{HOME}/.local/.node_repl_history rw,
   owner @{HOME}/.config/mimeapps.list r,
   owner @{HOME}/.config/configstore/nodemon.** rw,
