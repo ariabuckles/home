@@ -3,6 +3,7 @@ if has('nvim')
   lua require('aria-lsp')
 
   autocmd FileType typescript set omnifunc=v:lua.vim.lsp.omnifunc
+  autocmd FileType typescriptreact set omnifunc=v:lua.vim.lsp.omnifunc
 
   nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
   nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
