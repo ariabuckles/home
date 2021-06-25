@@ -42,6 +42,7 @@
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     assigned = "!hub pr list -f '%as %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
     pr-message = "!(git pr-message-title && echo && git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | git stripspace || true"
+    pr-message-body = "!(git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | git stripspace || true"
     pr-message-title = "!git log -n1 --pretty=format:%s && echo || true"
     pr-message-issues = "!echo '## Relevant Issues' && echo && git pr-message-raw-issues && echo"
     pr-message-changes = "!echo '## Summary' && echo && git pr-message-raw-body"
@@ -53,8 +54,9 @@
     pr-message-raw-body = "!git log --reverse $(git get-main)...HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses|implements) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true"
     pr-message-raw-list = "!git log --reverse $(git get-main)...HEAD --pretty=format:'1. %h %s' || true"
     pr-message-raw-test = "!git log --reverse $(git get-main)...HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
-    pr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
+    hpr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
     new-pr = pr
+    pr = "!bash -c \"git update-pr && gh pr create --head aria/$(git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --title $(git pr-message-title) --body-file <(git pr-message-body) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
 [core]
     excludesfile = ~/.gitignoreglobal
     abbrev = 8
