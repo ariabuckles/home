@@ -1,7 +1,7 @@
 include <tunables/global>
 
 # To install global things, run unconfined node14 instead
-profile aria-dev /usr/bin/{node,npm,npx,node-default} {
+profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   include <abstractions/base>
   include <abstractions/consoles>
 
@@ -13,18 +13,20 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default} {
   /usr/lib*/** mrix,
   /usr/include/node** mrix,
   /usr/**/node_modules** mrwix,
+  /tmp/** mrwix, # yarn executes node scripts in here
   owner @{HOME}/.pyenv/** mrix,
 
   # TODO: limit these more?
   /usr/share/** r,
   owner @{HOME}/.local/share/** r,
+  owner @{HOME}/.cache/** r,
   /sys/fs/cgroup/memory/memory.limit_in_bytes r,
   /usr/** r,
   /etc/** r,
   /run/** r,
   /var/** r,
   /sys/** r,
-  /tmp/** rw,
+  /proc/** r, # yarn needs this for reeding memory
 
   network,
 
@@ -32,9 +34,17 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default} {
   owner @{HOME}/.npm/** rw,
   owner @{HOME}/bin/* mrix,
   owner @{HOME}/lib/node_modules** r,
-
   owner @{HOME}/.npmrc r,
   owner @{HOME}/home/.npmrc r,
+
+  # yarn
+  owner @{HOME}/.cache/yarn/** rw,
+  owner @{HOME}/.yarnrc rw,
+  owner @{HOME}/home/.yarnrc rw,
+
+  # vercel
+  owner @{HOME}/.local/share/com.vercel.cli** rw,
+  owner @{HOME}/.cache/com.vercel.cli** rw,
 
   # Allow access to some config files
   owner @{HOME}/.gitconfig r,

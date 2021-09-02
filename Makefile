@@ -124,8 +124,8 @@ install-prefs:
 # ========================
 .PHONY: install-system-files
 install-system-files:
-	fd --hidden --type=d . '@' | sed 's:^.::' | sudo xargs mkdir -p
-	fd --hidden --type=f . '@' | sed 's:^.::' | sudo xargs -I% cp -p @% /%
+	su --command="fd --hidden --type=d . '@' | sed 's:^.::' | xargs mkdir -p"
+	su --command="fd --hidden --type=f . '@' | sed 's:^.::' | xargs -I% cp -p @% /%"
 
 .PHONY: install-user-files
 install-user-files:
