@@ -605,6 +605,12 @@ if [[ -n $VTE_VERSION ]] && [[ -e /etc/profile.d/vte.sh ]]; then
   source /etc/profile.d/vte.sh
 fi
 
+# Dev setups for terminals
+rbinit() {
+  export PROMPT='%2{%(0?.💎.🌩 )%} %2~> '
+  eval "$(rbenv init - zsh)"
+}
+
 # Allow local excensions:
 if [[ -e ~/.zsh/local ]]; then
   source ~/.zsh/local
