@@ -1,6 +1,6 @@
 include <tunables/global>
 
-# To install global things, run unconfined node14 instead
+# To install global things, run unconfined node16 instead
 profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   include <abstractions/base>
   include <abstractions/consoles>
@@ -49,8 +49,10 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   # Allow access to some config files
   owner @{HOME}/.gitconfig r,
   owner @{HOME}/.gitignoreglobal r,
+  owner @{HOME}/.gitignore r,
   owner @{HOME}/home/.gitconfig r,
   owner @{HOME}/home/.gitignoreglobal r,
+  owner @{HOME}/home/.gitignore r,
   owner @{HOME}/.local/.node_repl_history rw,
   owner @{HOME}/.config/mimeapps.list r,
   owner @{HOME}/.config/configstore/nodemon.** rw,
