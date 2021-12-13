@@ -62,6 +62,6 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   owner @{HOME}/home/.viridium.json rw,
 
   # Allow access to dev directories:
-  owner @{HOME}/{src,.src,code}/** mrwix,
-  owner /mnt/ramdisk/src/** mrwix,
+  owner @{HOME}/{src,.src,code}/** mrwlkix,
+  owner /mnt/ramdisk/src/** mrwlkix,
 }
