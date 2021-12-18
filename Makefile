@@ -5,7 +5,8 @@ UPDATE_TARGETS := $(patsubst %,update-%,$(SUBDIRS))
 .PHONY: install update root-install user-install root-update user-update
 .PHONY: $(INSTALL_TARGETS) $(UPDATE_TARGETS)
 
-install: root-install user-install
+install: root-install
+	$(MAKE) user-install
 	@echo "Successfully installed"
 
 update: root-update
@@ -16,8 +17,7 @@ root-install:
 	su --command="$(MAKE) install-fsroot install-zypper"
 	@echo "Installed root settings"
 
-user-install: root-install
-	$(MAKE) install-npm
+user-install: install-npm
 	@echo "Installed user settings"
 
 root-update:
