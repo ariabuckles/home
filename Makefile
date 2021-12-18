@@ -16,7 +16,8 @@ root-install:
 	su --command="$(MAKE) install-fsroot install-zypper"
 	@echo "Installed root settings"
 
-user-install:
+user-install: root-install
+	$(MAKE) install-npm
 	@echo "Installed user settings"
 
 root-update:

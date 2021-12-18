@@ -15,15 +15,11 @@
     "typescript-language-server": "latest",
     "viridium": "=0.5.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ariabuckles/home.git"
   },
   "author": "Aria Buckles (https://github.com/ariabuckles)",
   "license": "(CC0-1.0 OR 0BSD OR Unlicense)",
-  "bugs": {
-    "url": "https://github.com/ariabuckles/home/issues"
-  },
   "homepage": "https://github.com/ariabuckles/home#readme"
 }
