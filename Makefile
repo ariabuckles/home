@@ -13,7 +13,7 @@ update: root-update
 
 root-install:
 	@echo "Elevating to root to install root settings:"
-	su --command="$(MAKE) install-fsroot"
+	su --command="$(MAKE) install-fsroot install-zypper"
 	@echo "Installed root settings"
 
 user-install:
@@ -31,6 +31,8 @@ $(INSTALL_TARGETS):
 $(UPDATE_TARGETS):
 	make -C $(subst update-,,$@)
 
+# Targets that have order dependencies:
+install-zypper: install-fsroot
+
 echo:
 	echo $(INSTALL_TARGETS)
-

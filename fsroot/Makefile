@@ -1,4 +1,4 @@
-.PHONY: install uninstall
+.PHONY: install update
 
 install:
 	@echo "Installing system files (must be run under sudo)"
