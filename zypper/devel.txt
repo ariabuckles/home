@@ -1,6 +1,6 @@
 # node:
-nodejs14
-npm14
+nodejs16
+npm16
 yarn
 
 # lua:

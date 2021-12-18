@@ -10,6 +10,7 @@ pattern:gnome
 pattern:yast2_basis
 
 # openSUSE system misc
-openSUSE-release
-release-notes-openSUSE
-grub2-x86_64-efi
+# These were for some experiments with removing unused packages; not currently used
+#openSUSE-release
+#release-notes-openSUSE
+#grub2-x86_64-efi

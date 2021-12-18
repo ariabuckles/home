@@ -1,9 +1,10 @@
 .PHONY: install update
 
-ZYPPER := zypper --non-interactive --non-interactive-include-reboot-patches --ignore-unknown
+# Add params like --ignore-unknown here
+ZYPPER := zypper
 
 install:
-	zypper refresh
-	cat *.txt | grep -v '^#\|^$$' | xargs -t zypper install
+	$(ZYPPER) refresh
+	cat *.txt | grep -v '^#\|^$$' | xargs -t $(ZYPPER) install
 
 update: ;
