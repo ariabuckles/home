@@ -11,4 +11,4 @@ update: ;
 sync:
 	@echo "Updating system files in this repo (must be run under sudo)"
 	# TODO(aria): Ignore nonexistant files
-	find . -type f | grep -v Makefile | xargs -I% cp -p /% %
+	find . -type f | grep -v Makefile | xargs -t -I% cp -p /% %
