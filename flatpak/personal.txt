@@ -1,0 +1,2 @@
+com.rafaelmardojai.Blanket
+org.signal.Signal

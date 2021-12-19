@@ -14,7 +14,7 @@ update: root-update
 
 root-install:
 	@echo "Elevating to root to install root settings:"
-	su --command="$(MAKE) install-fsroot install-zypper"
+	su --command="$(MAKE) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
 user-install: install-npm
@@ -34,6 +34,7 @@ $(UPDATE_TARGETS):
 
 # Targets that have order dependencies:
 install-zypper: install-fsroot
+install-flatpak: install-zypper
 
 echo:
 	echo $(INSTALL_TARGETS)
