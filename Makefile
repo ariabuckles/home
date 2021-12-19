@@ -25,7 +25,7 @@ sync: root-sync user-sync
 # Install:
 
 root-install:
-	@echo "Elevating to root to install root settings:"
+	@echo "Elevating to root to install root configuration:"
 	su --command="$(MAKE) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
@@ -33,7 +33,9 @@ user-install: install-npm
 	@echo "Installed user settings"
 
 # Update:
-root-update: update-fsroot update-zypper update-flatpak
+root-update:
+	@echo "Elevating to root to update root programs:"
+	su --command="$(MAKE) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
 user-update: update-npm
