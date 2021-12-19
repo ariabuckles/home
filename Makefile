@@ -49,13 +49,13 @@ user-sync: sync-npm
 # Subtargets for specific directory subsystems:
 
 $(INSTALL_TARGETS):
-	make -C $(subst install-,,$@)
+	make -C $(subst install-,,$@) install
 
 $(UPDATE_TARGETS):
-	make -C $(subst update-,,$@)
+	make -C $(subst update-,,$@) update
 
 $(SYNC_TARGETS):
-	make -C $(subst sync-,,$@)
+	make -C $(subst sync-,,$@) sync
 
 # Targets that have order dependencies:
 install-zypper: install-fsroot
