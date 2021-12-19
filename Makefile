@@ -6,7 +6,7 @@ SYNC_TARGETS := $(patsubst %,sync-%,$(SUBDIRS))
 
 # Mark all targets as always needing a rerun:
 .PHONY: install update root-install user-install root-update user-update root-sync user-sync
-.PHONY: $(INSTALL_TARGETS) $(UPDATE_TARGETS)
+.PHONY: $(INSTALL_TARGETS) $(UPDATE_TARGETS) $(SYNC_TARGETS)
 
 # Primary commands: install, update, sync
 
@@ -53,6 +53,9 @@ $(INSTALL_TARGETS):
 
 $(UPDATE_TARGETS):
 	make -C $(subst update-,,$@)
+
+$(SYNC_TARGETS):
+	make -C $(subst sync-,,$@)
 
 # Targets that have order dependencies:
 install-zypper: install-fsroot
