@@ -1,11 +1,18 @@
-.DS_Store
-*.swp
 node_modules
 .npmrc
-.vim/.netrwhist
-.config/dconf/user
-.config/dconf/aria.txt-lock
 .vim/pack/**/tags
 .config/nvim/pack/**/tags
 .zsh/local
 .cache
+
+# MacOS:
+.DS_Store
+
+# dconf:
+.config/dconf/user
+config/dconf/user
+*-lock
+
+# vim:
+.vim/.netrwhist
+*.swp

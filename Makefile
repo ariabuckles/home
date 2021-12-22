@@ -29,7 +29,7 @@ root-install:
 	su --command="$(MAKE) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
-user-install: install-npm
+user-install: install-config install-npm
 	@echo "Installed user settings"
 
 # Update:
@@ -38,14 +38,14 @@ root-update:
 	su --command="$(MAKE) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
-user-update: update-npm
+user-update: update-config update-npm
 	@echo "Updated user software"
 
 # Sync:
 root-sync: sync-fsroot sync-zypper sync-flatpak
 	@echo "Synced root settings"
 
-user-sync: sync-npm
+user-sync: sync-config sync-npm
 	@echo "Synced user settings"
 
 # Subtargets for specific directory subsystems:
@@ -62,5 +62,6 @@ $(SYNC_TARGETS):
 # Targets that have order dependencies:
 install-zypper: install-fsroot
 install-flatpak: install-zypper
+install-npm: install-config
 
 update-flatpak: update-zypper

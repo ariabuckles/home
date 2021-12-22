@@ -40,3 +40,6 @@
 [submodule ".vim/pack/main/opt/nvim-lspconfig"]
 	path = .vim/pack/main/opt/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
+[submodule "config/nvim/pack/nvimonly/start/nvim-colorizer.lua"]
+	path = config/nvim/pack/nvimonly/start/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua.git

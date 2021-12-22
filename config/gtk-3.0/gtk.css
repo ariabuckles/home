@@ -1,0 +1,50 @@
+/*
+ * GTK
+ * Copyright (C) 2002 Owen Taylor
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+ * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
+ * file for a list of people on the GTK+ Team.  See the ChangeLog
+ * files for a list of changes.  These files are distributed with
+ * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ */
+
+/*
+ * A keybinding set implementing Emacs-like keybindings
+ */
+
+/*
+ * From /usr/share/themes/Emacs/gtk-3.0/gtk-keys.css
+ * See also https://github.com/linuxmint/gtk/blob/master/gtk/gtk-keys.css.mac
+ * See also https://stackoverflow.com/questions/30487963/gtk3-keys-bindings-in-css-files
+ * Modified by Aria Buckles 2020+
+ */
+
+/*
+ * Bindings for GtkTextView and GtkEntry
+ */
+@binding-set aria-text-entry
+{
+  bind "<super>x" { "cut-clipboard" () };
+  bind "<super>c" { "copy-clipboard" () };
+  bind "<super>v" { "paste-clipboard" () };
+  bind "<ctrl><backspace>" { "delete-from-cursor" (word-ends, -1) };
+}
+
+entry, textview {
+  -gtk-key-bindings: aria-text-entry;
+}
