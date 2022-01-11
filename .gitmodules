@@ -1,44 +1,44 @@
 [submodule ".vim/bundle/coc.nvim"]
-	path = .vim/bundle/coc.nvim
+	path = homedir/.vim/bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 [submodule ".vim/pack/main/start/fzf.vim"]
-	path = .vim/pack/main/start/fzf.vim
+	path = homedir/.vim/pack/main/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
 [submodule ".vim/pack/main/start/lightline.vim"]
-	path = .vim/pack/main/start/lightline.vim
+	path = homedir/.vim/pack/main/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim.git
 [submodule ".vim/pack/main/start/vim-jsx-pretty"]
-	path = .vim/pack/main/start/vim-jsx-pretty
+	path = homedir/.vim/pack/main/start/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
 [submodule ".vim/pack/main/start/vim-vue"]
-	path = .vim/pack/main/start/vim-vue
+	path = homedir/.vim/pack/main/start/vim-vue
 	url = https://github.com/posva/vim-vue.git
 [submodule ".vim/pack/main/start/vim-prettier"]
-	path = .vim/pack/main/start/vim-prettier
+	path = homedir/.vim/pack/main/start/vim-prettier
 	url = https://github.com/prettier/vim-prettier.git
 [submodule ".vim/pack/main/start/vim-unimpaired"]
-	path = .vim/pack/main/start/vim-unimpaired
+	path = homedir/.vim/pack/main/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 [submodule ".vim/pack/main/start/vim-surround"]
-	path = .vim/pack/main/start/vim-surround
+	path = homedir/.vim/pack/main/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule ".vim/pack/main/start/vim-repeat"]
-	path = .vim/pack/main/start/vim-repeat
+	path = homedir/.vim/pack/main/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule ".vim/pack/main/start/neomake"]
-	path = .vim/pack/main/start/neomake
+	path = homedir/.vim/pack/main/start/neomake
 	url = https://github.com/neomake/neomake.git
 [submodule ".vim/pack/main/start/vim-ripgrep"]
-	path = .vim/pack/main/start/vim-ripgrep
+	path = homedir/.vim/pack/main/start/vim-ripgrep
 	url = https://github.com/jremmen/vim-ripgrep.git
 [submodule ".vim/pack/main/start/vim-javascript"]
-	path = .vim/pack/main/start/vim-javascript
+	path = homedir/.vim/pack/main/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
 [submodule ".vim/pack/main/start/typescript-vim"]
-	path = .vim/pack/main/start/typescript-vim
+	path = homedir/.vim/pack/main/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim
 [submodule ".vim/pack/main/opt/nvim-lspconfig"]
-	path = .vim/pack/main/opt/nvim-lspconfig
+	path = homedir/.vim/pack/main/opt/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
 [submodule "config/nvim/pack/nvimonly/start/nvim-colorizer.lua"]
 	path = config/nvim/pack/nvimonly/start/nvim-colorizer.lua
