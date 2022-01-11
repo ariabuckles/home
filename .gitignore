@@ -1,18 +1,17 @@
-node_modules
-.npmrc
-.vim/pack/**/tags
-.config/nvim/pack/**/tags
-.zsh/local
+homedir/.zsh/local
 .cache
 
 # MacOS:
 .DS_Store
 
 # dconf:
-.config/dconf/user
 config/dconf/user
 *-lock
 
 # vim:
-.vim/.netrwhist
+homedir/.vim/.netrwhist
 *.swp
+
+# git:
+.vim/pack/**/tags
+.config/nvim/pack/**/tags
