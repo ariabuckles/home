@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/coc.nvim"]
-	path = homedir/.vim/bundle/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule ".vim/pack/main/start/fzf.vim"]
 	path = homedir/.vim/pack/main/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
