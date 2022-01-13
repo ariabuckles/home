@@ -1,0 +1,4 @@
+[devel:languages:nodejs]
+enabled=1
+autorefresh=0
+baseurl=https://mirrorcache-us.opensuse.org/repositories/devel:/languages:/nodejs/openSUSE_Tumbleweed/

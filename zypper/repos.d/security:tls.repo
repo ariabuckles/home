@@ -1,0 +1,4 @@
+[security:tls]
+enabled=1
+autorefresh=0
+baseurl=https://mirrorcache-us.opensuse.org/repositories/security:/tls/openSUSE_Tumbleweed/
