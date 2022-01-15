@@ -5,47 +5,51 @@ UPDATE_TARGETS := $(patsubst %,update-%,$(SUBDIRS))
 SYNC_TARGETS := $(patsubst %,sync-%,$(SUBDIRS))
 
 # Mark all targets as always needing a rerun:
-.PHONY: install update root-install user-install root-update user-update root-sync user-sync
+.PHONY: init install update root-install user-install root-update user-update root-sync user-sync
 .PHONY: $(INSTALL_TARGETS) $(UPDATE_TARGETS) $(SYNC_TARGETS)
 
 # Primary commands: install, update, sync
 
-install: root-install
+install: init root-install
 	$(MAKE) user-install
 	@echo "Successfully installed"
 
-update: root-update
+update: init root-update
 	$(MAKE) user-update
 	@echo "Successfully updated"
 
-sync: root-sync user-sync
+sync: init root-sync user-sync
 	@echo "Sync complete"
+
+# Enforce not running as root, due to permissions & safety for non-system updates
+init:
+	test $$(id -u) != 0 # Must not be run as root for perms & safety of non-system changes
 
 # Subtargets for root vs user separation:
 # Install:
 
-root-install:
+root-install: init
 	@echo "Elevating to root to install root configuration:"
 	su --command="$(MAKE) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
-user-install: install-config install-npm
+user-install: init install-config install-npm
 	@echo "Installed user settings"
 
 # Update:
-root-update:
+root-update: init
 	@echo "Elevating to root to update root programs:"
 	su --command="$(MAKE) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
-user-update: update-config update-npm
+user-update: init update-config update-npm
 	@echo "Updated user software"
 
 # Sync:
-root-sync: sync-fsroot sync-zypper sync-flatpak
+root-sync: init sync-fsroot sync-zypper sync-flatpak
 	@echo "Synced root settings"
 
-user-sync: sync-config sync-npm
+user-sync: init sync-config sync-npm
 	@echo "Synced user settings"
 
 # Subtargets for specific directory subsystems:
