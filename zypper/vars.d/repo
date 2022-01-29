@@ -1,1 +1,0 @@
-$(xmllint --xpath '/product/urls/url[@name="repository"]/text()' /etc/products.d/baseproduct)
