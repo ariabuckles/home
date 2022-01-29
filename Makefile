@@ -1,3 +1,8 @@
+# System vars
+ifndef OSNAME
+	OSNAME := $(shell command -v lsb_release >/dev/null && lsb_release -d | cut -f2 | tr ' ' _ || uname -s)
+endif
+
 # Find subsystems based on subdirectories:
 SUBDIRS := $(subst /,,$(dir $(wildcard */)))
 INSTALL_TARGETS := $(patsubst %,install-%,$(SUBDIRS))
@@ -30,7 +35,7 @@ init:
 
 root-install: init
 	@echo "Elevating to root to install root configuration:"
-	su --command="$(MAKE) install-fsroot install-zypper install-flatpak"
+	su --command="$(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
 user-install: init install-config install-npm
@@ -39,7 +44,7 @@ user-install: init install-config install-npm
 # Update:
 root-update: init
 	@echo "Elevating to root to update root programs:"
-	su --command="$(MAKE) update-fsroot update-zypper update-flatpak"
+	su --command="$(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
 user-update: init update-config update-npm
@@ -62,6 +67,12 @@ $(UPDATE_TARGETS):
 
 $(SYNC_TARGETS):
 	make -C $(subst sync-,,$@) sync
+
+# OSNAME target does nothing unless it's an install/update/sync target above
+# Create it so we don't error if it's not a directory
+install-$(OSNAME):
+update-$(OSNAME):
+sync-$(OSNAME):
 
 # Targets that have order dependencies:
 install-zypper: install-fsroot
