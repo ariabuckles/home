@@ -2,3 +2,7 @@
 enabled=1
 autorefresh=0
 baseurl=https://mirrorcache-us.opensuse.org/update/tumbleweed/
+type=rpm-md
+gpgcheck=1
+repo_gpgcheck=1
+pkg_gpgcheck=1

@@ -22,4 +22,6 @@ update: ensure-is-root
 	$(ZYPPER) dup --allow-vendor-change
 	-$(ZYPPER) ps -s
 
-sync: ;
+sync:
+	rsync -rlp --delete /etc/zypp/vars.d .
+	rsync -rlp --delete /etc/zypp/repos.d .
