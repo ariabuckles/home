@@ -1,21 +1,24 @@
-.PHONY: install update sync ensure-is-root
+.PHONY: install update sync init
 
 # Add params like --ignore-unknown here
 ZYPPER := zypper
 
-ensure-is-root:
-	test $$(id -u) = 0 # Ensure we're running as root
-
-install: ensure-is-root
+init:
 ifneq "$(shell command -v zypper || echo none)" "none"
+	test $$(id -u) = 0 # Ensure we're running as root
 	$(ZYPPER) modifyrepo --all --no-refresh --gpgcheck-strict
 	$(ZYPPER) refresh
-	cat *.txt | grep -v '^#\|^$$' | xargs -t $(ZYPPER) install
 endif
 
-update: ensure-is-root
+install: init
 ifneq "$(shell command -v zypper || echo none)" "none"
-	$(ZYPPER) refresh
+	$(ZYPPER) dup # Update all deps to latest before installing new ones
+	cat *.txt | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) install
+	-$(ZYPPER) ps -s
+endif
+
+update: init
+ifneq "$(shell command -v zypper || echo none)" "none"
 	$(ZYPPER) dup --allow-vendor-change
 	-$(ZYPPER) ps -s
 endif
