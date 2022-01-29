@@ -3,6 +3,7 @@ zsh
 vim
 git
 make
+rsync
 
 # ~/home setup:
 bat
