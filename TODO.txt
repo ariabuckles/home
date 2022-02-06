@@ -1,3 +1,4 @@
  * Move .dconf_profile into config/dconf/profile and change $DCONF_PROFILE
  * switch to rsync with flags for better permissions (copy perms, not owner)
     * or at least cp with the right --preserve flags
+ * add fwupdmgr
