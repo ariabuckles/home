@@ -1,3 +1,6 @@
+# Low-level utils
+thermald
+
 # App frameworks
 flatpak
 
