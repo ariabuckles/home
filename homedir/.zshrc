@@ -348,6 +348,15 @@ if [[ -n $VTE_VERSION ]] && [[ -e /etc/profile.d/vte.sh ]]; then
   source /etc/profile.d/vte.sh
 fi
 
+# openSUSE command-not-found: https://www.unix.com/man-page/suse/1/command-not-found/
+# From oh-my-zsh, MIT Licensed
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/command-not-found/command-not-found.plugin.zsh
+if [[ -x /usr/bin/command-not-found ]]; then
+  command_not_found_handler() {
+    /usr/bin/command-not-found "$1"
+  }
+fi
+
 # Dev setups for terminals
 rbinit() {
   export PROMPT='%2{%(0?.💎.🌩 )%} %2~> '
