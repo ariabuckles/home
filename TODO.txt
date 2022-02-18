@@ -2,3 +2,5 @@
  * switch to rsync with flags for better permissions (copy perms, not owner)
     * or at least cp with the right --preserve flags
  * add fwupdmgr
+ * use /etc/os-release instead of lsb_release
+ * use flatpak info --show-permissions to diff permissions before and after an update (and show on install?)
