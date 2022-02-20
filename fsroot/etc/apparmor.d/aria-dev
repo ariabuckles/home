@@ -35,12 +35,11 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   owner @{HOME}/bin/* mrix,
   owner @{HOME}/lib/node_modules** r,
   owner @{HOME}/.npmrc r,
-  owner @{HOME}/home/.npmrc r,
 
   # yarn
+  owner @{HOME}/.cache/yarn/ rw,
   owner @{HOME}/.cache/yarn/** rw,
   owner @{HOME}/.yarnrc rw,
-  owner @{HOME}/home/.yarnrc rw,
 
   # vercel
   owner @{HOME}/.local/share/com.vercel.cli** rw,
@@ -50,16 +49,12 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   owner @{HOME}/.gitconfig r,
   owner @{HOME}/.gitignoreglobal r,
   owner @{HOME}/.gitignore r,
-  owner @{HOME}/home/.gitconfig r,
-  owner @{HOME}/home/.gitignoreglobal r,
-  owner @{HOME}/home/.gitignore r,
   owner @{HOME}/.local/.node_repl_history rw,
   owner @{HOME}/.config/mimeapps.list r,
   owner @{HOME}/.config/configstore/nodemon.** rw,
 
   # TODO: limit these to viridium only:
   owner @{HOME}/.viridium.json rw,
-  owner @{HOME}/home/.viridium.json rw,
 
   # Allow access to dev directories:
   owner @{HOME}/{src,.src,code}/** mrwlkix,
