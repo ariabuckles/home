@@ -51,7 +51,7 @@ user-update: init update-config update-npm
 	@echo "Updated user software"
 
 # Sync:
-root-sync: init sync-fsroot sync-zypper sync-flatpak
+root-sync: init sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
 	@echo "Synced root settings"
 
 user-sync: init sync-config sync-npm
