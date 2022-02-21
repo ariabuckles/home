@@ -1,6 +1,6 @@
 # System vars
 ifndef OSNAME
-	OSNAME := $(shell command -v lsb_release >/dev/null && lsb_release -d | cut -f2 | tr ' ' _ || uname -s)
+	OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
 endif
 
 # Find subsystems based on subdirectories:
