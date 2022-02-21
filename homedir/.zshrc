@@ -143,6 +143,9 @@ alias -r c="cd"
 alias -r m="make --warn-undefined-variables"
 alias -r vi="vim"
 lg() { ls | grep -i -e $@ | xargs ls -G; }
+alias -r serve='python3 -m http.server'
+
+# vim modes
 alias -r viewer='view -'
 alias -r vim='vim -p'
 # Open file(s) with name matching regex:
@@ -152,18 +155,6 @@ vifa() { vim -p -- $(find . -type f | grep $@) }
 vig() { vim +1 -c '\\v'"$*" -- $(git grep -l "$*") }
 # Alias vim-style space+o to vif
 alias o=vif
-
-# git aliases
-alias -r g='git'
-gd() { git diff $@ | vim -R - }
-gf() { git fetch && git stash && git rebase $@ && git stash pop }
-gl() { git log $@ | less }
-glv() { git log --name-status $@ | less }
-alias -r gci='git commit'
-alias -r gco='git checkout'
-alias -r ga='git add'
-alias -r gs='git status'
-alias -r gb='git branch'
 
 # hacky cat?
 
