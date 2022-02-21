@@ -38,7 +38,7 @@ root-install: init
 	su --command="$(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
-user-install: init install-config install-npm
+user-install: init install-config install-homedir install-npm
 	@echo "Installed user settings"
 
 # Update:
@@ -47,14 +47,14 @@ root-update: init
 	su --command="$(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
-user-update: init update-config update-npm
+user-update: init update-config update-homedir update-npm
 	@echo "Updated user software"
 
 # Sync:
 root-sync: init sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
 	@echo "Synced root settings"
 
-user-sync: init sync-config sync-npm
+user-sync: init sync-config sync-homedir sync-npm
 	@echo "Synced user settings"
 
 # Subtargets for specific directory subsystems:

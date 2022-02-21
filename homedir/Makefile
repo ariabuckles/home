@@ -12,5 +12,5 @@ install:
 update: ;
 
 sync:
-	# TODO
-	;
+	# Copy back just the root files (folders are still symlinks, for now)
+	find . -maxdepth 1 -type f,l | sed 's:^./::' | grep -v Makefile | xargs -tI% cp -Pp $${HOME?}/% $(CURDIR)/%
