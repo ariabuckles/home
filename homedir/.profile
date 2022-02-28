@@ -21,6 +21,10 @@ if [ -e ~/.env_vars ]; then
   source ~/.env_vars
 fi
 
+if command -v umask > /dev/null; then
+  umask 027
+fi
+
 # Start copying files from ~/sync-src to the ramdisk in ~/src
 # (if present)
 source $HOME/.zsh/ramdisk

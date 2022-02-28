@@ -4,3 +4,4 @@
  * add fwupdmgr
  * use flatpak info --show-permissions to diff permissions before and after an update (and show on install?)
  * integrate scripts/ramdisk.sh
+ * flatpak permissions: trusted group or fuse permissions etc
