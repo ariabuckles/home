@@ -6,7 +6,7 @@ homedir/.zsh/local
 
 # dconf:
 config/dconf/user
-*-lock
+config/dconf/*-lock
 
 # vim:
 homedir/.vim/.netrwhist
