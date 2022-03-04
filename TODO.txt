@@ -8,3 +8,4 @@
  * Check for presence of aria user; if found: configure
     * usermod: shell, groups, default group
  * set up new ssh key if missing?
+ * set ZDOTDIR somewhere and have zsh files in .config/zsh?
