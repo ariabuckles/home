@@ -234,9 +234,6 @@ function identify {
     fi
 }
 
-export APACHE_CONFIG="/private/etc/apache2/httpd.conf"
-export APACHE_VHOSTS="/private/etc/apache2/extra/httpd-vhosts.conf"
-
 function path {
   echo $PATH | tr ':' '\n'
 }
@@ -246,9 +243,6 @@ function path {
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!/.git/'"
 export FZF_DEFAULT_OPTS="--exact --reverse --tiebreak=length,end --color=16"
-
-# Node
-export NODE_REPL_HISTORY="$HOME/.local/.node_repl_history"
 
 # better interactive pagers:
 export PAGER='less -F'

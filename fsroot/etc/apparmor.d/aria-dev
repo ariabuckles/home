@@ -49,7 +49,7 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   owner @{HOME}/.gitconfig r,
   owner @{HOME}/.gitignoreglobal r,
   owner @{HOME}/.gitignore r,
-  owner @{HOME}/.local/.node_repl_history rw,
+  owner @{HOME}/.local/share/node rw,
   owner @{HOME}/.config/mimeapps.list r,
   owner @{HOME}/.config/configstore/nodemon.** rw,
 
