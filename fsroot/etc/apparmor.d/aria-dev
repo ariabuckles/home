@@ -1,3 +1,4 @@
+abi <abi/3.0>
 include <tunables/global>
 
 # To install global things, run unconfined node16 instead
