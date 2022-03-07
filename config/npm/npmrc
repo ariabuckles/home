@@ -1,5 +1,6 @@
-prefix=${HOME}
-shell=/bin/bash
+prefix=${HOME}/.local
+cache=${HOME}/.cache/npm
+shell=${SHELL}
 init-author-name=Aria Buckles
 init-author-url=https://github.com/ariabuckles
 init-license=MIT

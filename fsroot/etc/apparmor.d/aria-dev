@@ -31,10 +31,12 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
   network,
 
   # TODO: limit this to only npm:
-  owner @{HOME}/.npm/** rw,
-  owner @{HOME}/bin/* mrix,
-  owner @{HOME}/lib/node_modules** r,
   owner @{HOME}/.npmrc r,
+  owner @{HOME}/.config/npm r,
+  owner @{HOME}/.npm/** rw,
+  owner @{HOME}/.cache/npm/** rw,
+  owner @{HOME}/.local/bin/* mrix,
+  owner @{HOME}/.local/lib/node_modules** r,
 
   # yarn
   owner @{HOME}/.cache/yarn/ rw,
@@ -55,6 +57,7 @@ profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
 
   # TODO: limit these to viridium only:
   owner @{HOME}/.viridium.json rw,
+  owner @{HOME}/.config/viridium/viridium.json rw,
 
   # Allow access to dev directories:
   owner @{HOME}/{src,.src,code}/** mrwlkix,
