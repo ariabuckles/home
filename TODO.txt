@@ -9,3 +9,4 @@
     * usermod: shell, groups, default group
  * set up new ssh key if missing?
  * set ZDOTDIR somewhere and have zsh files in .config/zsh?
+ * update path to find npm globals in .local/bin
