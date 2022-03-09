@@ -15,6 +15,9 @@ include <abstractions/consoles>
   @{lib}/** mrix,
   @{include}/node** mrix,
   @{lib}/node_modules/** mrwix,
+  # Globally-installed node modules:
+  owner @{HOME}/{,.local}/bin/* mrix,
+  owner @{HOME}/{,.local}/lib/node_modules/** r,
   owner /tmp/** mrwix, # yarn executes node scripts in here
   owner @{HOME}/.pyenv/** mrix,
 

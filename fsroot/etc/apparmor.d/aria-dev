@@ -29,9 +29,6 @@ profile aria-dev-npm /usr/bin/{npm,npx} {
   # Cache:
   owner @{HOME}/.npm/{,**} rw,
   owner @{HOME}/.cache/npm/{,**} rw,
-  # Locally-installed node modules:
-  owner @{HOME}/.local/bin/* mrix,
-  owner @{HOME}/.local/lib/node_modules/** r,
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
@@ -59,8 +56,8 @@ profile aria-dev-npm-globals @{aria_dev_dirs}/**/node_modules/** {
   owner @{aria_dev_dirs}/** mrwlkix,
 
   # vercel # TODO: isolate to only vercel
-  owner @{HOME}/.local/share/com.vercel.cli** rw,
-  owner @{HOME}/.cache/com.vercel.cli** rw,
+  owner @{HOME}/.local/share/com.vercel.cli{,**} rw,
+  owner @{HOME}/.cache/com.vercel.cli{,**} rw,
 }
 
 # globally installed npm packages
