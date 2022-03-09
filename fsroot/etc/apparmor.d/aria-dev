@@ -16,7 +16,7 @@ profile aria-dev-node /usr/bin/{node,node-default} {
   include <abstractions/aria-node>
 
   # dev dirs:
-  owner @{aria_dev_dirs}/** mrwlkPix,
+  owner @{aria_dev_dirs}/** mrwlkix,
 }
 
 # npm:
@@ -34,7 +34,7 @@ profile aria-dev-npm /usr/bin/{npm,npx} {
   owner @{HOME}/.local/lib/node_modules/** r,
 
   # dev dirs:
-  owner @{aria_dev_dirs}/** mrwlkPix,
+  owner @{aria_dev_dirs}/** mrwlkix,
 }
 
 # yarn:
@@ -48,7 +48,7 @@ profile aria-dev-yarn /usr/bin/{yarn,yarnpkg} {
   owner @{HOME}/.cache/yarn/{,**} rw,
 
   # dev dirs:
-  owner @{aria_dev_dirs}/** mrwlkPix,
+  owner @{aria_dev_dirs}/** mrwlkix,
 }
 
 # npm packages:
@@ -56,7 +56,7 @@ profile aria-dev-npm-globals @{aria_dev_dirs}/**/node_modules/** {
   include <abstractions/aria-node>
 
   # dev dirs:
-  owner @{aria_dev_dirs}/** mrwlkPix,
+  owner @{aria_dev_dirs}/** mrwlkix,
 
   # vercel # TODO: isolate to only vercel
   owner @{HOME}/.local/share/com.vercel.cli** rw,
@@ -68,7 +68,7 @@ profile aria-dev-node_modules @{HOME}/{,.local}/{bin,lib/node_modules}/** {
   include <abstractions/aria-node>
 
   # dev dirs:
-  owner @{aria_dev_dirs}/** mrwlkPix,
+  owner @{aria_dev_dirs}/** mrwlkix,
 }
 
 # viridium
