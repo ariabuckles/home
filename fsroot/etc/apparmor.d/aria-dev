@@ -49,7 +49,7 @@ profile aria-dev-yarn /usr/bin/{yarn,yarnpkg} {
 }
 
 # npm packages:
-profile aria-dev-npm-globals @{aria_dev_dirs}/**/node_modules/** {
+profile aria-dev-node_modules @{aria_dev_dirs}/**/node_modules/** {
   include <abstractions/aria-node>
 
   # dev dirs:
@@ -61,7 +61,8 @@ profile aria-dev-npm-globals @{aria_dev_dirs}/**/node_modules/** {
 }
 
 # globally installed npm packages
-profile aria-dev-node_modules @{HOME}/{,.local}/{bin,lib/node_modules}/** {
+# TODO: replace [^v] with {**^viridium} once that lands in apparmor
+profile aria-dev-npm-global-modules @{HOME}/{,.local/}{bin,lib/node_modules}/[^v]** {
   include <abstractions/aria-node>
 
   # dev dirs:
@@ -69,7 +70,7 @@ profile aria-dev-node_modules @{HOME}/{,.local}/{bin,lib/node_modules}/** {
 }
 
 # viridium
-profile aria-viridium @{HOME}/{,.local}/bin/viridium {
+profile aria-viridium @{HOME}/{,.local/}{bin/viridium,lib/node_modules/viridium/viridium.js} {
   include <abstractions/aria-node>
 
   owner @{HOME}/.viridium.json rw,
