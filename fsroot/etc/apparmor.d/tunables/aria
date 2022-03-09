@@ -1,0 +1,5 @@
+# Aria: Common tunables not currently distributed with apparmor
+
+@{bin}=/bin/ /usr/bin/
+@{lib}=/usr/lib{,32,64}/
+@{include}=/usr/include/

@@ -1,66 +1,80 @@
-abi <abi/3.0>
+# Aria dev environment confinement
+
+abi <abi/3.0>,
 include <tunables/global>
+include <tunables/aria>
 
-# To install global things, run unconfined node16 instead
-profile aria-dev /usr/bin/{node,npm,npx,node-default,yarn} {
-  include <abstractions/base>
-  include <abstractions/consoles>
+@{aria_dev_dirs}=@{HOME}/{src,.src,code}/ /mnt/ramdisk/src/
 
-  deny capability setuid,
+# To install global things, run unconfined npm16 instead
 
-  # Other executables
-  /bin/** mrix,
-  /usr/bin/** mrix,
-  /usr/lib*/** mrix,
-  /usr/include/node** mrix,
-  /usr/**/node_modules** mrwix,
-  /tmp/** mrwix, # yarn executes node scripts in here
-  owner @{HOME}/.pyenv/** mrix,
+# TODO: allow global installs with fewer hacks?
+# TODO: drop config permissions when executing scripts
 
-  # TODO: limit these more?
-  /usr/share/** r,
-  owner @{HOME}/.local/share/** r,
-  owner @{HOME}/.cache/** r,
-  /sys/fs/cgroup/memory/memory.limit_in_bytes r,
-  /usr/** r,
-  /etc/** r,
-  /run/** r,
-  /var/** r,
-  /sys/** r,
-  /proc/** r, # yarn needs this for reeding memory
+# node:
+profile aria-dev-node /usr/bin/{node,node-default} {
+  include <abstractions/aria-node>
 
-  network,
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkPix,
+}
 
-  # TODO: limit this to only npm:
+# npm:
+profile aria-dev-npm /usr/bin/{npm,npx} {
+  include <abstractions/aria-node>
+
+  # Config:
   owner @{HOME}/.npmrc r,
-  owner @{HOME}/.config/npm r,
-  owner @{HOME}/.npm/** rw,
-  owner @{HOME}/.cache/npm/** rw,
+  owner @{HOME}/.config/npm/** r,
+  # Cache:
+  owner @{HOME}/.npm/{,**} rw,
+  owner @{HOME}/.cache/npm/{,**} rw,
+  # Locally-installed node modules:
   owner @{HOME}/.local/bin/* mrix,
-  owner @{HOME}/.local/lib/node_modules** r,
+  owner @{HOME}/.local/lib/node_modules/** r,
 
-  # yarn
-  owner @{HOME}/.cache/yarn/ rw,
-  owner @{HOME}/.cache/yarn/** rw,
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkPix,
+}
+
+# yarn:
+profile aria-dev-yarn /usr/bin/{yarn,yarnpkg} {
+  include <abstractions/aria-node>
+
+  # Config:
   owner @{HOME}/.yarnrc rw,
+  owner @{HOME}/.config/yarn/{,**} rw,
+  # Cache:
+  owner @{HOME}/.cache/yarn/{,**} rw,
 
-  # vercel
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkPix,
+}
+
+# npm packages:
+profile aria-dev-npm-globals @{aria_dev_dirs}/**/node_modules/** {
+  include <abstractions/aria-node>
+
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkPix,
+
+  # vercel # TODO: isolate to only vercel
   owner @{HOME}/.local/share/com.vercel.cli** rw,
   owner @{HOME}/.cache/com.vercel.cli** rw,
+}
 
-  # Allow access to some config files
-  owner @{HOME}/.gitconfig r,
-  owner @{HOME}/.gitignoreglobal r,
-  owner @{HOME}/.gitignore r,
-  owner @{HOME}/.local/share/node rw,
-  owner @{HOME}/.config/mimeapps.list r,
-  owner @{HOME}/.config/configstore/nodemon.** rw,
+# globally installed npm packages
+profile aria-dev-node_modules @{HOME}/{,.local}/{bin,lib/node_modules}/** {
+  include <abstractions/aria-node>
 
-  # TODO: limit these to viridium only:
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkPix,
+}
+
+# viridium
+profile aria-viridium @{HOME}/{,.local}/bin/viridium {
+  include <abstractions/aria-node>
+
   owner @{HOME}/.viridium.json rw,
-  owner @{HOME}/.config/viridium/viridium.json rw,
-
-  # Allow access to dev directories:
-  owner @{HOME}/{src,.src,code}/** mrwlkix,
-  owner /mnt/ramdisk/src/** mrwlkix,
+  owner @{HOME}/.config/viridium/{,**} rw,
 }

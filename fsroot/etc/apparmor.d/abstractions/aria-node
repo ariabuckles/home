@@ -1,0 +1,40 @@
+# Aria: Common base nodejs runtime permissions
+# NOTE: you must include tunables/aria for this to work
+
+abi <abi/3.0>,
+include <abstractions/base>
+include <abstractions/consoles>
+
+  # Explicitly deny common dangerous things
+  audit deny capability setuid,
+  audit deny @{HOME}/.ssh/** rwx,
+  audit deny @{HOME}/@{XDG_DOCUMENTS_DIR}/** rwx,
+
+  # Other executables
+  @{bin}/** mrix,
+  @{lib}/** mrix,
+  @{include}/node** mrix,
+  @{lib}/node_modules/** mrwix,
+  owner /tmp/** mrwix, # yarn executes node scripts in here
+  owner @{HOME}/.pyenv/** mrix,
+
+  # TODO: limit these more?
+  @{system_share_dirs}/node/** r,
+  owner @{user_share_dirs}/node/** r,
+  owner @{HOME}/.cache/** r,
+  /sys/fs/cgroup/memory/memory.limit_in_bytes r,
+  /usr/** r, # TODO limit
+  @{etc_ro}/** r,
+  owner @{run}/** r,
+  /var/** r, # TODO limit?
+  /sys/** r, # TODO limit
+  /proc/** r, # yarn needs this for reeding memory ; TODO: limit to exactly what it needs
+
+  network, # TODO limit to npm and reduce what node can fetch?
+
+  # Allow access to some config files
+  owner @{HOME}/.gitconfig r,
+  owner @{HOME}/.gitignoreglobal r,
+  owner @{HOME}/.gitignore r,
+  owner @{HOME}/.config/mimeapps.list r,
+  owner @{HOME}/.config/configstore/nodemon.** rw,
