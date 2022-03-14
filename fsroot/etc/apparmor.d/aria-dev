@@ -67,6 +67,11 @@ profile aria-dev-npm-global-modules @{HOME}/{,.local/}{bin,lib/node_modules}/[^v
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
+
+  # heroku:
+  owner @{HOME}/.local/share/heroku{,**} rw,
+  owner @{HOME}/.cache/heroku{,**} rw,
+  owner @{HOME}/.netrc rw, # TODO: isolate
 }
 
 # viridium
