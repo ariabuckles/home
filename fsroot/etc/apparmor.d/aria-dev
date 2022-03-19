@@ -44,6 +44,13 @@ profile aria-dev-yarn /usr/{bin,share/yarn/bin}/{yarn,yarnpkg} {
   # Cache:
   owner @{HOME}/.cache/yarn/{,**} rw,
 
+  # yarn asks to read npm's config too:
+  owner @{HOME}/.npmrc r,
+  owner @{HOME}/.config/npm/** r,
+
+  # yarn asks to read general network config in /run:
+  @{run}/** r,
+
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
 }
