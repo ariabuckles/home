@@ -35,7 +35,7 @@ profile aria-dev-npm /usr/bin/{npm,npx} {
 }
 
 # yarn:
-profile aria-dev-yarn /usr/bin/{yarn,yarnpkg} {
+profile aria-dev-yarn /usr/{bin,share/yarn/bin}/{yarn,yarnpkg} {
   include <abstractions/aria-node>
 
   # Config:
