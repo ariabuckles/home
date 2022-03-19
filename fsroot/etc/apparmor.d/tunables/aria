@@ -2,4 +2,5 @@
 
 @{bin}=/bin/ /usr/bin/
 @{lib}=/usr/lib{,32,64}/
+@{libexec}=/usr/libexec/
 @{include}=/usr/include/

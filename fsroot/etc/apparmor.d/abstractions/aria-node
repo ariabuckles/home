@@ -13,6 +13,7 @@ include <abstractions/consoles>
   # Other executables
   @{bin}/** mrix,
   @{lib}/** mrix,
+  @{libexec}/** mrix,
   @{include}/node** mrix,
   @{lib}/node_modules/** mrwix,
   # Globally-installed node modules:
