@@ -20,12 +20,24 @@ profile aria-dev-node /usr/bin/{node,node-default} {
 }
 
 # npm:
-profile aria-dev-npm /usr/bin/{npm,npx} {
+profile aria-dev-npm /usr/bin/npm {
   include <abstractions/aria-node>
 
   # Config:
-  owner @{HOME}/.npmrc r,
-  owner @{HOME}/.config/npm/** r,
+  owner @{HOME}/.npmrc rw,
+  owner @{HOME}/.config/npm/** rw,
+  # Cache:
+  owner @{HOME}/.npm/{,**} rw,
+  owner @{HOME}/.cache/npm/{,**} rw,
+
+  # dev dirs:
+  owner @{aria_dev_dirs}/** mrwlkix,
+}
+
+# npx:
+profile aria-dev-npx /usr/bin/npx {
+  include <abstractions/aria-node>
+
   # Cache:
   owner @{HOME}/.npm/{,**} rw,
   owner @{HOME}/.cache/npm/{,**} rw,
