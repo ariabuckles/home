@@ -1,3 +1,0 @@
-com.github.tchx84.Flatseal
-org.gtk.Gtk3theme.Adwaita-dark
-org.gtk.Gtk3theme.Greybird-Geeko-Dark

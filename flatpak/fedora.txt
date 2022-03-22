@@ -1,0 +1,5 @@
+# Fedora flatpak repo
+# (standard gnome software, from a trusted source)
+#repo=oci+https://registry.fedoraproject.org
+
+org.gnome.Evince
