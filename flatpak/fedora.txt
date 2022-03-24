@@ -3,3 +3,4 @@
 #repo=oci+https://registry.fedoraproject.org
 
 org.gnome.Evince
+org.inkscape.Inkscape
