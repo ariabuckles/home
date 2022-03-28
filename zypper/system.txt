@@ -8,6 +8,9 @@ flatpak
 powertop
 vnstat
 
+# QT Settings / Customization
+qt5ct
+
 # Gnome Customizations
 gtk3-metatheme-greybird-geeko
 mint-x-icon-theme
