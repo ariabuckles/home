@@ -12,3 +12,4 @@ us.zoom.Zoom
 # Personal
 com.rafaelmardojai.Blanket
 org.signal.Signal
+org.kde.elisa
