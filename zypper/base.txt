@@ -6,7 +6,7 @@ pattern:devel_basis
 pattern:devel_C_C++
 pattern:documentation
 pattern:fonts
-pattern:gnome
+pattern:gnome_basic
 pattern:yast2_basis
 
 # openSUSE system misc

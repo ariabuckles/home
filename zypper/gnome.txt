@@ -1,0 +1,6 @@
+# Minimal GNOME
+gnome-system-monitor
+seahorse
+gnome-characters
+gnome-disk-utility
+gnome-screenshot
