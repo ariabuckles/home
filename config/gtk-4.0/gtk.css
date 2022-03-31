@@ -1,0 +1,6 @@
+/* Aria's theme
+ * From https://gitlab.gnome.org/GNOME/libadwaita/-/blob/main/src/stylesheet/_defaults.scss
+ */
+
+@define-color accent_color #FF0074;
+@define-color accent_bg_color #DC0064;
