@@ -9,6 +9,10 @@ org.gnome.GTG
 us.zoom.Zoom
 
 # Personal
-com.rafaelmardojai.Blanket
 org.signal.Signal
 org.kde.elisa
+
+# Utilities
+com.rafaelmardojai.Blanket
+io.github.lainsce.Colorway
+org.gnome.design.Contrast
