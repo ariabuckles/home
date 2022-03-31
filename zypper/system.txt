@@ -10,6 +10,7 @@ vnstat
 
 # QT Settings / Customization
 qt5ct
+breeze
 
 # Gnome Customizations
 gtk3-metatheme-greybird-geeko

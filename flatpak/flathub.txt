@@ -3,7 +3,6 @@
 
 # System
 com.github.tchx84.Flatseal
-org.gtk.Gtk3theme.Adwaita-dark
 
 # Work
 org.gnome.GTG
