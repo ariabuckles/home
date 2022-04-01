@@ -10,9 +10,14 @@ us.zoom.Zoom
 
 # Personal
 org.signal.Signal
-org.kde.elisa
-
-# Utilities
 com.rafaelmardojai.Blanket
+
+# Media Players
+org.kde.elisa
+io.github.celluloid_player.Celluloid
+
+# Tools
+org.kde.krita
+org.inkscape.Inkscape
 io.github.lainsce.Colorway
 org.gnome.design.Contrast
