@@ -1,0 +1,47 @@
+[Unit]
+Description=Link current IP to nextdns public profile
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=curl ${NEXTDNS_LINK_IP_URL}
+DynamicUser=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectProc=invisible
+ProcSubset=pid
+ProtectHostname=true
+ProtectClock=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+PrivateUsers=true
+PrivateTmp=true
+PrivateMounts=true
+PrivateDevices=true
+DeviceAllow=
+DevicePolicy=closed
+PrivateIPC=true
+RemoveIPC=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SecureBits=no-setuid-fixup-locked noroot-locked
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+UMask=177
+NoNewPrivileges=true
+Nice=5
+StandardOutput=journal
+StandardError=journal
+PrivateNetwork=false
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallFilter=@basic-io @network-io @io-event @aio @signal @ipc @mprotect @process @file-system @sync
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

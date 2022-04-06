@@ -15,3 +15,6 @@ breeze
 # Gnome Customizations
 gtk3-metatheme-greybird-geeko
 mint-x-icon-theme
+
+# For this make system (envsubst):
+gettext-tools
