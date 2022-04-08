@@ -12,6 +12,7 @@
     "prettier": "latest",
     "neovim": "latest",
     "react-native-cli": "latest",
+    "svgo": "latest",
     "typescript-language-server": "latest",
     "viridium": "=0.5.0"
   },
