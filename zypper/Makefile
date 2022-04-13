@@ -12,9 +12,14 @@ endif
 
 install: init
 ifneq "$(shell command -v zypper || echo none)" "none"
-	$(ZYPPER) dup # Update all deps to latest before installing new ones
+	# Update all deps to latest before installing new ones
+	$(ZYPPER) dup
+	# Remove all removed.lock packages, and add locks:
+	-cat removed.lock | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) remove --name
+	cat removed.lock | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) addlock
+	# Install packages:
 	cat *.txt | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) install
-	-$(ZYPPER) ps -s
+	-$(ZYPPER) ps -s # list packages that need restarting
 endif
 
 update: init

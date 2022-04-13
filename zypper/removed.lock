@@ -1,0 +1,16 @@
+# Packages in this file will be removed / not installed:
+
+# Prefer su: (sudo is complex and occasionally has vulns)
+sudo
+
+# Don't let gnome autoupdate software:
+# (packagekit is slow and blocking on openSUSE)
+gnome-packagekit
+
+# Unnecessary daemons that can have vulns:
+hplip*
+
+# Default GNOME software we don't want:
+# (either we don't use, or we use flatpak)
+ekiga
+evince
