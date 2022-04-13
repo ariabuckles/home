@@ -1,3 +1,6 @@
 # Applications
 gnome-terminal
 chromium
+gnome-system-monitor
+gnome-software
+gnome-tweak-tool

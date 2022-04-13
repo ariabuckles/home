@@ -3,5 +3,6 @@
 #repo=oci+https://registry.fedoraproject.org
 
 org.gnome.Evince
+org.gnome.Calculator
 org.gnome.TextEditor
 org.inkscape.Inkscape
