@@ -35,7 +35,7 @@ init:
 
 root-install: init
 	@echo "Elevating to root to install root configuration:"
-	su --command="$(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
+	su --login --pty --command="cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
 user-install: init install-config install-homedir install-npm
@@ -44,7 +44,7 @@ user-install: init install-config install-homedir install-npm
 # Update:
 root-update: init
 	@echo "Elevating to root to update root programs:"
-	su --command="$(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
+	su --login --pty --command="cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
 user-update: init update-config update-homedir update-npm
