@@ -19,6 +19,5 @@ io.github.celluloid_player.Celluloid
 
 # Tools
 org.kde.krita
-org.inkscape.Inkscape
 io.github.lainsce.Colorway
 org.gnome.design.Contrast
