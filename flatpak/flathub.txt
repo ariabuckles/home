@@ -11,6 +11,7 @@ us.zoom.Zoom
 # Personal
 org.signal.Signal
 com.rafaelmardojai.Blanket
+io.posidon.Paper
 
 # Media Players
 org.kde.elisa
