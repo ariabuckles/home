@@ -1,0 +1,8 @@
+[Context]
+sockets=pulseaudio;
+filesystems=~/Media/Music;
+
+[Session Bus Policy]
+org.kde.baloo=talk
+org.kde.kconfig.notify=talk
+org.kde.StatusNotifierWatcher=talk
