@@ -6,18 +6,21 @@ devices=!dri;!all;!kvm;!shm;
 features=!devel;!multiarch;!bluetooth;!canbus;
 
 [Session Bus Policy]
+org.freedesktop.*=none
 org.freedesktop.Flatpak=none
-org.gnome.Shell=none
 org.freedesktop.login1=none
 org.freedesktop.portal.Background=none
 org.freedesktop.secrets=none
 org.freedesktop.UDisks2=none
+org.gnome.*=none
+org.gnome.Shell=none
+org.kde.*=none
 
 [System Bus Policy]
 org.freedesktop.*=none
-org.gnome.*=none
-org.kde.*=none
-org.freedesktop.login1=none
 org.freedesktop.Flatpak=none
+org.freedesktop.login1=none
 org.freedesktop.secrets=none
 org.freedesktop.UDisks2=none
+org.gnome.*=none
+org.kde.*=none
