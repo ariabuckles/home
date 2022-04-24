@@ -14,6 +14,7 @@ org.freedesktop.Flatpak=none
 org.freedesktop.UDisks2=none
 org.freedesktop.login1=none
 org.freedesktop.portal.Background=none
+org.freedesktop.portal.Fcitx=none
 org.freedesktop.secrets=none
 org.gnome.*=none
 org.gnome.Shell=none
@@ -22,6 +23,7 @@ org.gtk.*=none
 org.gtk.vfs.*=none
 org.gtk.vfs=none
 org.kde.*=none
+org.kde.StatusNotifierWatcher=none
 org.kde.baloo=none
 # All session bus names
 # dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep 'string "[^:]' | sed -e 's/ *string //' -e 's/"//g'
@@ -112,6 +114,7 @@ org.freedesktop.FileManager1=none
 org.freedesktop.Flatpak=none
 org.freedesktop.UDisks2=none
 org.freedesktop.login1=none
+org.freedesktop.portal.Fcitx=none
 org.freedesktop.secrets=none
 org.gnome.*=none
 org.gnome.Shell=none
@@ -120,6 +123,7 @@ org.gtk.*=none
 org.gtk.vfs.*=none
 org.gtk.vfs=none
 org.kde.*=none
+org.kde.StatusNotifierWatcher=none
 org.kde.baloo=none
 # All system bus names
 # dbus-send --system --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep 'string "[^:]' | sed -e 's/ *string //' -e 's/"//g'
