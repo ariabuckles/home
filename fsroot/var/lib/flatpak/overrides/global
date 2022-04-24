@@ -1,2 +1,23 @@
 [Context]
 filesystems=!host:reset;xdg-config/gtk-4.0:ro;!host;
+shared=!network;
+sockets=!x11;!pulseaudio;!session-bus;!system-bus;!fallback-x11;!ssh-auth;!pcsc;!cups;
+devices=!dri;!all;!kvm;!shm;
+features=!devel;!multiarch;!bluetooth;!canbus;
+
+[Session Bus Policy]
+org.freedesktop.Flatpak=none
+org.gnome.Shell=none
+org.freedesktop.login1=none
+org.freedesktop.portal.Background=none
+org.freedesktop.secrets=none
+org.freedesktop.UDisks2=none
+
+[System Bus Policy]
+org.freedesktop.*=none
+org.gnome.*=none
+org.kde.*=none
+org.freedesktop.login1=none
+org.freedesktop.Flatpak=none
+org.freedesktop.secrets=none
+org.freedesktop.UDisks2=none
