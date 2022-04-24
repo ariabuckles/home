@@ -2,3 +2,6 @@
 shared=network;
 filesystems=~/Downloads;
 sockets=x11;
+
+[Session Bus Policy]
+org.freedesktop.Notifications=talk

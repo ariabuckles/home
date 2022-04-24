@@ -1,3 +1,6 @@
 [Context]
 sockets=pulseaudio;
 filesystems=~/Media/Music;
+
+[Session Bus Policy]
+org.freedesktop.Notifications=talk

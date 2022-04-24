@@ -2,3 +2,6 @@
 sockets=pulseaudio;
 devices=dri;
 filesystems=~/Media/Videos;
+
+[Session Bus Policy]
+org.gnome.SettingsDaemon.MediaKeys=talk
