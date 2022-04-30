@@ -19,10 +19,10 @@ export PYENV_SHELL=$SHELL
 # Set up $PATH safely:
 # Remove brew's /usr/local/bin from the start of the path (we'll add it to the end)
 #export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
-# Custom executables:
-export PATH="$PATH:$ARIAHOME/bin"
-# Homebrew: # TODO is there a way to override just specific installs, or is having brew a different user enough?
-#export PATH="/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+# System path:
+export PATH="/usr/local/bin:/usr/bin:/bin:/opt/bin"
+# Custom user-installed executables:
+export PATH="$PATH:$ARIAHOME/.local/bin"
 # Python with pyenv (bin is the pyenv executable when installed from source.
 # shims are the bins for python and installed python deps)
 #export PATH="$PYENV_ROOT/shims:$PATH"
