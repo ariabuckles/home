@@ -30,25 +30,25 @@ sync: root-sync user-sync
 # Install:
 
 root-install:
-	@echo "Elevating to root to install root configuration:"
+	# Elevating to root to install root configuration:
 	su --login --pty -c "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
-	@echo "Installed root settings"
+	# Installed root settings
 
 user-install:
-	@echo "Dropping to user privileges:"
+	# Dropping to user privileges:
 	su --login --pty aria -c "cd '$$PWD' && $(MAKE) install-config install-homedir install-npm"
-	@echo "Installed user settings"
+	# Installed user settings
 
 # Update:
 root-update:
-	@echo "Elevating to root to update root programs:"
+	# Elevating to root to update root programs:
 	su --login --pty -c "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
-	@echo "Updated root software"
+	# Updated root software
 
 user-update:
-	@echo "Dropping to user privileges:"
+	# Dropping to user privileges:
 	su --login --pty aria -c "cd '$$PWD' && $(MAKE) update-config update-homedir update-npm"
-	@echo "Updated user software"
+	# Updated user software
 
 # Sync:
 root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
