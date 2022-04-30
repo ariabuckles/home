@@ -4,4 +4,5 @@
 
 org.gnome.Evince
 org.gnome.TextEditor
+org.gnome.Calculator
 org.inkscape.Inkscape

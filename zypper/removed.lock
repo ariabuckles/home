@@ -14,3 +14,4 @@ hplip*
 # (either we don't use, or we use flatpak)
 ekiga
 evince
+gnome-calculator
