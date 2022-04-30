@@ -1,19 +1,28 @@
 .PHONY: install update sync init
 
-# Add params like --ignore-unknown here
-ZYPPER := zypper
+ifneq "$(shell command -v transactional-update)", ""
+	ZYPPER_INSTALL := transactional-update pkg install
+	ZYPPER_UPDATE := transactional-update dup
+else ifneq "$(shell command -v zypper)", ""
+	# Add params like --ignore-unknown here:
+	ZYPPER_INSTALL := zypper install
+	ZYPPER_UPDATE := zypper dup --allow-vendor-change
+else
+	ZYPPER_INSTALL :=
+	ZYPPER_UPDATE :=
+endif
 
 init:
-ifneq "$(shell command -v zypper || echo none)" "none"
+ifneq "$(ZYPPER_INSTALL)" ""
 	test $$(id -u) = 0 # Ensure we're running as root
-	$(ZYPPER) modifyrepo --all --no-refresh --gpgcheck-strict
-	$(ZYPPER) refresh
+	zypper modifyrepo --all --no-refresh --gpgcheck-strict
+	zypper refresh
 endif
 
 install: init
-ifneq "$(shell command -v zypper || echo none)" "none"
+ifneq "$(ZYPPER_INSTALL)" ""
 	# Update all deps to latest before installing new ones
-	$(ZYPPER) dup
+	$(ZYPPER_UPDATE)
 	# Remove all removed.lock packages, and add locks:
 	-cat removed.lock | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) remove --name
 	cat removed.lock | grep -v '^\#\|^$$' | xargs -t $(ZYPPER) addlock
@@ -23,9 +32,9 @@ ifneq "$(shell command -v zypper || echo none)" "none"
 endif
 
 update: init
-ifneq "$(shell command -v zypper || echo none)" "none"
-	$(ZYPPER) dup --allow-vendor-change
-	-$(ZYPPER) ps -s
+ifneq "$(ZYPPER_UPDATE)" ""
+	$(ZYPPER_UPDATE)
+	-zypper ps -s
 endif
 
 sync: ;
