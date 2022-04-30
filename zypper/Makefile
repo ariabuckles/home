@@ -1,6 +1,6 @@
 .PHONY: install update sync init
 
-ifneq "$(shell command -v transactional-update)", ""
+ifneq "$(shell command -v transactional-update)" ""
 
 init:
 	test $$(id -u) = 0 # Ensure we're running as root
@@ -16,7 +16,7 @@ update: init
 
 sync: ;
 
-else ifneq "$(shell command -v zypper)", ""
+else ifneq "$(shell command -v zypper)" ""
 
 init:
 	test $$(id -u) = 0 # Ensure we're running as root
