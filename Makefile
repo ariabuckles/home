@@ -10,51 +10,51 @@ UPDATE_TARGETS := $(patsubst %,update-%,$(SUBDIRS))
 SYNC_TARGETS := $(patsubst %,sync-%,$(SUBDIRS))
 
 # Mark all targets as always needing a rerun:
-.PHONY: init install update root-install user-install root-update user-update root-sync user-sync
+.PHONY: install update root-install user-install root-update user-update root-sync user-sync
 .PHONY: $(INSTALL_TARGETS) $(UPDATE_TARGETS) $(SYNC_TARGETS)
 
 # Primary commands: install, update, sync
 
-install: init root-install
+install: root-install
 	$(MAKE) user-install
 	@echo "Successfully installed"
 
-update: init root-update
+update: root-update
 	$(MAKE) user-update
 	@echo "Successfully updated"
 
-sync: init root-sync user-sync
+sync: root-sync user-sync
 	@echo "Sync complete"
-
-# Enforce not running as root, due to permissions & safety for non-system updates
-init:
-	test $$(id -u) != 0 # Must not be run as root for perms & safety of non-system changes
 
 # Subtargets for root vs user separation:
 # Install:
 
-root-install: init
+root-install:
 	@echo "Elevating to root to install root configuration:"
-	su --login --pty --command="cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
+	su --login --pty -c "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
 	@echo "Installed root settings"
 
-user-install: init install-config install-homedir install-npm
+user-install:
+	@echo "Dropping to user privileges:"
+	su --login --pty aria -c "cd '$$PWD' && $(MAKE) install-config install-homedir install-npm"
 	@echo "Installed user settings"
 
 # Update:
-root-update: init
+root-update:
 	@echo "Elevating to root to update root programs:"
-	su --login --pty --command="cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
+	su --login --pty -c "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
 	@echo "Updated root software"
 
-user-update: init update-config update-homedir update-npm
+user-update:
+	@echo "Dropping to user privileges:"
+	su --login --pty aria -c "cd '$$PWD' && $(MAKE) update-config update-homedir update-npm"
 	@echo "Updated user software"
 
 # Sync:
-root-sync: init sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
+root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
 	@echo "Synced root settings"
 
-user-sync: init sync-config sync-homedir sync-npm
+user-sync: sync-config sync-homedir sync-npm
 	@echo "Synced user settings"
 
 # Subtargets for specific directory subsystems:
