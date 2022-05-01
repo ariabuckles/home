@@ -9,9 +9,13 @@ gnome-packagekit
 
 # Unnecessary daemons that can have vulns:
 hplip*
+avahi
 
 # Default GNOME software we don't want:
 # (either we don't use, or we use flatpak)
 ekiga
 evince
+evolution
 gnome-calculator
+gnome-weather
+totem

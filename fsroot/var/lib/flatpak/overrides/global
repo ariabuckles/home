@@ -136,6 +136,7 @@ org.fedoraproject.FirewallD1=none
 org.freedesktop.Accounts=none
 org.freedesktop.ColorManager=none
 org.freedesktop.DBus=none
+org.freedesktop.GeoClue2=none
 org.freedesktop.ModemManager1=none
 org.freedesktop.NetworkManager=none
 org.freedesktop.PolicyKit1=none
