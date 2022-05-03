@@ -26,6 +26,7 @@ profile aria-dev-npm /usr/bin/npm {
   # Config:
   owner @{HOME}/.npmrc rw,
   owner @{HOME}/.config/npm/** rw,
+  owner @{HOME}/home/config/npm/** r,
   # Cache:
   owner @{HOME}/.npm/{,**} rw,
   owner @{HOME}/.cache/npm/{,**} rw,
@@ -59,6 +60,7 @@ profile aria-dev-yarn /usr/{bin,share/yarn/bin}/{yarn,yarnpkg} {
   # yarn asks to read npm's config too:
   owner @{HOME}/.npmrc r,
   owner @{HOME}/.config/npm/** r,
+  owner @{HOME}/home/config/npm/** r,
 
   # yarn asks to read general network config in /run:
   @{run}/** r,
