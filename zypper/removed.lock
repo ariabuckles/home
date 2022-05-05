@@ -13,9 +13,15 @@ avahi
 
 # Default GNOME software we don't want:
 # (either we don't use, or we use flatpak)
+cheese
 ekiga
 evince
 evolution
 gnome-calculator
+gnome-clocks
+gnome-dictionary
+gnome-maps
 gnome-weather
+pidgin
+polari
 totem

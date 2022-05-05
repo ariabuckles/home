@@ -7,7 +7,11 @@ pattern:devel_C_C++
 pattern:documentation
 pattern:fonts
 pattern:gnome_basic
+pattern:gnome_utilities
+pattern:gnome_internet
 pattern:yast2_basis
+pattern:kvm_server
+pattern:kvm_tools
 
 # openSUSE system misc
 # These were for some experiments with removing unused packages; not currently used

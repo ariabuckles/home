@@ -5,4 +5,8 @@
 org.gnome.Evince
 org.gnome.TextEditor
 org.gnome.Calculator
+org.gnome.Characters
+org.gnome.clocks
+org.gnome.Dictionary
+org.gnome.Maps
 org.inkscape.Inkscape
