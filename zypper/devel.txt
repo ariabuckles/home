@@ -25,6 +25,7 @@ postgresql
 docker
 terraform
 vips-tools
+libwebp-tools
 
 # System:
 openssl
