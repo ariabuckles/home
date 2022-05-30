@@ -192,7 +192,11 @@ if $KBD_LAYOUT ==? "colemak"
   nnoremap l :echo "Use z to undo"<CR>
   noremap m n
   noremap M N
-  noremap <c-d> <c-v>
+  noremap <C-k> <Esc>
+  inoremap <C-k> <Esc>
+  noremap <C-d> <C-v>
+  noremap <C-l> <C-v>
+  inoremap <C-l> <C-v>
 
   "Colemak insert mode on t:
   noremap t i
@@ -312,10 +316,8 @@ augroup numbertoggle
 augroup END
 
 "Make Ctrl-C run the line number autocommands above
-noremap <C-c> <C-[>
-noremap <C-C> <C-[>
-inoremap <C-C> <C-[>
-inoremap <C-c> <C-[>
+noremap <C-c> <Esc>
+inoremap <C-c> <Esc>
 nnoremap <C-q> <C-c>
 
 "Settings for live coding:
