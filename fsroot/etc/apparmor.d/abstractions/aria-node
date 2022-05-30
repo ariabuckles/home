@@ -17,6 +17,7 @@ include <abstractions/consoles>
   @{include}/node** mrix,
   @{lib}/node_modules/** mrwix,
   # Globally-installed node modules:
+  owner @{HOME}/{,.local/}bin/ mrix,
   owner @{HOME}/{,.local/}bin/* mrix,
   owner @{HOME}/{,.local/}lib/node_modules/** rix,
   owner /tmp/** mrwix, # yarn executes node scripts in here
@@ -24,6 +25,11 @@ include <abstractions/consoles>
   # python packages:
   owner @{HOME}/.pyenv/** mrix,
   owner @{HOME}/.local/lib/python*/** rix,
+
+  # qmk
+  # TODO: separate these out and import it as appropriate :/
+  owner @{HOME}/.config/qmk/** r,
+  owner @{HOME}/qmk_firmware/** rwix,
 
   # TODO: limit these more?
   @{system_share_dirs}/node/** r,
