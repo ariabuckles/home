@@ -52,6 +52,7 @@ setopt noflowcontrol
 
 if [[ "$KBD_LAYOUT" = "colemak" && "$GNOME_TERMINAL_SERVICE" != "" ]]; then
   stty intr ^K
+  bindkey '^U' quoted-insert
 fi
 
 # vim style history with up/down
