@@ -20,7 +20,10 @@ include <abstractions/consoles>
   owner @{HOME}/{,.local/}bin/* mrix,
   owner @{HOME}/{,.local/}lib/node_modules/** rix,
   owner /tmp/** mrwix, # yarn executes node scripts in here
+
+  # python packages:
   owner @{HOME}/.pyenv/** mrix,
+  owner @{HOME}/.local/lib/python*/** rix,
 
   # TODO: limit these more?
   @{system_share_dirs}/node/** r,

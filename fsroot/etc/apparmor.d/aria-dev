@@ -83,7 +83,7 @@ profile aria-dev-node_modules @{aria_dev_dirs}/**/node_modules/** {
 
 # globally installed npm packages
 # TODO: replace [^v] with {**^viridium} once that lands in apparmor
-profile aria-dev-npm-global-modules @{HOME}/{,.local/}{bin,lib/node_modules}/[^v]** {
+profile aria-dev-npm-global-modules @{HOME}/{,.local/}{bin,lib/node_modules,lib/python*}/[^v]** {
   include <abstractions/aria-node>
 
   # dev dirs:
