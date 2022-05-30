@@ -1,6 +1,6 @@
 .PHONY: install update sync
 
-ifneq "$(shell uname -s)" "Linux"
+ifeq "$(shell uname -s)" "Linux"
 
 install:
 	@echo "Installing system files (must be run under sudo)"
