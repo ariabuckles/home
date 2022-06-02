@@ -38,7 +38,8 @@ include <abstractions/consoles>
   /sys/fs/cgroup/memory/memory.limit_in_bytes r,
   /usr/** r, # TODO limit
   @{etc_ro}/** r,
-  owner @{run}/** r,
+  # requires various network files in here to run, both config and dynamic downloads
+  @{run}/** r,
   /var/** r, # TODO limit?
   /sys/** r, # TODO limit
   /proc/** r, # yarn needs this for reeding memory ; TODO: limit to exactly what it needs

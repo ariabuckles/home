@@ -25,11 +25,11 @@ profile aria-dev-npm /usr/bin/npm {
 
   # Config:
   owner @{HOME}/.npmrc rw,
-  owner @{HOME}/.config/npm/** rw,
+  owner @{HOME}/.config/npm/** rwl,
   owner @{HOME}/home/config/npm/** r,
   # Cache:
-  owner @{HOME}/.npm/{,**} rw,
-  owner @{HOME}/.cache/npm/{,**} rw,
+  owner @{HOME}/.npm/{,**} rwl,
+  owner @{HOME}/.cache/npm/{,**} rwl,
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
@@ -40,8 +40,8 @@ profile aria-dev-npx /usr/bin/npx {
   include <abstractions/aria-node>
 
   # Cache:
-  owner @{HOME}/.npm/{,**} rw,
-  owner @{HOME}/.cache/npm/{,**} rw,
+  owner @{HOME}/.npm/{,**} rwl,
+  owner @{HOME}/.cache/npm/{,**} rwl,
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
@@ -53,17 +53,14 @@ profile aria-dev-yarn /usr/{bin,share/yarn/bin}/{yarn,yarnpkg} {
 
   # Config:
   owner @{HOME}/.yarnrc rw,
-  owner @{HOME}/.config/yarn/{,**} rw,
+  owner @{HOME}/.config/yarn/{,**} rwl,
   # Cache:
-  owner @{HOME}/.cache/yarn/{,**} rw,
+  owner @{HOME}/.cache/yarn/{,**} rwl,
 
   # yarn asks to read npm's config too:
   owner @{HOME}/.npmrc r,
   owner @{HOME}/.config/npm/** r,
   owner @{HOME}/home/config/npm/** r,
-
-  # yarn asks to read general network config in /run:
-  @{run}/** r,
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
@@ -90,8 +87,8 @@ profile aria-dev-npm-global-modules @{HOME}/{,.local/}{bin,lib/node_modules,lib/
   owner @{aria_dev_dirs}/** mrwlkix,
 
   # heroku:
-  owner @{HOME}/.local/share/heroku{,**} rw,
-  owner @{HOME}/.cache/heroku{,**} rw,
+  owner @{HOME}/.local/share/heroku{,**} rwl,
+  owner @{HOME}/.cache/heroku{,**} rwl,
   owner @{HOME}/.netrc rw, # TODO: isolate
 }
 
