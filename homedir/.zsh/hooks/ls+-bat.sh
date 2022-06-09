@@ -5,7 +5,7 @@ function cat {
     if [[ -d "$file" ]]; then
       ls "$ls_color" "$file"
     else
-      cat "$file"
+      command cat "$file"
     fi
   done
 }
