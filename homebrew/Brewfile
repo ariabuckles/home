@@ -6,8 +6,7 @@ cask_args appdir: "/Applications"
 cask "chromium"
 
 # Language ecosystems:
-brew "node@12", link: true
-brew "node", link: false
+brew "node@16", link: true
 brew "python"
 brew "pyenv"
 brew "lua"
