@@ -3,7 +3,7 @@ tap "homebrew/cask"
 cask_args appdir: "/Applications"
 
 # User software
-cask "chromium"
+#cask "chromium"
 
 # Language ecosystems:
 brew "node@16", link: true
@@ -12,6 +12,7 @@ brew "pyenv"
 brew "lua"
 brew "postgres"
 brew "shellcheck"
+brew "terraform"
 brew "yarn"
 
 # Standard util polyfills for mac:
@@ -33,11 +34,3 @@ brew "gh" # GitHub new
 brew "hub" # GitHub legacy
 brew "awscli" # AWS
 brew "docker-credential-helper-ecr" # Docker creds helper; make sure to update ~/.docker/config.json
-
-# Pilot deps:
-brew dbus
-brew dbus-glib
-cask "1password-cli"
-brew "openssl@1.1"
-#brew "pinentry-mac"
-brew "terraform"
