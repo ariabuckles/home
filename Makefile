@@ -31,7 +31,7 @@ sync: root-sync user-sync
 
 root-install:
 	# Elevating to root to install root configuration:
-	su --login --pty -c "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-flatpak"
+	su --login --pty -c "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-homebrew install-flatpak"
 	# Installed root settings
 
 user-install:
@@ -42,7 +42,7 @@ user-install:
 # Update:
 root-update:
 	# Elevating to root to update root programs:
-	su --login --pty -c "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-flatpak"
+	su --login --pty -c "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-homebrew update-flatpak"
 	# Updated root software
 
 user-update:
@@ -51,7 +51,7 @@ user-update:
 	# Updated user software
 
 # Sync:
-root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-flatpak
+root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-homebrew sync-flatpak
 	@echo "Synced root settings"
 
 user-sync: sync-config sync-homedir sync-npm
