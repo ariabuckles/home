@@ -1,5 +1,5 @@
 # detect OS
-OS=`uname -s`
+OS=$(uname -s)
 
 # zsh magic completion
 # Re-enabled after fixing fpath in .zshenv:

@@ -2,6 +2,8 @@
 #Macports path:
 export ARIAHOME=$HOME
 export ZDOTDIR=$ARIAHOME
+OS=$(uname -s)
+ARCH=$(uname -m)
 
 # Source any zprofile here; then ignore GLOBAL_RCS, since we
 # want more control over our path
@@ -21,6 +23,10 @@ export PYENV_SHELL=$SHELL
 #export PATH=$(echo $PATH | sed 's|/usr/local/bin:||g')
 # System path:
 export PATH="/usr/local/bin:/usr/bin:/bin:/opt/bin"
+# Homebrew (arm):
+if [[ "${OS} ${ARCH}" == "Darwin arm64" ]]; then
+  export PATH="$PATH:/opt/homebrew/bin"
+fi
 # Custom user-installed executables:
 export PATH="$PATH:$ARIAHOME/.local/bin"
 # Python with pyenv (bin is the pyenv executable when installed from source.
