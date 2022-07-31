@@ -6,6 +6,8 @@ cask_args appdir: "/Applications", require_sha: true
 
 # User software
 cask "chromium"
+cask "inkscape"
+cask "krita"
 
 # Language ecosystems:
 brew "node@16", link: true
