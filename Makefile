@@ -3,6 +3,14 @@ ifndef OSNAME
 	OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
 endif
 
+ifeq "$(OSNAME)" "Darwin"
+	SUDO := sudo --login --set-home sh -c
+	SU := su -l
+else
+	SUDO := su --login --pty -c
+	SU := su --login --pty
+endif
+
 # Find subsystems based on subdirectories:
 SUBDIRS := $(subst /,,$(dir $(wildcard */)))
 INSTALL_TARGETS := $(patsubst %,install-%,$(SUBDIRS))
@@ -31,23 +39,23 @@ sync: root-sync user-sync
 
 root-install:
 	# Elevating to root to install root configuration:
-	su --login --pty -c "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-homebrew install-flatpak"
+	$(SUDO) "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-homebrew install-flatpak"
 	# Installed root settings
 
 user-install:
 	# Dropping to user privileges:
-	su --login --pty aria -c "cd '$$PWD' && $(MAKE) install-config install-homedir install-npm"
+	$(SU) aria -c "cd '$$PWD' && $(MAKE) install-config install-homedir install-npm"
 	# Installed user settings
 
 # Update:
 root-update:
 	# Elevating to root to update root programs:
-	su --login --pty -c "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-homebrew update-flatpak"
+	$(SUDO) "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-homebrew update-flatpak"
 	# Updated root software
 
 user-update:
 	# Dropping to user privileges:
-	su --login --pty aria -c "cd '$$PWD' && $(MAKE) update-config update-homedir update-npm"
+	$(SU) aria -c "cd '$$PWD' && $(MAKE) update-config update-homedir update-npm"
 	# Updated user software
 
 # Sync:
