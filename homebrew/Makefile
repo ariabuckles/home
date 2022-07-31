@@ -9,7 +9,7 @@ install:
 	find . -type f,l | grep -v Makefile | xargs -t -I% cp % ~homebrew/%
 	chown -R homebrew ~homebrew # fix permissions of files copied by sudo
 	# Install Brewfile:
-	sudo -u homebrew -i brew bundle install
+	sudo -u homebrew -i brew bundle install --file Brewfile
 
 update:
 	test $$(id -u) = 0 # Ensure we're running as root

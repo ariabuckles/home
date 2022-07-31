@@ -1,9 +1,11 @@
 # Allow things from homebrew core or casks
+tap "homebrew/core"
 tap "homebrew/cask"
-cask_args appdir: "/Applications"
+tap "homebrew/bundle"
+cask_args appdir: "/Applications", require_sha: true
 
 # User software
-#cask "chromium"
+cask "chromium"
 
 # Language ecosystems:
 brew "node@16", link: true
@@ -27,7 +29,6 @@ brew "jq"
 brew "tig"
 brew "fzf"
 brew "bat"
-brew "git-delta"
 
 # Service CLIs:
 brew "gh" # GitHub new
