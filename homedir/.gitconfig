@@ -31,12 +31,13 @@
     cbr = clean-branches
     annotate = blame
     ann = blame
+    changed = "!git diff --relative --name-only $(git get-main)...HEAD"
     ramclone = "!cd \"${HOME}/.src/\" && git clone -n \"$1\" && git ramload"
     ramload = "!for repo in $(ls \"${HOME}/.src\"); do dir=\"${HOME}/src/${repo}\"; test -d \"${dir}\" || (git init --separate-git-dir \"${HOME}/.src/${repo}/.git\" \"${dir}\" && cd \"${dir}\" && git reset --hard); done; true"
     set-main = "!git fetch && git remote set-head origin $(git remote show origin | grep 'HEAD branch:' | sed 's/.*: *//') && true"
-    get-main = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's|.*/||' && true"
-    update-pr = "!git push -f origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
-    force-update-pr = "!git push -f --no-verify origin HEAD:aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
+    get-main = "!basename $(git symbolic-ref refs/remotes/origin/HEAD)"
+    update-pr = "!git push -f origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
+    force-update-pr = "!git push -f --no-verify origin HEAD:aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//')"
     fmt = "!cd -- ${GIT_PREFIX:-.} && npx prettier --write $(git diff --relative --name-only \"$(git get-main)\"...HEAD) && git add . && git commit -m 'Formatting: `prettier --write`'"
     fmt-old = "!cd -- ${GIT_PREFIX:-.} && npm run format -- $(git log --format=%H --grep '^Formatting: `npm run format`$' | head -n1) && git add . && git commit -m 'Formatting: `npm run format`'"
     myprs = "!hub pr list -f '%au %pC %>(8) %i %Creset %t %l %Nc %n' | grep '^[^#]*ariabuckles[^#]*#' | sed 's/^[^#]*//'"
@@ -54,9 +55,9 @@
     pr-message-raw-body = "!git log --reverse $(git get-main)...HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses|implements) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true"
     pr-message-raw-list = "!git log --reverse $(git get-main)...HEAD --pretty=format:'1. %h %s' || true"
     pr-message-raw-test = "!git log --reverse $(git get-main)...HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$1' || true"
-    hpr = "!bash -c \"git update-pr && hub pull-request -c --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
+    hpr = "!bash -c \"git update-pr && hub pull-request -c --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --file <(git pr-message) && echo 'New PR created'; hub pr list --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
     new-pr = pr
-    pr = "!bash -c \"git update-pr && gh pr create --head aria/$(git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --title $(git pr-message-title) --body-file <(git pr-message-body) && echo 'New PR created'; hub pr list --head aria/$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
+    pr = "!bash -c \"git update-pr && gh pr create --head aria-$(git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --title $(git pr-message-title) --body-file <(git pr-message-body) && echo 'New PR created'; hub pr list --head aria-$(/usr/bin/git rev-parse --abbrev-ref HEAD | sed -e 's/-[0-9a-z]$//') --base $(git get-main) --format '%n%pC%i%Creset %t %Cblue%U%Creset%n%n'\""
 [core]
     excludesfile = ~/.gitignoreglobal
     abbrev = 8
