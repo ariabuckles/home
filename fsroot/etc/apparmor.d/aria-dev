@@ -33,6 +33,9 @@ profile aria-dev-npm /usr/bin/npm {
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
+
+  # dependency dirs
+  owner @{HOME}/.cache/Cypress/{,**} rwl,
 }
 
 # npx:
@@ -64,6 +67,9 @@ profile aria-dev-yarn /usr/{bin,share/yarn/bin}/{yarn,yarnpkg} {
 
   # dev dirs:
   owner @{aria_dev_dirs}/** mrwlkix,
+
+  # dependency dirs
+  owner @{HOME}/.cache/Cypress/{,**} rwl,
 }
 
 # npm packages:
