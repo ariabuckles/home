@@ -10,11 +10,13 @@ install:
 	chown -R homebrew ~homebrew # fix permissions of files copied by sudo
 	# Install Brewfile:
 	sudo -u homebrew -i brew bundle install --file Brewfile
+	-sudo xattr -d com.apple.quarantine /Applications/* 2>/dev/null
 
 update:
 	test $$(id -u) = 0 # Ensure we're running as root
 	sudo -u homebrew -i brew update
 	sudo -u homebrew -i brew upgrade
+	-sudo xattr -d com.apple.quarantine /Applications/* 2>/dev/null
 
 sync: ;
 
