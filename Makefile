@@ -39,7 +39,7 @@ sync: root-sync user-sync
 
 root-install:
 	# Elevating to root to install root configuration:
-	$(SUDO) "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-homebrew install-flatpak"
+	$(SUDO) "cd '$$PWD' && $(MAKE) install-$(OSNAME) install-fsroot install-zypper install-homebrew install-flatpak install-aria"
 	# Installed root settings
 
 user-install:
@@ -50,7 +50,7 @@ user-install:
 # Update:
 root-update:
 	# Elevating to root to update root programs:
-	$(SUDO) "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-homebrew update-flatpak"
+	$(SUDO) "cd '$$PWD' && $(MAKE) update-$(OSNAME) update-fsroot update-zypper update-homebrew update-flatpak update-aria"
 	# Updated root software
 
 user-update:
@@ -59,7 +59,7 @@ user-update:
 	# Updated user software
 
 # Sync:
-root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-homebrew sync-flatpak
+root-sync: sync-$(OSNAME) sync-fsroot sync-zypper sync-homebrew sync-flatpak sync-aria
 	@echo "Synced root settings"
 
 user-sync: sync-config sync-homedir sync-npm
