@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ "$(arch)" == 'aarch64' ]]; then
+  echo "openSUSE_Factory_ARM"
+else
+  echo "openSUSE_Tumbleweed"
+fi
