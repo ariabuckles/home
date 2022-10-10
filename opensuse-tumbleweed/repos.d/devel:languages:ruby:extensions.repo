@@ -1,7 +1,7 @@
 [devel:languages:ruby:extensions]
 enabled=1
 autorefresh=0
-baseurl=${mirror}/repositories/devel:/languages:/ruby:/extensions/openSUSE_Tumbleweed/
+baseurl=https://mirrorcache-us.opensuse.org/${mirror}/repositories/devel:/languages:/ruby:/extensions/openSUSE_Tumbleweed/
 type=rpm-md
 priority=110
 gpgcheck=1

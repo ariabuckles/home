@@ -2,7 +2,8 @@
 
 install:
 	test $$(id -u) = 0 # Ensure we're running as root
-	zypper install --no-recommends rsync
+	# TODO(aria): Make this not rely on rsync; this module is too low level to call zypper
+	-zypper install --no-recommends rsync
 	find vars.d -type f | xargs -tI% sh -c 'bash % > /etc/zypp/%'
 	rsync -rlp --delete-after repos.d /etc/zypp/
 

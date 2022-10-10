@@ -1,6 +1,4 @@
 #!/bin/bash
 if [[ "$(arch)" != 'x86_64' ]]; then
-  echo "https://mirrorcache-us.opensuse.org/ports/$(arch)"
-else
-  echo "https://mirrorcache-us.opensuse.org"
+  echo "ports/$(arch)"
 fi
