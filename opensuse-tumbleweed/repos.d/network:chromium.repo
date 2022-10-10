@@ -1,7 +1,7 @@
 [network:chromium]
 enabled=1
 autorefresh=0
-baseurl=https://mirrorcache-us.opensuse.org/${mirror}/repositories/network:/chromium/${repopath}/
+baseurl=https://mirrorcache-us.opensuse.org/repositories/network:/chromium/${repopath}/
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=1
