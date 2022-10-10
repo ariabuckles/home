@@ -1,7 +1,7 @@
 [security:tls]
 enabled=1
 autorefresh=0
-baseurl=https://mirrorcache-us.opensuse.org/repositories/security:/tls/openSUSE_Tumbleweed/
+baseurl=${mirror}/repositories/security:/tls/openSUSE_Tumbleweed/
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=1
