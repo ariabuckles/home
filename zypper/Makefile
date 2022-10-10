@@ -30,7 +30,7 @@ install: init
 	-cat removed.lock | grep -v '^\#\|^$$' | xargs -t zypper remove --name
 	cat removed.lock | grep -v '^\#\|^$$' | xargs -t zypper addlock
 	# Install packages:
-	cat *.txt | grep -v '^\#\|^$$' | xargs -t zypper install
+	cat *.txt | grep -v '^\#\|^$$' | xargs -t zypper --ignore-unknown install
 	-zypper ps -s # list packages that need restarting
 
 update: init
