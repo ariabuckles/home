@@ -1,6 +1,6 @@
 .PHONY: install update sync init
 ifndef OSNAME
-	OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
+OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
 endif
 
 ifeq "$(OSNAME)" "Darwin"

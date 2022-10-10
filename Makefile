@@ -1,14 +1,14 @@
 # System vars
 ifndef OSNAME
-	OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
+OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
 endif
 
 ifeq "$(OSNAME)" "Darwin"
-	SUDO := sudo --login --set-home sh -c
-	SU := su -l
+SUDO := sudo --login --set-home sh -c
+SU := su -l
 else
-	SUDO := su --login --pty -c
-	SU := su --login --pty
+SUDO := su --login --pty -c
+SU := su --login --pty
 endif
 
 # Find subsystems based on subdirectories:
