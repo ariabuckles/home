@@ -16,7 +16,7 @@ else
 install:
 	test -x /bin/zsh && usermod -s /bin/zsh aria
 
-update: install ;
+update: ;
 
 sync: ;
 
