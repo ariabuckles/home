@@ -1,0 +1,61 @@
+#!/usr/bin/make -sf
+.PHONY: *
+
+SHELL:=/bin/zsh
+
+pr-message: title summary reviewer-notes test-plan issues ;
+	#(git pr-message-title && echo && git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | git stripspace || true
+
+pr-message-body:
+	#(git pr-message-issues && git pr-message-changes && git pr-message-dev-notes && git pr-message-test && git pr-message-release && git pr-message-rollback) | git stripspace || true
+
+title:
+	git log -n1 --pretty=format:%s
+
+issues:
+	echo
+	echo '## JIRA Issues'
+	echo
+	git pr-message-raw-issues
+	-git log --reverse $$(git get-main)...HEAD --pretty=format:%b | grep -Ei '^(starts|completes|fixes|addresses|implements) \\S+$$'
+	echo
+
+summary:
+	echo
+	echo '## Description'
+	echo
+	git pr-message-raw-body
+
+reviewer-notes:
+	echo
+	echo '## Reviewer notes'
+	echo
+	echo 'This change consists of the following commits:'
+	echo
+	-git log --reverse $$(git get-main)...HEAD --pretty=format:'1. %h %s'
+	echo
+
+test-plan:
+	echo
+	echo '## Test plan'
+	-git pr-message-raw-test
+	echo
+
+pr-message-release:
+	#echo '## Release notes (User-facing)' && echo && echo ' - [ ] When the PR lands, paste the release notes above into the top of [the Release Notes paper document]' && echo || true
+
+pr-message-rollback:
+	#echo '## Rollback Plan' && echo && echo && echo ' - [ ] This PR is safe to **roll back**' && echo
+
+pr-message-raw-issues:
+	#git log --reverse $(git get-main)...HEAD --pretty=format:%b | grep -Ei '^(starts|completes|fixes|addresses|implements) \\S+$' | jsed '^([A-Za-z-]+) ([A-Z]+-\\d+)$' '$1 https://pilothq.atlassian.net/browse/$2' || true
+
+pr-message-raw-body:
+	#git log --reverse $(git get-main)...HEAD --pretty=format:'%bEND_OF_COMMIT' | grep -Eiv '^(starts|completes|fixes|addresses|implements) \\S+$' | jsed '/(?:Test plan:[\\S\\s]*?)?END_OF_COMMIT\\s?/gi' '\n' || true
+
+pr-message-raw-list:
+	#git log --reverse $(git get-main)...HEAD --pretty=format:'1. %h %s' || true
+
+pr-message-raw-test:
+	echo hi
+	git log --reverse $$(git get-main)...HEAD --pretty=format:'START_OF_COMMIT%bEND_OF_COMMIT' | jsed '/START_OF_COMMIT[\\S\\s]*?(?:Test plan:\\s([\\S\\s]*?)|.*?)END_OF_COMMIT\\s?/gi' '$$1' || true
