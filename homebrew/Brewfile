@@ -10,7 +10,7 @@ cask "inkscape"
 cask "krita"
 
 # Language ecosystems:
-brew "node@16", link: true
+brew "node@18", link: true
 brew "python"
 brew "pyenv"
 brew "lua"
