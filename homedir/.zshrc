@@ -23,7 +23,7 @@ fi
 
 if id homebrew &>/dev/null; then
   brew() {
-    sudo -u homebrew -i zsh -c "cd '$(pwd)'; brew $*"
+    sudo -u homebrew -i --preserve-env=HOMEBREW_GITHUB_API_TOKEN zsh -c "cd '$(pwd)'; brew $*"
   }
 fi
 

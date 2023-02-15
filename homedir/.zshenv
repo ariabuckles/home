@@ -12,6 +12,8 @@ if [[ -o login ]] && [[ -e /etc/zprofile ]]; then
 fi
 unsetopt GLOBAL_RCS
 
+# Set systemy options:
+ulimit -n 16384 || true # increase the max # of files if possible
 # Set up zsh compinit paths safely (ignore homebrew):
 fpath=($(echo $fpath | sed 's|^/usr/local/[^ ]*||'))
 
