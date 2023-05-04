@@ -23,7 +23,12 @@ fi
 
 if id homebrew &>/dev/null; then
   brew() {
-    sudo -u homebrew -i --preserve-env=HOMEBREW_GITHUB_API_TOKEN zsh -c "cd '$(pwd)'; brew $*"
+    # sudo to homebrew user, while preserving HOMEBREW_GITHUB_API_TOKEN if present,
+    # and starting an ssh agent if there is an ed25519 ssh key, for any ssh taps
+    # To get this to work, first generate an ssh key inside the homebrew user :)
+    sudo -u homebrew -i \
+      --preserve-env=HOMEBREW_GITHUB_API_TOKEN \
+      zsh -c 'test -f "$HOME/.ssh/id_ed25519.pub" && eval $(ssh-agent) && eval ssh-add;'"cd '$(pwd)' && brew $*; killall ssh-agent"
   }
 fi
 
