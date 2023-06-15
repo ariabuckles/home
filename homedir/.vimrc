@@ -369,7 +369,7 @@ set signcolumn=yes
 " Linting And Formatting:
 " vim-prettier
 let g:prettier#autoformat = 0
-if or(or(filereadable(findfile('prettier.config.js', '.;')), filereadable(findfile('.prettierrc.js', '.;'))), filereadable(findfile('.prettierrc', '.;')))
+if filereadable(findfile('prettier.config.js', '.;')) || filereadable(findfile('.prettierrc.js', '.;')) || filereadable(findfile('.prettierrc.cjs', '.;')) || filereadable(findfile('.prettierrc', '.;'))
   autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.vue,*.css,*.scss Prettier
 endif
 

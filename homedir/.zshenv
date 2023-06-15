@@ -62,6 +62,8 @@ export KEYTIMEOUT=1
 export NODE_REPL_HISTORY="$HOME/.local/share/node/repl_history"
 export MOCHA_REPORTER='spec'
 
+# Telemetry disables:
+export NEXT_TELEMETRY_DISABLED=1
 
 # alias -r watchman="/usr/local/Cellar/watchman/4.7.0_1/libexec/bin/watchman --foreground --logfile=/usr/local/var/run/watchman/ariashell-state/log --log-level=1 --sockname=/usr/local/var/run/watchman/ariashell-state/sock --statefile=/usr/local/var/run/watchman/ariashell-state/state --pidfile=/usr/local/var/run/watchman/ariashell-state/pid"
 
