@@ -7,7 +7,8 @@ install:
 	test $$(id -u) = 0 # Ensure we're running as root
 	# Copy over homebrew files to homebrew user:
 	find . -type f,l | grep -v Makefile | xargs -t -I% cp % ~homebrew/%
-	chown -R homebrew ~homebrew # fix permissions of files copied by sudo
+	# fix permissions of files copied by sudo:
+	find . -type f | grep -v Makefile | xargs -t -I% chown homebrew ~homebrew/%
 	# Install Brewfile:
 	sudo -u homebrew -i brew bundle install --file Brewfile
 	-sudo xattr -d com.apple.quarantine /Applications/* 2>/dev/null
