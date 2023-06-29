@@ -14,8 +14,8 @@ install:
 
 update:
 	test $$(id -u) = 0 # Ensure we're running as root
-	sudo -u homebrew -i brew update
-	sudo -u homebrew -i brew upgrade --greedy
+	-sudo -u homebrew -i brew update
+	-sudo -u homebrew -i brew upgrade --greedy
 	-sudo xattr -d com.apple.quarantine /Applications/* 2>/dev/null
 
 sync: ;
