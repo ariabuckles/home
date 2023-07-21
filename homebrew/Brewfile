@@ -1,7 +1,4 @@
 # Allow things from homebrew core or casks
-tap "homebrew/core"
-tap "homebrew/cask"
-tap "homebrew/bundle"
 cask_args appdir: "/Applications", require_sha: true
 
 # User software
