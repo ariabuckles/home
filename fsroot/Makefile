@@ -6,13 +6,13 @@ install:
 	@echo "Installing system files (must be run under sudo)"
 	test $$(id -u) = 0 # Ensure we're running as root
 	find . -type d | sed 's:^\.::'    | xargs -t mkdir -p
-	find . -type f,l | grep -v Makefile | xargs -t -I% cp -Pp % /%
+	find . -type f,l | grep -v Makefile | xargs -t -I% cp --no-dereference --preserve=mode % /%
 
 update: ;
 
 sync:
 	@echo "Updating system files in this repo (must be run under sudo)"
-	-find . -type f,l | grep -v Makefile | xargs -t -I% cp -Pp /% %
+	-find . -type f,l | grep -v Makefile | xargs -t -I% cp --no-dereference --preserve=mode /% %
 
 endif
 
