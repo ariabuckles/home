@@ -1,7 +1,7 @@
 [repo-update]
 enabled=1
 autorefresh=0
-baseurl=https://mirrorcache-us.opensuse.org/${mirror}/update/tumbleweed/
+baseurl=https://download.opensuse.org/update/tumbleweed/
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=1

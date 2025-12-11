@@ -5,7 +5,7 @@ OSNAME := $(shell ( . /etc/os-release 2>/dev/null && echo $$ID ) || uname -s)
 endif
 
 # Add params like --ignore-unknown here
-ifeq "$(OSNAME)" "opensuse-tumbleweed"
+ifeq "$(OSNAME)" "opensuse-tumbleweed--apparmor"
 # TODO(aria): Figure out better apparmor settings so we can run npm rather than npm16 here:
 NPM := npm16
 else
