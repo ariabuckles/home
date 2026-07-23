@@ -8,11 +8,9 @@ org.gnome.TextEditor
 org.gnome.Calculator
 org.gnome.Characters
 org.gnome.clocks
-org.gnome.Dictionary
 org.gnome.Maps
 
 # Work
-org.gnome.GTG
 us.zoom.Zoom
 
 # Personal
